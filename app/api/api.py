@@ -18,18 +18,25 @@ def get_random_dist_route():
 
 @api.get("/randway")
 def get_rand_way():
-    pois = [randint(1, 106) for i in range(5)]
+    pois = [randint(1, 105) for i in range(5)]
 
-    path = "<br>".join([Poi.filter(id=i + 1).first().name for i in get_path(Graph.matrix, pois, Graph.time_list, n_of_ans=2)[0]])
+    try:
 
-    return f"""
-    {pois}
-    <br>
-    {"; ".join([Poi.filter(id=i + 1).first().name for i in pois])}
-    <br>
-    <hr>
-    <br>
-    {path}
-    
-    """
+        path = "<br>".join([Poi.filter(id=i + 1).first().name for i in get_path(Graph.matrix, pois, Graph.time_list, n_of_ans=2)[0]])
+
+        return f"""
+        {pois}
+        <br>
+        {"; ".join([Poi.filter(id=i + 1).first().name for i in pois])}
+        <br>
+        <hr>
+        <br>
+        {path}
+        <br>
+        <hr>
+        <br>
+        {len(Graph.matrix)} {set([len(i) for i in Graph.matrix])}
+        """
+    except Exception:
+        return pois
 

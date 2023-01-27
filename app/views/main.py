@@ -2,6 +2,9 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 
 from flask_login import login_required, current_user
 
+from app.models.map import *
+
+
 main = Blueprint("main", __name__)
 
 
@@ -17,3 +20,7 @@ def main_route():
 @login_required
 def account_route():
     return render_template("main/account.html")
+
+@main.before_app_first_request
+def init_matrix():
+    Graph.init_graph()

@@ -6,13 +6,15 @@ from app.models.map import *
 
 from app.models.map.services import *
 
+from app.models.map.test import *
+
 
 api = Blueprint("api", __name__)
 
 
 @api.get("/rand_dist")
 def get_random_dist_route():
-    s, e = randint(1, 107), randint(1, 107)
+    s, e = randint(1, 106), randint(1, 106)
 
     return f"{s} -> {e} = {Graph.distance_between(s, e)}"
 
@@ -40,3 +42,6 @@ def get_rand_way():
     except Exception:
         return pois
 
+@api.get("/randwayhtml")
+def get_rand_way_html():
+    return rand_way_in_html()

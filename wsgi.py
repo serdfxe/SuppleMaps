@@ -5,4 +5,4 @@ app = create_app()
 
 if __name__ == "__main__":
     #serve(app, host='0.0.0.0')
-    app.run("127.0.0.1", port=80)
+    app.run("0.0.0.0", port=80)

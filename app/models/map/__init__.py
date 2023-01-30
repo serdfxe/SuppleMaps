@@ -1,5 +1,7 @@
 import zlib, base64
 
+import osmnx as ox
+
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Text
 from sqlalchemy.orm import relationship
 
@@ -73,8 +75,14 @@ class Graph():
         cls.time_list = l
 
     @classmethod
+    def init_ox(cls):
+        #cls.oxG = ox.graph_from_place('VDNH, Russia', network_type='walk')
+        cls.oxG =  ox.graph_from_bbox(55.8475, 55.8206, 37.5798, 37.6505, network_type='walk')
+
+    @classmethod
     def init_graph(cls):
-        cls.init_matrix() 
+        cls.init_ox()
+        cls.init_matrix()
         cls.init_time_list()
 
     @classmethod

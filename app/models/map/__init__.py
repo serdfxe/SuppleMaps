@@ -1,5 +1,6 @@
-from turtle import distance, end_fill
-from sqlalchemy import Column, String, Integer, Float, ForeignKey, and_
+import zlib, base64
+
+from sqlalchemy import Column, String, Integer, Float, ForeignKey, Text
 from sqlalchemy.orm import relationship
 
 from app.database import Base
@@ -12,9 +13,22 @@ class Poi(Base, DBTool):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(120), nullable=False, unique=True)
+    image = Column(String(120), nullable=False, unique=True)
+    description = Column(Text(5000), nullable=False)
     lat = Column(Float, nullable=False)
     lon = Column(Float, nullable=False)
+    type_id = Column(Integer, ForeignKey("poi_type.id"), nullable=False)
     time = Column(Integer, nullable=False)
+
+    poi_type = relationship("PoiType")
+
+    @classmethod
+    def compress(cls, s: str) -> str:
+        return base64.b64encode(zlib.compress(s.encode("utf-8")))
+
+    @classmethod
+    def decompress(cls, s: str) -> str:
+        return zlib.decompress(base64.b64decode(s)).decode("utf-8")
 
 
 class DistanceList(Base, DBTool):
@@ -24,6 +38,13 @@ class DistanceList(Base, DBTool):
     end_id = Column(Integer, primary_key=True)
   
     distance = Column(Integer, nullable=False)
+
+
+class PoiType(Base, DBTool):
+    __tablename__ = "poi_type"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(120), nullable=False, unique=True)
 
 
 class Graph():
@@ -53,7 +74,7 @@ class Graph():
 
     @classmethod
     def init_graph(cls):
-        cls.init_matrix()
+        cls.init_matrix() 
         cls.init_time_list()
 
     @classmethod

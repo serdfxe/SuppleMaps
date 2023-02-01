@@ -88,3 +88,15 @@ class Graph():
     @classmethod
     def distance_between(cls, start_point, end_point):
         return cls.matrix[start_point - 1][end_point - 1], DistanceList.filter(start_id=start_point, end_id=end_point).first().distance
+
+class MapStyles():
+    # = {'tiles':'', 'attr':''}
+    voyager_nolabels = {"tiles":'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', "attr":'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'}
+    thunderforest_outdoorss = {'tiles':'https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=b2657f580b7c4e5c9832cf371031763a', 'attr':'&copy; <a href="http://www.thunderforest.com/%22%3EThunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'}
+    satellite = {'tiles': 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', 'attr': 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'}
+
+    topo = {'tiles': 'https://api.maptiler.com/maps/topo-v2/{z}/{x}/{y}@2x.png?key=HE0hiltCVg2gETfdEctd', 'attr': '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'}
+
+    streets = {"tiles": "https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}@2x.png?key=HE0hiltCVg2gETfdEctd", "attr": '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'}
+
+    style_list = [voyager_nolabels, thunderforest_outdoorss, satellite, topo, streets]

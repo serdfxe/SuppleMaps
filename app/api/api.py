@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
 
-from random import randint
+from random import randint, choice
 
 from app.models.map import *
 
@@ -42,6 +42,6 @@ def get_rand_way():
     except Exception:
         return pois
 
-@api.get("/randwayhtml")
-def get_rand_way_html():
-    return rand_way_in_html()
+@api.get("/randwayhtml/<id>")
+def get_rand_way_html(id):
+    return rand_way_in_html(MapStyles.style_list[int(id)])

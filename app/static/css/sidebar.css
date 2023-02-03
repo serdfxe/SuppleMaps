@@ -1,0 +1,51 @@
+@import "./const.css";
+
+.sidebar_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 20px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px;
+    width: 350px;
+
+    background: var(--background);
+
+    border: 2px solid var(--gray2);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 11px;
+}
+
+.logo_wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+
+    width: 100%;
+}
+
+
+.sidebar_comp {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 11px;
+    gap: 11px;
+
+    width: calc(100% - 22px);
+}
+
+.sidebar_comp:hover,  .cur_sidebar_comp {
+    background: #FBF8F8;
+    border-radius: 11px;
+}
+
+

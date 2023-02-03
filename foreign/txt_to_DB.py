@@ -45,9 +45,11 @@ def init_distances():
         return s
 
 def update_poi_info(info):#name, type_name, image, description):
-    s = {"павильон": 40, "музей": 60, "пруд": 20, "фонтан": 15, "храм": 30, "развлечения": 40}
     for i in info:
-        Poi.new(name=i[1], lat=i[0][0], lon=i[0][1], time=s[i[2]], image=i[3], description=i[4], type_id=PoiType.filter(name=i[2]).first().id)
+        Poi.update(Poi.filter(name=i[1]).first(), marker_lat=i[0][0], marker_lon=i[0][1])
+    #s = {"павильон": 40, "музей": 60, "пруд": 20, "фонтан": 15, "храм": 30, "развлечения": 40}
+    #for i in info:
+    #    Poi.new(name=i[1], lat=i[0][0], lon=i[0][1], time=s[i[2]], image=i[3], description=i[4], type_id=PoiType.filter(name=i[2]).first().id)
 
 def update_graph(m):
     for i in range(len(m)):
@@ -57,16 +59,37 @@ def update_graph(m):
 def graph_init():
     print("Starting graph initialization . . .")
 
-    drop_all()
+    #drop_all()
 
-    ts = init_types()
+    #ts = init_types()
 
-    update_types(ts)
+    #update_types(ts)
 
     i = init_pois()
 
-    m = init_distances()
+    #m = init_distances()
 
     update_poi_info(i)
 
-    update_graph(m)
+    #update_graph(m)
+
+def update_short_names():
+
+    with open("foreign/sn.txt", encoding="utf-8") as f:
+        s = f.readlines()
+
+        s = [i.split() for i in s]
+
+        for i in s:
+            p = Poi.filter(id=int(i[0]) + 1).first()
+            
+            Poi.update(p, short_name = " ".join(i[1:]))
+
+def poi_info_init():
+    with open("foreign/history (2).txt", encoding="utf-8") as f:
+        s = f.readlines()
+
+        s = [(int(i.split()[0]), " ".join(i.split()[1:])) for i in s]
+
+        for i in s:
+            Poi.update(Poi.filter(id=i[0]).first(), history=i[1])

@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: #5988FF;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+      background-image: url("/static/img/circles/background.png");
+    }
+
+    .laptop_background {
+        display: none;
+    }
+  }
+
+.circle {
+    animation: infinite linear;
+    z-index: 10;
+}
+
+.circle_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    filter: blur(5px);
+}
+
+@keyframes rotate_1 {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate_2 {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0);
+    }
+}
+
+.back_circle {
+    position: absolute;
+    width: 2300px;
+    height: 2300px;
+    border-radius: 100%;
+    background-color: #FEFEFE;
+    z-index: 5;
+    box-shadow: 0 0 40px rgb(254 254 254 / 10%);
+}
+
+.laptop_background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.mobile_background {
+    position: absolute;
+    display: flex;
+    background-color: var(--background);
+    flex-direction: column;
+    height: 100%;
+    z-index: 5;
+    filter: blur(2px);
+}
+
+@keyframes move_1 {
+    0% {
+        margin-left: -50%;
+    }
+
+    50% {
+        margin-left: 50%;
+    }
+
+    100% {
+        margin-left: -50%;
+    }
+}
+
+@keyframes move_2 {
+    0% {
+        margin-left: 50%;
+    }
+
+    50% {
+        margin-left: -50%;
+    }
+
+    100% {
+        margin-left: 50%;
+    }
+}

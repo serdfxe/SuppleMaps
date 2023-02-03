@@ -1,22 +1,9 @@
 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8ZM3.38824 8C3.38824 10.547 5.45299 12.6118 8 12.6118C10.547 12.6118 12.6118 10.547 12.6118 8C12.6118 5.45299 10.547 3.38824 8 3.38824C5.45299 3.38824 3.38824 5.45299 3.38824 8Z" fill="url(#paint0_linear_52_133)"/>
-<g filter="url(#filter0_i_52_133)">
-<path d="M3 8C3 10.7614 5.23858 13 8 13C10.7614 13 13 10.7614 13 8C13 5.23858 10.7614 3 8 3C5.23858 3 3 5.23858 3 8Z" fill="#EEF3FF"/>
-</g>
-<defs>
-<filter id="filter0_i_52_133" x="3" y="3" width="11" height="11" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dx="1" dy="1"/>
-<feGaussianBlur stdDeviation="1.5"/>
-<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-<feBlend mode="normal" in2="shape" result="effect1_innerShadow_52_133"/>
-</filter>
-<linearGradient id="paint0_linear_52_133" x1="-1.1261e-07" y1="11.5633" x2="16" y2="11.5633" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FF5959"/>
-<stop offset="1" stop-color="#B02727"/>
-</linearGradient>
-</defs>
+<path d="M8 0C12.4183 0 16 3.58172 16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0Z" fill="#D74040"/>
+<path d="M3.5 8C3.5 5.51472 5.51472 3.5 8 3.5C10.4853 3.5 12.5 5.51472 12.5 8C12.5 10.4853 10.4853 12.5 8 12.5C5.51472 12.5 3.5 10.4853 3.5 8Z" stroke="#FAFAFA" stroke-linejoin="round"/>
+<path d="M4.5 11C3.7023 10.0573 3.5 8 3.5 8M4.5 11V11C6.15966 12.9614 9.84034 12.9614 11.5 11V11M4.5 11L11.5 5M11.5 11C12.2977 10.0573 12.5 8 12.5 8M11.5 11L8 8M11.5 5C12.2977 5.94274 12.5 8 12.5 8M11.5 5C10.5394 3.86479 8 3.5 8 3.5M4.5 5C3.5 6 3.5 8 3.5 8M4.5 5C5.5 4 8 3.5 8 3.5M4.5 5L8 8M3.5 8H12.5M8 3.5V8" stroke="#FAFAFA" stroke-width="0.5" stroke-linejoin="round"/>
+<path d="M2.9 8.5L4.1 8.5L4.5 7.5L2.5 7.5L2.9 8.5Z" fill="#FAFAFA" stroke="#FAFAFA" stroke-linejoin="round"/>
+<path d="M11.9 8.5L13.1 8.5L13.5 7.5L11.5 7.5L11.9 8.5Z" fill="#FAFAFA" stroke="#FAFAFA" stroke-linejoin="round"/>
+<path d="M7.4 4L8.6 4L9 3L7 3L7.4 4Z" fill="#FAFAFA" stroke="#FAFAFA" stroke-linejoin="round"/>
+<path d="M5.5 14L7.52913 8.31844C7.68714 7.876 8.31286 7.876 8.47087 8.31844L10.5 14" stroke="#FAFAFA" stroke-linejoin="round"/>
 </svg>

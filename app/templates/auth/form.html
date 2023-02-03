@@ -1,63 +1,77 @@
-<!DOCTYPE html>
-<meta charset="utf-8" />
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{form["title"]}}</title>
-  <link rel="shortcut icon" href="{{url_for('static', filename='img/sidebar/minilogo.svg')}}">
-  <link rel="stylesheet" href="{{url_for('static', filename='css/authform.css')}}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include "main/default_head.html" %}
+    <title>{{ form["title"] }}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/auth/authform.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/auth/background.css')}}">
 </head>
 <body>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for m in messages %}
-                <h2 class="{{ m.type }}"> {{ m.discription }} </h2>
-                <!-- <h2 class="{{m.type}}"> {{ m }} </h2> -->
-            {% endfor %}
-        {% else %}
-            <h2>{{form["subtitle"]}}</h2>
-        {% endif %}
-    {% endwith %}
-    <h1>{{form["title"]}}</h1> 
-    <form method="POST" id="form">
-    {% for i in form["form"] %}
-        {% if i[0] == "label" %}
-        <h2>{{i[1]}}</h2>
-        {% endif %}
-        {% if i[0] == "first_label" %}
-        <h2 style="margin-top: 0;">{{i[1]}}</h2>
-        {% endif %}
-        {% if i[0] == "pass_input" %}
-        <input type="password" placeholder="{{i[2]}}" name="{{i[1]}}">
-        {% endif %}
-        {% if i[0] == "text_input" %}
-        <input type="text" placeholder="{{i[2]}}" name="{{i[1]}}">
-        {% endif %}
-        {% if i[0] == "submit" %}
-        <input type="submit" class="button" value="{{i[1]}}">
-        {% endif %}
-        {% if i[0] == "two_btn" %}
-        <div class="buttons">
-            {% for btn in i[1] %}
-                {% if btn[0] == "submit_btn" %}
-                <input type="submit" class="button {{btn[0]}}" value="{{btn[1]}}">
-                {% else %}
-                    <a href="{{btn[-1]}}"><div class="{{btn[0]}}">{{btn[1]}}</div></a>
-                {% endif %}
-            {% endfor %}
+    <div class="laptop_background">
+        <div class="circle_wrap">
+            <div class="back_circle"></div>
         </div>
-        {% endif %}
-    {% if i[0] == "check_box" %}
-        <label class="check">
-            <input type="checkbox" class="checkinput" name="{{i[1]}}">
-            <span class="checkbox"></span>
-            <h2 id="remembermetext">{{i[2]}}</h2>
-        </label>
-    {% endif %}
-    {% if i[0] == "ref" %}
-        <a href="{{i[1]}}">{{i[2]}}</a>
-    {% endif %}
-    {% endfor %}
-    </form>
-  </body>
+
+        {% for i in circles %}
+            <div class="circle_wrap">
+                <img class="circle" src="/static/img/circles/{{i[0]}}.svg" style="{{i[1]}}"> 
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- <div class="mobile_background">
+        {% for i in lines %}
+            <img class="circle" src="/static/img/straight/line.svg" style="{{i[1]}}"> 
+        {% endfor %}
+    </div> -->
+    
+
+    <div class="wrap">
+        <div class="form_wrap">
+            <h1>{{form["title"]}}</h1>
+            <form method="POST" class="form">
+            {% for i in form["form"] %}
+                {% if i[0] == "label" %}
+                <h3>{{i[1]}}</h3>
+                {% endif %}
+                {% if i[0] == "first_label" %}
+                <h3 style="margin-top: 0;">{{i[1]}}</h3>
+                {% endif %}
+                {% if i[0] == "pass_input" %}
+                <input type="password" placeholder="{{i[2]}}" name="{{i[1]}}">
+                {% endif %}
+                {% if i[0] == "text_input" %}
+                <input type="text" placeholder="{{i[2]}}" name="{{i[1]}}">
+                {% endif %}
+                {% if i[0] == "submit" %}
+                <input type="submit" class="filled_button" value="{{i[1]}}">
+                {% endif %}
+                {% if i[0] == "two_btn" %}
+                <div class="buttons">
+                    {% for btn in i[1] %}
+                        {% if btn[0] == "submit_btn" %}
+                        <input type="submit" class="button {{btn[0]}}" value="{{btn[1]}}">
+                        {% else %}
+                            <h3><a href="{{btn[-1]}}"><div class="{{btn[0]}}">{{btn[1]}}</div></a></h3>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% if i[0] == "check_box" %}
+                <label class="check">
+                    <input type="checkbox" class="checkinput" name="{{i[1]}}">
+                    <span class="checkbox"></span>
+                    <h3 id="remembermetext">{{i[2]}}</h3>
+                </label>
+            {% endif %}
+            {% if i[0] == "ref" %}
+                <h3><a href="{{i[1]}}">{{i[2]}}</a></h3>
+            {% endif %}
+            {% endfor %}
+            </form>
+        </div>
+    </div>
+</body>
+</html>

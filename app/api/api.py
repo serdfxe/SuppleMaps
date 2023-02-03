@@ -44,4 +44,15 @@ def get_rand_way():
 
 @api.get("/randwayhtml/<id>")
 def get_rand_way_html(id):
-    return rand_way_in_html(MapStyles.style_list[int(id)])
+    return rand_way_in_html(MapStyle.style_list[int(id)])
+
+@api.get("/art/<id>")
+def get_article(id):
+    ln = len(Poi.all())
+
+    if id not in ('', None) and id.isdigit() and int(id) <= 0 and int(id) >= ln:
+        id = int(id)
+    else:
+        id = randint(1, ln)
+
+    return Poi.filter(id=id).first().description

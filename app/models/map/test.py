@@ -9,7 +9,7 @@ from app.models.map import *
 from app.models.map.services import *
 
 
-def rand_way_in_html(style: dict):
+def rand_way_in_html(style: MapStyle):
     ps = set([randint(1, 105) for i in range(5)])
 
     try:
@@ -18,33 +18,49 @@ def rand_way_in_html(style: dict):
         nodes = []
 
         for p in pois:
-            n = ox.nearest_nodes(Graph.oxG, p.lon, p.lat)
+            n = ox.nearest_nodes(Graph.oxG, p.marker_lon, p.marker_lat)
 
             nodes.append(n)
 
         path = [ox.shortest_path(Graph.oxG, nodes[i - 1], nodes[i]) for i in range(1, len(nodes))][::-1]
 
-        shortest_route_map = ox.plot_route_folium(Graph.oxG, path[0], **style,
+        shortest_route_map = ox.plot_route_folium(Graph.oxG, path[0], tiles=style.tiles, attr=style.attr,
                 zoom=16, max_zoom=19, min_zoom=15)
 
         for r in path[1:]:
             shortest_route_map = ox.plot_route_folium(Graph.oxG, r, route_map=shortest_route_map, zoom=16)
 
-        for p in Poi.all():#pois:
-            m = folium.Marker(
-                location = (p.lat, p.lon),
-                popup = p.name,
-                icon=folium.features.DivIcon(icon_size=(14, 14), html=f""" 
-                <div style="display: flex; flex-direction: column; align-items: center;"> 
-                    <img src="http://192.168.1.67:80/static/img/markers/{p.poi_type.name}.svg"> 
-                    <h1 class="marker-text">{p.name}</h1>
-                </div> """, class_name="marker"))
-                #icon=folium.features.CustomIcon(f"http://192.168.1.67:80/static/img/markers/{p.poi_type.name}.svg",
-                #                      icon_size=(14, 14)))
+        ln = len(pois)
 
-                #icon = folium.Icon(color='red'))
+        for i in range(ln):
+            m = folium.Marker(
+                    location = (pois[i].marker_lat, pois[i].marker_lon),
+                    popup = pois[i].name,
+                    icon=folium.features.DivIcon(icon_size=(34, 50) if i in (0, ln - 1) else (30, 30), icon_anchor=(8.5*2, 23.5) if i in (0, ln - 1) else (15, 0), html=f""" 
+                    <div style="display: flex; flex-direction: column; align-items: center;"> 
+                        <img src="http://192.168.1.67:80/static/img/markers/{i if i != 0 and i != ln - 1 else "start" if i == 0 else "end"}.svg" style="filter: drop-shadow(0px 0px 3px white);"> 
+                        <h1 class="marker-text" style="transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;">{pois[i].short_name}</h1>
+                    </div> """, class_name="marker"))
 
             m.add_to(shortest_route_map)
+
+
+        for p in Poi.all():#pois:
+            if p not in pois:
+                m = folium.Marker(
+                    location = (p.marker_lat, p.marker_lon),
+                    popup = p.name,
+                    icon=folium.features.DivIcon(icon_size=(27, 27), html=f""" 
+                    <div style="display: flex; flex-direction: column; align-items: center;"> 
+                        <img src="http://192.168.1.67:80/static/img/markers/{p.poi_type.name}.svg" style="filter: drop-shadow(0px 0px 3px white);"> 
+                        <h1 class="marker-text" style="transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;">{p.short_name}</h1>
+                    </div> """, class_name="marker"))
+                    #icon=folium.features.CustomIcon(f"http://192.168.1.67:80/static/img/markers/{p.poi_type.name}.svg",
+                    #                      icon_size=(14, 14)))
+
+                    #icon = folium.Icon(color='red'))
+
+                m.add_to(shortest_route_map)
 
         mapJsVar = shortest_route_map.get_name()
 
@@ -59,15 +75,8 @@ def rand_way_in_html(style: dict):
             font-size:12pt;
         }
 
-        .marker-text {
-            white-space: break-spaces;
-            width: 
-            color:k;
-            font-size:12pt;
-            transition: font-size 0.25s;
-            transition: width 0.25s;
-            text-align: center;
-        }
+        """ + style.css + """
+
         </style>
         <script type="text/javascript">
         window.onload = function(){
@@ -88,9 +97,8 @@ def rand_way_in_html(style: dict):
                 $(".marker-text").css("width", widthFromZoom(mapZoom));
 
                 if (mapZoom <= 16) {
-                    $(".marker-text").css("display", "none");
-                } else {
-                    $(".marker-text").css("display", "block");
+                    $(".marker-text").css("font-size", "0");
+                    $(".marker-text").css("width", "0");
                 }
             }
             updateTextSizes();

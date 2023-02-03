@@ -1,0 +1,73 @@
+@import './const.css';
+
+/* text */
+
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 29px;
+}
+
+h2 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+h3 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+}
+
+a {
+    color: var(--gray10);
+    text-decoration-line: underline;
+}
+
+/* buttons */
+
+.empty_button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 18px;
+
+    border: 1px solid var(--gray10);
+    border-radius: 18px;
+}
+
+.filled_button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 18px;
+
+    background: var(--gray10);
+    color: var(--background);
+
+    border-radius: 18px;
+}
+
+/* inputs */
+
+input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 18px;
+
+    border: 1px solid var(--gray10);
+    border-radius: 18px;
+}

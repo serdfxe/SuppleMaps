@@ -1,0 +1,20 @@
+<div class="side_bar_wrap">
+    <div class="sidebar">
+        <div class="logo_wrap">
+            <img src="/static/img/logos/logo.svg" alt="SUPPLE MAPS">
+        </div>
+        {% for i in sidebar %}
+            {% if sidebar[i] == cur_page %}
+                <a style="text-decoration: none;" class="sidebar_comp cur_sidebar_comp">
+                    <img src="/static/img/sidebar/{{sidebar[i]}}.svg" alt="">
+                    <h2>{{i}}</h2>
+                </a>
+            {% else %}
+                <a href="/app/{{sidebar[i]}}" style="text-decoration: none;" class="sidebar_comp">
+                    <img src="/static/img/sidebar/{{sidebar[i]}}.svg" alt="">
+                    <h2>{{i}}</h2>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

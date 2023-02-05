@@ -45,6 +45,8 @@ a {
 
     border: 1px solid var(--gray10);
     border-radius: 18px;
+
+    cursor: pointer
 }
 
 .filled_button {
@@ -58,6 +60,8 @@ a {
     color: var(--background);
 
     border-radius: 18px;
+
+    cursor: pointer
 }
 
 /* inputs */
@@ -71,3 +75,5 @@ input {
     border: 1px solid var(--gray10);
     border-radius: 18px;
 }
+
+

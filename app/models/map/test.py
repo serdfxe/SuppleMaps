@@ -3,6 +3,7 @@ from random import randint
 import folium
 
 import osmnx as ox
+import traceback
 
 from app.models.map import *
 
@@ -38,7 +39,7 @@ def rand_way_in_html(style: MapStyle):
                     popup = pois[i].name,
                     icon=folium.features.DivIcon(icon_size=(34, 50) if i in (0, ln - 1) else (30, 30), icon_anchor=(8.5*2, 23.5) if i in (0, ln - 1) else (15, 0), html=f""" 
                     <div style="display: flex; flex-direction: column; align-items: center;"> 
-                        <img src="http://192.168.1.67:80/static/img/markers/{i if i != 0 and i != ln - 1 else "start" if i == 0 else "end"}.svg" style="filter: drop-shadow(0px 0px 3px white);"> 
+                        <img src="/static/img/markers/{i if i != 0 and i != ln - 1 else "start" if i == 0 else "end"}.svg" style="filter: drop-shadow(0px 0px 3px white);"> 
                         <h1 class="marker-text" style="transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;">{pois[i].short_name}</h1>
                     </div> """, class_name="marker"))
 
@@ -52,7 +53,7 @@ def rand_way_in_html(style: MapStyle):
                     popup = p.name,
                     icon=folium.features.DivIcon(icon_size=(27, 27), html=f""" 
                     <div style="display: flex; flex-direction: column; align-items: center;"> 
-                        <img src="http://192.168.1.67:80/static/img/markers/{p.poi_type.name}.svg" style="filter: drop-shadow(0px 0px 3px white);"> 
+                        <img src="/static/img/markers/{p.poi_type.name}.svg" style="filter: drop-shadow(0px 0px 3px white);"> 
                         <h1 class="marker-text" style="transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;">{p.short_name}</h1>
                     </div> """, class_name="marker"))
                     #icon=folium.features.CustomIcon(f"http://192.168.1.67:80/static/img/markers/{p.poi_type.name}.svg",
@@ -109,4 +110,5 @@ def rand_way_in_html(style: MapStyle):
 
         return shortest_route_map._repr_html_()
     except Exception:
+        #traceback.print_exc()
         return ps

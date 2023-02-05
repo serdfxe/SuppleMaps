@@ -8,6 +8,7 @@ from app.models.map.services import *
 
 from app.models.map.test import *
 
+import traceback
 
 api = Blueprint("api", __name__)
 
@@ -56,3 +57,13 @@ def get_article(id):
         id = randint(1, ln)
 
     return Poi.filter(id=id).first().description
+
+@api.get("/wayhtml/<strpoi>")
+def get_way_html(strpoi):
+    try:
+        poi = [int(i) for i in strpoi.split(',')]
+        return way_in_html(poi, MapStyle.style_list[0])
+    except Exception:
+        traceback.print_exc()
+        return 'Error'
+

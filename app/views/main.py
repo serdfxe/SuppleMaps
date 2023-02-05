@@ -36,6 +36,5 @@ def get_article(id):
 
 @main.before_app_first_request
 def init_matrix():
-    return
     Graph.init_graph()
     MapStyle.init_styles(conf.map_style)

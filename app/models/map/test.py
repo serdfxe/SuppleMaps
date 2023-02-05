@@ -14,7 +14,7 @@ def rand_way_in_html(style: MapStyle):
     ps = list(set([randint(1, 105) for i in range(5)]))
 
     try:
-        pois = [Poi.filter(id=i + 1).first() for i in get_path(Graph.matrix, ps, Graph.time_list, n_of_ans=2)[0]]
+        pois = [Poi.filter(id=i + 1).first() for i in get_path(Graph.matrix, ps, Graph.time_list, n_of_ans=2)[0][0]]
 
         nodes = []
 
@@ -38,7 +38,7 @@ def rand_way_in_html(style: MapStyle):
             m = folium.Marker(
                     location = (pois[i].marker_lat, pois[i].marker_lon),
                     popup = pois[i].name,
-                    icon=folium.features.DivIcon(icon_size=(34, 50) if i in (0, ln - 1) else (30, 30), icon_anchor=(8.5*2, 23.5) if i in (0, ln - 1) else (15, 0), html=f""" 
+                    icon=folium.features.DivIcon(icon_size=(34, 50) if i in (0, ln - 1) else (30, 30), icon_anchor=(17, 23.5) if i in (0, ln - 1) else (15, 0), html=f""" 
                     <div style="display: flex; flex-direction: column; align-items: center;"> 
                         <img src="/static/img/markers/{i if i != 0 and i != ln - 1 else "start" if i == 0 else "end"}.svg" style="filter: drop-shadow(0px 0px 3px white);"> 
                         <h1 class="marker-text" style="transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;">{pois[i].short_name}</h1>
@@ -52,7 +52,7 @@ def rand_way_in_html(style: MapStyle):
                 m = folium.Marker(
                     location = (p.marker_lat, p.marker_lon),
                     popup = p.name,
-                    icon=folium.features.DivIcon(icon_size=(27, 27), html=f""" 
+                    icon=folium.features.DivIcon(icon_size=(27, 27), icon_anchor = (13.5,13.5), html=f""" 
                     <div style="display: flex; flex-direction: column; align-items: center;"> 
                         <img src="/static/img/markers/{p.poi_type.name}.svg" style="filter: drop-shadow(0px 0px 3px white);"> 
                         <h1 class="marker-text" style="transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;">{p.short_name}</h1>
@@ -76,28 +76,22 @@ def rand_way_in_html(style: MapStyle):
             color:k;
             font-size:12pt;
         }
-
         """ + style.css + """
-
         </style>
         <script type="text/javascript">
         window.onload = function(){
             var fontSizeFromZoom = function(z){
                 return {17: 11, 18: 18, 19: 29}[z]
             }
-
             var widthFromZoom = function (z) {
                 return {17: 95, 18: 155, 19: 250}[z]
             }
-
             var updateTextSizes = function(){
                 var mapZoom = {shortest_route_map}.getZoom();
                 console.log(mapZoom);
                 
                 $(".marker-text").css("font-size", fontSizeFromZoom(mapZoom));
-
                 $(".marker-text").css("width", widthFromZoom(mapZoom));
-
                 if (mapZoom <= 16) {
                     $(".marker-text").css("font-size", "0");
                     $(".marker-text").css("width", "0");

@@ -1,52 +1,58 @@
 from itertools import permutations
 
-
-def time_to_len(time): return time*83
-
-def dist_to_time(dist): return dist/83
-
 def get_len(path, mtrx): return sum(mtrx[path[i]][path[i-1]] for i in range(1, len(path)))
 
-def get_time(path, mtrx, time_s, dur_of_visit = True):
-    return dist_to_time(get_len(path, mtrx)) + dur_of_visit * sum(time_s[i] for i in path)
+def time_to_dist(time): return time*83
 
-def get_path(mtrx, poi, time_s, time_limit = 10**10, mandatory_points = [], dur_of_visit = True, n_of_ans = 1):
-    mn_time = 10**10
-    mn_path = list()
-    ans = list()
-    ans_s = set()
+def dist_to_time(time): return time/83
 
-    for p in permutations(sorted(poi)):
-        full_path = [0] + list(p)
-        temp_path = full_path
-        temp_time = 0
-
-        for i in range(1, len(full_path)):
-            temp_time += dist_to_time(mtrx[full_path[i]][full_path[i-1]])
-
-            if dur_of_visit: temp_time += time_s[i]
-
-            if temp_time > min(mn_time, time_limit):
-                temp_time -= dist_to_time(mtrx[full_path[i]][full_path[i-1]])
-                if dur_of_visit: temp_time -= time_s[i]
-                temp_path = full_path[:i]
-                break
-            
-        if temp_time <= time_limit and all(point in temp_path for point in mandatory_points) and tuple(temp_path) not in ans_s:
-            ans.append(temp_path)
-            ans_s.add(tuple(temp_path))
-
-            if len(temp_path) >= len(mn_path) and temp_time <= mn_time:
-                mn_time = temp_time
-                mn_path = temp_path
-
-    ans = sorted(ans, key = lambda x: (-len(x), get_time(x, mtrx, time_s, dur_of_visit=dur_of_visit)))
-
+def filter_ans(ans, n_of_ans):
+    ans = sorted(ans, key = lambda t: (-len(t[0]), t[1]))
     ans1 = [ans[0]]
-
-    for i in range(1, len(ans1)):
-        if set(ans1[0]).intersection(set(ans[i])) != set(ans[i]): 
+    for i in range(1, len(ans)):
+        if len(ans1) == n_of_ans: break
+        if all(set(ans1[j][0]).intersection(set(ans[i][0])) != set(ans[i][0]) for j in range(len(ans1))) and ans[i] not in ans1: 
             ans1.append(ans[i])
-            if len(ans1) == n_of_ans: break
-
     return ans1
+
+def get_path(mtrx, poi, time_s, time_limit = 10**10, mandatory_points = [0], dur_of_visit = False, n_of_ans = 1, temp_path = [0],temp_time=0, ans = [], depth = 0, best_time=10**10, best_path = []):
+    #breaks
+    if time_limit != 10**10 and (len(temp_path) < len(best_path) and temp_time > best_time):
+        return ans, best_time, best_path
+    
+    if time_limit == 10**10 and temp_time > best_time:
+        return ans, best_time, best_path
+
+    #wins
+    if len(temp_path) == len(poi)+1 and temp_time <= time_limit  and all(point in temp_path for point in mandatory_points):
+        if len(temp_path) == len(best_path) and temp_time < best_time or (len(temp_path) > len(best_path)):
+            best_time = temp_time
+            best_path = temp_path
+        ans.append((tuple(temp_path), int(temp_time), int(time_to_dist(temp_time - dur_of_visit*sum(time_s[point] for point in temp_path)))))
+        return ans, best_time, best_path
+
+    if time_limit != 10**10 and temp_time > time_limit and all(point in temp_path[:-1] for point in mandatory_points):
+        path = temp_path[:-1]
+        time = temp_time - dist_to_time(mtrx[temp_path[-2]][temp_path[-1]])
+        if dur_of_visit: time -= time_s[temp_path[-1]]
+        if len(path) > len(best_path) or (len(path) == len(best_path) and time < best_time):
+            best_path = path
+            best_time = time 
+        ans.append((tuple(path), int(time), int(time_to_dist(time - dur_of_visit*sum(time_s[point] for point in path)))))
+        return ans, best_time, best_path
+
+    
+        #print(*temp_path, temp_time)
+    
+    for nxt_node in poi:
+        if nxt_node in temp_path: continue
+        #print(temp_path, nxt_node)
+        nxt_path = temp_path + [nxt_node]
+        nxt_time = temp_time + dist_to_time(mtrx[temp_path[-1]][nxt_node])
+        if dur_of_visit: nxt_time += time_s[nxt_node]
+        ans, best_time, best_path = get_path(mtrx,poi,time_s,time_limit,mandatory_points,dur_of_visit,n_of_ans,nxt_path,nxt_time,ans,depth+1,best_time,best_path)
+    if depth == 0:
+        if time_limit == 10**10: return ans[-1:(-1)*(n_of_ans+1):-1]
+        else: return filter_ans(ans, n_of_ans)
+    else:
+        return ans, best_time, best_path

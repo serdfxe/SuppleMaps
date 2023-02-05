@@ -25,8 +25,9 @@ def rand_way_in_html(style: MapStyle):
 
         path = [ox.shortest_path(Graph.oxG, nodes[i - 1], nodes[i]) for i in range(1, len(nodes))][::-1]
 
-        shortest_route_map = ox.plot_route_folium(Graph.oxG, path[0], tiles=style.tiles, attr=style.attr,
-                zoom=16, max_zoom=19, min_zoom=15)
+        fmap = folium.Map(tiles=style.tiles, attr=style.attr, zoom_start=16, max_zoom=19, min_zoom=15, zoom_control=False)
+
+        shortest_route_map = ox.plot_route_folium(Graph.oxG, path[0], route_map=fmap)
 
         for r in path[1:]:
             shortest_route_map = ox.plot_route_folium(Graph.oxG, r, route_map=shortest_route_map, zoom=16)
@@ -110,5 +111,5 @@ def rand_way_in_html(style: MapStyle):
 
         return shortest_route_map._repr_html_()
     except Exception:
-        #traceback.print_exc()
+        traceback.print_exc()
         return ps

@@ -56,6 +56,11 @@ map_style = dict(
         "tiles": "https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}@2x.png?key=HE0hiltCVg2gETfdEctd", 
         "attr": '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
         },
+
+    osm = {
+        "tiles": "OpenStreetMap",
+        "attr": None
+    },
 )
 
 side_bar_components = {

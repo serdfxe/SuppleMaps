@@ -1,3 +1,4 @@
+from click import style
 from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
 
 from flask_login import login_required, current_user
@@ -5,6 +6,8 @@ from flask_login import login_required, current_user
 from app.models.map import *
 
 import app.config as conf
+
+from app.models.map.services.map import *
 
 
 main = Blueprint("main", __name__)
@@ -16,7 +19,19 @@ def hello_page_route():
 
 @main.get("/")
 def main_route():
-    return "Main Page!!!"
+    return redirect("map")
+
+
+@main.get("/map/<id>")
+def map_route(id):
+    m = Map.empty_map(style=MapStyle.get_all()[int(id)])
+
+    m.add_all_pois()
+
+    m.map.get_root().html.add_child(folium.Element(render_template("main/map/map.html", cur_page="map", sidebar=conf.side_bar_components)))
+
+    return m.html
+
 
 @main.get("/account")
 @login_required

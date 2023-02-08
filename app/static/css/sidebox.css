@@ -1,0 +1,129 @@
+@import "./const.css";
+
+.sidebox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px;
+    width: 20%;
+
+    background: var(--background);
+
+    border: 2px solid var(--gray2);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 11px;
+}
+
+.search_wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 29px;
+    gap: 11px;
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid var(--gray3);
+}
+
+.search_wrap input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 11px 18px;
+    gap: 11px;
+    width: 80%;
+}
+
+.search_wrap img {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid var(--gray10);
+    border-radius: 11px;   
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.infobox_warp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 29px 32px;
+    gap: 24px;
+    width: 80%;
+    border-bottom: 1px solid var(--gray3);
+    
+}
+
+.infobox_image {
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+    border-radius: 11px;
+    width: 90%;
+    height: 30%;
+}
+
+.actions_warp {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 29px;
+    gap: 11px;
+    width: 75%;
+}
+
+.share_button {
+    width: 30%;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 15px;
+    border: 1px solid var(--dark);
+    border-radius: 16px;
+    background: var(--background);
+    cursor: pointer;
+}
+
+.add_to_path_button {
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 15px;
+    height: 32px;
+    background: var(--dark);
+    border: 1px solid var(--dark);
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.share_button_text {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.add_to_path_button_text {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--background);
+}

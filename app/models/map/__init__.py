@@ -1,6 +1,7 @@
-from email.policy import default
+import pickle
 import zlib, base64
-from click import style
+from environs import functools
+from itsdangerous import exc
 
 import osmnx as ox
 
@@ -84,32 +85,44 @@ class SavedPaths(Base, DBTool):
 class Graph():
     @classmethod
     def init_matrix(cls):
-        pois_count = len(Poi.all())
+        try:
+            cls.matrix = pickle.load(open("app/models/map/serialized_objs/matrix.txt", "rb"))
+        except Exception:
+            pois_count = len(Poi.all())
 
-        m = [[0] * pois_count for i in range(pois_count)]
+            m = [[0] * pois_count for i in range(pois_count)]
 
-        for i in range(0, pois_count):
-            for ii in range(0, pois_count):
-                m[i][ii] = DistanceList.filter(start_id=i + 1, end_id=ii + 1).first().distance
-        
+            for i in range(0, pois_count):
+                for ii in range(0, pois_count):
+                    m[i][ii] = DistanceList.filter(start_id=i + 1, end_id=ii + 1).first().distance
+                
+            cls.matrix = m
 
-        cls.matrix = m
+            pickle.dump(cls.matrix, open("app/models/map/serialized_objs/matrix.txt", "wb"))
 
     @classmethod
     def init_time_list(cls):
-        pois_count = len(Poi.all())
+        try:
+            cls.time_list = pickle.load(open("app/models/map/serialized_objs/time_list.txt", "rb"))
+        except Exception:
+            pois_count = len(Poi.all())
 
-        l = []
+            l = []
 
-        for i in range(0, pois_count):
-            l.append(Poi.filter(id=i + 1).first().time)
-        
-        cls.time_list = l
+            for i in range(0, pois_count):
+                l.append(Poi.filter(id=i + 1).first().time)
+            
+            cls.time_list = l
+
+            pickle.dump(cls.time_list, open("app/models/map/serialized_objs/time_list.txt", "wb"))
 
     @classmethod
     def init_ox(cls):
-        #cls.oxG = ox.graph_from_place('VDNH, Russia', network_type='walk')
-        cls.oxG =  ox.graph_from_bbox(55.8475, 55.8206, 37.5798, 37.6505, network_type='walk')
+        try:
+            cls.oxG = pickle.load(open("app/models/map/serialized_objs/oxG.txt", "rb"))
+        except Exception:
+            cls.oxG =  ox.graph_from_bbox(55.8475, 55.8206, 37.5798, 37.6505, network_type='walk')
+            pickle.dump(cls.oxG, open("app/models/map/serialized_objs/oxG.txt", "wb"))
 
     @classmethod
     def init_graph(cls):
@@ -138,6 +151,7 @@ class MapStyle():
     """
 
     style_list = []
+    default = None
 
     def __init__(self, tiles: str, attr: str, css=default_css):
         self.tiles = tiles
@@ -154,3 +168,4 @@ class MapStyle():
         for s in styles:
             new = cls(**styles[s])
             cls.style_list.append(new)
+        cls.default = cls.style_list[0]

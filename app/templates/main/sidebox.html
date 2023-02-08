@@ -1,6 +1,25 @@
 <div class="sidebox">
     <div class="search_wrap">
         <input type="text" placeholder="Поиск...">
-        <a href="" class="empty_button"></a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+        <img src="/static/img/sidebox/dice.svg" alt="">
+        </a>
+    </div>
+    <div class="infobox_warp">
+        {% for i in p.image.split(' ') %}
+            <img src="{{ i }}" alt="" class="infobox_image">
+        {% endfor %}
+    </div>
+    <div class="actions_warp">
+        <button class="share_button">
+            <div class="share_button_text">
+                Поделиться
+            </div>
+        </button>
+        <button class="add_to_path_button">
+            <div class="add_to_path_button_text">
+                + Добавить в маршрут
+            </div>
+        </button>
     </div>
 </div>

@@ -1,4 +1,3 @@
-from cgitb import html
 from random import randint
 import folium
 

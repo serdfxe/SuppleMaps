@@ -7,6 +7,7 @@ body {
     align-items: flex-start;
     padding: 18px;
 
+    
     background-color: var(--gray2);
 }
 
@@ -16,7 +17,7 @@ body {
     align-items: center;
     padding: 0px;
     gap: 18px;
-    width: 609px;
+    width: 40%;
 }
 
 .art_head {
@@ -69,14 +70,4 @@ body {
     font-weight: 500;
     font-size: 29px;
     margin: 0;
-}
-
-.sidebox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0px;
-
-    width: 343px;
-    height: 100px;
 }

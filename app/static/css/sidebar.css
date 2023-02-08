@@ -1,11 +1,13 @@
 @import "./const.css";
 
-.sidebar_wrap {
+.side_bar_wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0px;
     gap: 20px;
+    width: 20%;
+    margin-left: 1%;
 }
 
 .sidebar {
@@ -13,7 +15,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 18px;
-    width: 350px;
+    width: 100%;
 
     background: var(--background);
 

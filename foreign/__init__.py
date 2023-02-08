@@ -1,8 +1,10 @@
 from foreign.update import update
 from foreign.make_matrix import make_matrix
+from foreign.place_markers import place_markers
 def run():
+    # place_markers()
+    # return 
     make_matrix()
-
     return
     path = input("Введите путь к файлу: ")
 

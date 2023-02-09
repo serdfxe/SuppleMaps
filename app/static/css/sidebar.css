@@ -42,7 +42,7 @@
     padding: 11px;
     gap: 11px;
 
-    width: calc(100% - 22px);
+    width: 100%;
 }
 
 .sidebar_comp:hover,  .cur_sidebar_comp {

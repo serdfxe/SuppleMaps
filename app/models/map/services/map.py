@@ -39,7 +39,7 @@ class Map:
             if p.id in exc: continue
             self.add_marker(
                 location = (p.marker_lat, p.marker_lon),
-                #popup = p.name,
+                popup = p.id,
                 icon=folium.features.DivIcon(icon_size=(27, 27),
                 html=f"""
                     <div style="display: flex; flex-direction: column; align-items: center;"> 
@@ -66,7 +66,7 @@ class Map:
         for i in range(ln): 
             self.add_marker(
                 location = (pois[i].marker_lat, pois[i].marker_lon),
-                # popup = pois[i].name,
+                popup = pois[i].id,
                 icon=folium.features.DivIcon(
                     icon_size=(34, 50) if i in (0, ln - 1) else (30, 30),
                     icon_anchor=(17, 23.5) if i in (0, ln - 1) else (15, 0),

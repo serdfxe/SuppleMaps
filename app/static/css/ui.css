@@ -46,7 +46,9 @@ a {
     border: 1px solid var(--gray10);
     border-radius: 18px;
 
-    cursor: pointer
+    cursor: pointer;
+
+    background-color:    transparent;
 }
 
 .filled_button {
@@ -62,6 +64,20 @@ a {
     border-radius: 18px;
 
     cursor: pointer
+}
+
+.a_button {
+    border: none;
+    color: var(--gray5);
+    font-style: normal;
+    font-weight: 500;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.a_button:hover {
+    color: var(--gray10);
 }
 
 /* inputs */

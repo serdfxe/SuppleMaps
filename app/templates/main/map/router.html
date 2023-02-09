@@ -8,5 +8,28 @@
                 <img src="/static/img/sidebox/dice.svg" alt="">
             </a>
         </div>
+        <div class="path">
+            <h2>Построение маршрута</h2>
+            <div class="start-point">
+                <img src="{{url_for('static', filename='img/router/start.svg')}}" alt="">
+                <h3>Павильон №1</h3>
+            </div> 
+            <input type="text" placeholder="Куда" id="path">
+            <div class="btns">
+                <button class="a_button">Добавить точку</button>
+                <button class="a_button">Сбросить</button>
+            </div>
+        </div>
+        <div class="btns">
+            <button class="filled_button" onclick="go_to()">Построить маршрут</button>
+            <button class="empty_button">Поделиться</button>
+        </div>
     </div>
 </div>
+<script>
+    let path_input = document.getElementById("path")
+
+    function go_to(){
+        document.location = "/api/wayhtml/" + path_input.value
+    }
+</script>

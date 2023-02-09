@@ -30,6 +30,6 @@
     let path_input = document.getElementById("path")
 
     function go_to(){
-        document.location = "/api/wayhtml/" + path_input.value
+        document.location = "/app/map/path?path=" + path_input.value  + "&style=" + document.location.href[document.location.href.length - 1]
     }
 </script>

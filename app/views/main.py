@@ -1,3 +1,4 @@
+import traceback
 from click import style
 from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
 
@@ -31,6 +32,17 @@ def map_route(id):
     m.map.get_root().html.add_child(folium.Element(render_template("main/map/map.html", cur_page="map", sidebar=conf.side_bar_components)))
 
     return m.html
+
+@main.get("/map/path")
+def path_route():
+    try:
+        pois = tuple([int(i) for i in request.args.get("path").split(',')])
+        style = int(request.args.get("style"))
+
+        return get_map_way(pois, MapStyle.get_all()[style])
+    except Exception:
+        traceback.print_exc()
+        return 'Error'
 
 
 @main.get("/account")

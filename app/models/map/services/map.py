@@ -53,6 +53,8 @@ class Map:
     def add_path(self, pois: list):
         pois = [Poi.filter(id=i).first() for i in pois]
 
+        print(pois)
+
         nodes = [ox.nearest_nodes(Graph.oxG, p.marker_lon, p.marker_lat) for p in pois]
 
         path = [ox.shortest_path(Graph.oxG, nodes[i - 1], nodes[i]) for i in range(1, len(nodes))][::-1]

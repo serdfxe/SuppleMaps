@@ -10,7 +10,7 @@ from app.models.map.services import *
 from math import isnan
 
 def rand_way_in_html(style: MapStyle):
-    ps = list(set([randint(1, 105) for i in range(5)]))
+    ps = list(set([randint(1, 105) for i in range(10)]))
 
     try:
         pois = [Poi.filter(id=i + 1).first() for i in get_path(Graph.matrix, ps, Graph.time_list, n_of_ans=2)[0][0]]

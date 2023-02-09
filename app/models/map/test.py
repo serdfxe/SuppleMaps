@@ -10,10 +10,10 @@ from app.models.map.services import *
 from math import isnan
 
 def rand_way_in_html(style: MapStyle):
-    ps = list(set([randint(1, 105) for i in range(10)]))
+    ps = list(set([randint(2, 109) for i in range(10)]))
 
     try:
-        pois = [Poi.filter(id=i + 1).first() for i in get_path(Graph.matrix, ps, Graph.time_list, n_of_ans=2)[0][0]]
+        pois = [Poi.filter(id=i).first() for i in get_path(Graph.matrix, ps, Graph.time_list, n_of_ans=2)[0][0]]
 
         nodes = []
 
@@ -111,9 +111,10 @@ def rand_way_in_html(style: MapStyle):
 
 def way_in_html(ps:list, style: MapStyle):
     #ps = list(set([randint(1, 105) for i in range(5)]))
-    ps = [i-1 for i in ps]
+    ps = [i for i in ps]
     try:
-        pois = [Poi.filter(id=i+1).first() for i in get_path(Graph.matrix, ps, Graph.time_list, n_of_ans=2)[0][0]]
+        # print(get_path(Graph.matrix, ps, Graph.time_list, n_of_ans=2))
+        pois = [Poi.filter(id=i).first() for i in get_path(Graph.matrix, ps, Graph.time_list, n_of_ans=2)[0][0]]
 
         nodes = []
 

@@ -17,4 +17,28 @@
             {% endif %}
         {% endfor %}
     </div>
+    <div id="short_art">
+    </div>
 </div>
+<script>
+    function replaceTargetWith( targetID, html ){
+                var i, tmp, elm, last, target = document.getElementById(targetID);
+                tmp = document.createElement('div');
+                tmp.innerHTML = html;
+                i = tmp.childNodes.length;
+                last = target;
+                while(i--){
+                    target.parentNode.insertBefore((elm = tmp.childNodes[i]), last);
+                    last = elm;
+                }
+                target.parentNode.removeChild(target);
+            }
+
+    function show_info(id){
+        fetch("/api/poi_info/" + id)
+        .then((response) => response.text())
+        .then((text) => {
+            replaceTargetWith("short_art", text)
+        });
+    }
+</script>

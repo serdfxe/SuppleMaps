@@ -9,6 +9,7 @@ from app.models.map import *
 import app.config as conf
 
 from app.models.map.services.map import *
+from app.models.map.services.strings import *
 
 
 main = Blueprint("main", __name__)
@@ -39,7 +40,13 @@ def path_route():
         pois = tuple([int(i) for i in request.args.get("path").split(',')])
         style = int(request.args.get("style"))
 
-        return get_map_way(pois, MapStyle.get_all()[style])
+        m, path, time, dist = get_map_way(pois, MapStyle.get_all()[style])
+
+        path = [Poi.filter(id=i).first() for i in path]
+
+        m.map.get_root().html.add_child(folium.Element(render_template("main/map/path.html", cur_page="map", sidebar=conf.side_bar_components, path=path, time=get_time_str(time), dist=get_dist_str(dist))))
+
+        return m.html
     except Exception:
         traceback.print_exc()
         return 'Error'
@@ -58,7 +65,6 @@ def get_article(id):
             return render_template("main/article.html", p=p, sidebar=conf.side_bar_components, cur_page="search")
         return  "Error"
     return "Error"
-
 
 
 @main.before_app_first_request

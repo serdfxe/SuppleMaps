@@ -1,0 +1,14 @@
+<div id="short_art">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/map/short_info.css')}}">
+    <div class="short_info">
+        <img src="{{p.image.split(' ')[0]}}">
+        <div class="info">
+            <h2 style="font-weight: 500;">{{p.name}}</h2>
+            {{ desc | safe }}
+            <div class="btns">
+                <button class="empty_button">Поделиться</button>
+                <button class="filled_button">Читать далее</button>
+            </div> 
+        </div>
+    </div>  
+</div>

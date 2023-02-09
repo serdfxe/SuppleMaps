@@ -30,8 +30,8 @@ def get_path(mtrx, poi, time_s, time_limit = 10**10, mandatory_points = [1], dur
         if len(temp_path) == len(best_path) and temp_time < best_time or (len(temp_path) > len(best_path)):
             best_time = temp_time
             best_path = temp_path
-       # ans.append((tuple(temp_path), int(temp_time), int(time_to_dist(temp_time - dur_of_visit*sum(time_s[point] for point in temp_path)))))
-        ans.append((tuple(temp_path),dist_to_time(get_len(temp_path, mtrx)), get_len(temp_path, mtrx)))
+        ans.append((tuple(temp_path), int(temp_time), int(time_to_dist(temp_time - dur_of_visit*sum(time_s[point] for point in temp_path)))))
+        # ans.append((tuple(temp_path),dist_to_time(get_len(temp_path, mtrx)), get_len(temp_path, mtrx)))
         return ans, best_time, best_path
 
     if time_limit != 10**10 and temp_time > time_limit and all(point in temp_path[:-1] for point in mandatory_points):

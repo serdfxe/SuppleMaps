@@ -1,0 +1,37 @@
+@import "/static/css/const.css";
+
+.short_info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    background: var(--background);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 11px;
+
+    overflow: hidden;
+}
+
+.short_info img {
+    width: 100%;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 18px;
+    gap: 11px;
+
+    width: 100%;
+}
+
+.info .btns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 11px 0px;
+    gap: 18px;
+}

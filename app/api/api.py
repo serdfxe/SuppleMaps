@@ -67,3 +67,7 @@ def get_way_html(strpoi):
         traceback.print_exc()
         return 'Error'
 
+@api.get("/poi_info/<id>")
+def poi_info_route(id):
+    p = Poi.filter(id=int(id)).first()
+    return render_template("main/map/short_info.html", p=p, desc=p.description[17:217] + "...")

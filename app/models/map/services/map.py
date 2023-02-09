@@ -12,14 +12,12 @@ from math import isnan
 
 
 class Map:
-    @lru_cache(10)
     def __init__(self, style=MapStyle.default, **kwargs):
         self.style = style
         self.map = folium.Map(max_bounds=True, min_lat=55.8114, max_lat=55.8534, min_lon=37.5681, max_lon=37.6726, png_enabled=True, prefer_canvas=True, tiles=style.tiles, attr=style.attr, zoom_start=16, max_zoom=19, min_zoom=15, zoom_control=False, **kwargs)
     
 
     @classmethod
-    @lru_cache(10)
     def empty_map(cls, style=MapStyle.default, location=(55.832164, 37.628002)):
         map = Map(style=style, location=location)
         return map
@@ -44,9 +42,9 @@ class Map:
                 icon=folium.features.DivIcon(icon_size=(27, 27),
                 html=f"""
                     <div style="display: flex; flex-direction: column; align-items: center;"> 
-                        <img src="/static/img/markers/{p.poi_type.name}.svg"> 
+                        <img src="/static/img/markers/{p.poi_type.name}.svg" onclick="show_info({p.id})"> 
                         <h1 class="marker-text" style="transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;">{p.short_name}</h1>
-                    </div> 
+                    </div>
                 """,
                 class_name="marker"))
 
@@ -56,7 +54,7 @@ class Map:
 
         print(pois)
 
-        nodes = [ox.nearest_nodes(Graph.oxG, p.marker_lon, p.marker_lat) for p in pois]
+        nodes = [ox.nearest_nodes(Graph.oxG, p.entrance_lon if not isnan(p.entrance_lon) else p.marker_lon, p.entrance_lat if not isnan(p.entrance_lat) else p.marker_lat) for p in pois]
 
         path = [ox.shortest_path(Graph.oxG, nodes[i - 1], nodes[i]) for i in range(1, len(nodes))][::-1]
 
@@ -81,7 +79,8 @@ class Map:
                     class_name="marker"
                 )
             )
-            if not isnan(pois[i].entrance_lat) and not isnan(pois[i].entrance_lon):
+
+            if not isnan(pois[i].entrance_lat) and not isnan(pois[i].entrance_lon) and pois[i].type_id not in (4, 6):
                 self.add_marker(
                     location = (pois[i].entrance_lat, pois[i].entrance_lon),
                     # popup = pois[i].name,
@@ -90,7 +89,7 @@ class Map:
                         icon_anchor= (7.5, 7.5),
                         html=f""" 
                         <div style="display: flex; flex-direction: column; align-items: center;"> 
-                            <img src="/static/img/markers/entrance.svg"> 
+                            <img src="/static/img/markers/entrance.svg" style="transition: width 0.25s ease-in-out" class="entrance"> 
                         </div> """,
                         class_name="marker"
                     )
@@ -101,7 +100,6 @@ class Map:
 
     @property
     def html(self):
-
         mapJsVar = self.map.get_name()
 
         code = """
@@ -133,6 +131,9 @@ class Map:
                 if (mapZoom <= 16) {
                     $(".marker-text").css("font-size", "0");
                     $(".marker-text").css("width", "0");
+                    $(".entrance").css("width", "0");
+                } else {
+                    $(".entrance").css("width", "15px");
                 }
             }
             updateTextSizes();
@@ -151,9 +152,11 @@ class Map:
 def get_map_way(pois, style=MapStyle.default):
     m = Map.empty_map(style=style)
 
-    m.add_path(get_path(Graph.matrix, pois, Graph.time_list, n_of_ans=2)[0][0])
+    path, time, dist = get_path(Graph.matrix, pois, Graph.time_list, n_of_ans=1)[0]
 
-    return m.html
+    m.add_path(path)
+
+    return m, path, time, dist
 
 
 @lru_cache(1)

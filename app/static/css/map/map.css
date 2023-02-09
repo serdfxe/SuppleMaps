@@ -2,6 +2,7 @@
 
 body {
     background-color: var(--gray2);
+    overflow: hidden;
 }
 
 .map_wrap {

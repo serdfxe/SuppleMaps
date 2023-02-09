@@ -1,3 +1,4 @@
+
 authforms = {
     "signup": {"title": "Регистрация", "subtitle": "Введите данные для регистрации.", "ref": ["Уже есть аккаунт?", "/signin"], "form": [
         ("first_label", "Почта"),

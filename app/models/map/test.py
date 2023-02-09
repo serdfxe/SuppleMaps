@@ -7,7 +7,7 @@ import traceback
 from app.models.map import *
 
 from app.models.map.services import *
-
+from math import isnan
 
 def rand_way_in_html(style: MapStyle):
     ps = list(set([randint(1, 105) for i in range(5)]))
@@ -18,7 +18,9 @@ def rand_way_in_html(style: MapStyle):
         nodes = []
 
         for p in pois:
-            n = ox.nearest_nodes(Graph.oxG, p.marker_lon, p.marker_lat)
+            if not(isnan(p.entrance_lat)) and not(isnan(p.entrance_lon)): coords = (p.entrance_lat, p.entrance_lon)
+            else: coords = (p.marker_lat, p.marker_lon)
+            n = ox.nearest_nodes(Graph.oxG, coords[1], coords[0])
 
             nodes.append(n)
 

@@ -4,6 +4,7 @@ from app.models.map import *
 
 from graphh import GraphHopper
 import time
+from math import isnan
 
 gh_client = GraphHopper(api_key='55489304-0f25-429b-99e5-bb9806361343')
 
@@ -16,10 +17,12 @@ def make_matrix():
     
     for i in range(1, n_of_poi+1):
         p1 = Poi.filter(id=i).first()
-        coords1 = (p1.marker_lat, p1.marker_lon)
+        if not(isnan(p1.entrance_lat)) and not(isnan(p1.entrance_lon)): coords1 = (p1.entrance_lat, p1.entrance_lon)
+        else: coords1 = (p1.marker_lat, p1.marker_lon)
         for j in range(i, n_of_poi+1):
             p2 = Poi.filter(id=j).first()   
-            coords2 = (p2.marker_lat, p2.marker_lon)
+            if not(isnan(p2.entrance_lat)) and not(isnan(p2.entrance_lon)): coords2 = (p2.entrance_lat, p2.entrance_lon)
+            else: coords2 = (p2.marker_lat, p2.marker_lon)
             if i == j: dist = 0
             else:
                 f = False

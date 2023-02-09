@@ -7,6 +7,7 @@ import osmnx as ox
 from app.models.map import *
 
 from app.models.map.services import *
+from math import isnan
 
 
 
@@ -78,20 +79,20 @@ class Map:
                     class_name="marker"
                 )
             )
-            
-            self.add_marker(
-                location = (pois[i].entrance_lat, pois[i].entrance_lon),
-                # popup = pois[i].name,
-                icon=folium.features.DivIcon(
-                    icon_size= (20, 20),
-                    icon_anchor= (10, 10),
-                    html=f""" 
-                    <div style="display: flex; flex-direction: column; align-items: center;"> 
-                        <img src="/static/img/markers/entrance.svg"> 
-                    </div> """,
-                    class_name="marker"
+            if not isnan(pois[i].entrance_lat) and not isnan(pois[i].entrance_lon):
+                self.add_marker(
+                    location = (pois[i].entrance_lat, pois[i].entrance_lon),
+                    # popup = pois[i].name,
+                    icon=folium.features.DivIcon(
+                        icon_size= (15, 15),
+                        icon_anchor= (7.5, 7.5),
+                        html=f""" 
+                        <div style="display: flex; flex-direction: column; align-items: center;"> 
+                            <img src="/static/img/markers/entrance.svg"> 
+                        </div> """,
+                        class_name="marker"
+                    )
                 )
-            )
 
         self.add_all_pois([p.id for p in pois])
 

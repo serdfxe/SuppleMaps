@@ -51,7 +51,7 @@ def get_rand_way_html(id):
 def get_article(id):
     ln = len(Poi.all())
 
-    if id not in ('', None) and id.isdigit() and int(id) <= 0 and int(id) >= ln:
+    if id not in ('', None) and id.isdigit() and int(id) <= ln and int(id) >= 1:
         id = int(id)
     else:
         id = randint(1, ln)

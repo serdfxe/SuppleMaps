@@ -1,5 +1,3 @@
-from itertools import permutations
-
 def get_len(path, mtrx):
     #for i in range(1, len(path)): print(path[i-1], path[i], mtrx[path[i]][path[i-1]])
     return sum(mtrx[path[i]-1][path[i-1]-1] for i in range(1, len(path)))

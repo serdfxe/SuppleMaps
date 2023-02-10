@@ -20,7 +20,7 @@ def get_images():
         gallery = gallery[:gallery.find('<div')]
         #print(gallery)
         images = ["https://vdnh.ru" + img[:img.find('"')] for img in gallery.split('<img src="')[1:]]
-        images_str = ' '.join(images)
+        images_str = ' '.join(images[:min(len(images), 3)])
         with Poi.uow:
                 Poi.uow.session.query(Poi).filter_by(id = i).update({"image": images_str})
                 Poi.uow.commit()

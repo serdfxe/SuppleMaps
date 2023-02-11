@@ -18,6 +18,7 @@ auth = Blueprint("auth", __name__)
 def unauthorized_callback():
     return redirect('/auth/signin?next=' + request.path)
 
+
 @auth.route('/signup', methods=("GET", "POST"))
 def signup_route():
     if request.method == "POST":

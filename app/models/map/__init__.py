@@ -19,7 +19,7 @@ class Poi(Base, DBTool):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(120), nullable=False, unique=True)
     short_name = Column(String(120))
-    image = Column(String(1000), nullable=False, unique=True)
+    # image = Column(String(1000), nullable=False, unique=True)
     description = Column(String(7000))
     short_description = Column(String(1000))
     history = Column(String(20000))

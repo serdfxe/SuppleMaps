@@ -48,16 +48,16 @@ def get_rand_way():
 def get_rand_way_html(id):
     return rand_way_in_html(MapStyle.style_list[int(id)])
 
-@api.get("/art/<id>")
-def get_article(id):
-    ln = len(Poi.all())
+# @api.get("/art/<id>")
+# def get_article(id):
+#     ln = len(Poi.all())
 
-    if id not in ('', None) and id.isdigit() and int(id) <= ln and int(id) >= 1:
-        id = int(id)
-    else:
-        id = randint(1, ln)
+#     if id not in ('', None) and id.isdigit() and int(id) <= ln and int(id) >= 1:
+#         id = int(id)
+#     else:
+#         id = randint(1, ln)
 
-    return Poi.filter(id=id).first().description
+#     return Poi.filter(id=id).first().description
 
 @api.get("/wayhtml/<strpoi>")
 def get_way_html(strpoi):
@@ -78,6 +78,36 @@ def poi_info_route(id):
 @api.get("/rand_pois/<n>")
 def get_rand_pois(n):
     response = jsonify([i.as_dict()  for i in choices(Poi.all(), k=int(n))])
+    response.headers.set('Access-Control-Allow-Origin', '*')
+    response.headers.set('Access-Control-Allow-Methods', 'GET')
+    return response
+
+
+@api.get("/all_types")
+def get_all_types():
+    n_of_types = len(PoiType.all())
+    types = dict.fromkeys(list(range(1, n_of_types+1)))
+    for i in range(1, n_of_types+1):
+        types[i] = PoiType.filter(id=i).first().name
+    response = jsonify(types)
+    response.headers.set('Access-Control-Allow-Origin', '*')
+    response.headers.set('Access-Control-Allow-Methods', 'GET')
+    return response
+    
+@api.get("/art/<id>")
+def get_art(id):
+    poi = Poi.filter(id=id).first()
+    art = {"name": poi.name, "description": poi.description, "history": poi.history}
+    response = jsonify(art)
+    response.headers.set('Access-Control-Allow-Origin', '*')
+    response.headers.set('Access-Control-Allow-Methods', 'GET')
+    return response
+
+@api.get("/art_images/<id>")
+def get_art_images(id):
+    poi = Poi.filter(id=id).first()
+    images = poi.image.split()
+    response = jsonify(images)
     response.headers.set('Access-Control-Allow-Origin', '*')
     response.headers.set('Access-Control-Allow-Methods', 'GET')
     return response

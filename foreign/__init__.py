@@ -7,8 +7,8 @@ def run():
     # return 
     # make_matrix()
     # return
-    # get_images()
-    # return
+    get_images()
+    return
     path = input("Введите путь к файлу: ")
 
     if not input(path+"?"):

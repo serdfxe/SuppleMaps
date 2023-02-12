@@ -36,7 +36,7 @@ def create_user(name: str, email: str, password: str):
 
 def register_user(data:dict):
     email = data["email"]
-    password = data.get["password"]
+    password = data["password"]
 
     if password is None or password == "" or email is None or email == "":
         return Notification("Ошибка!", "Пожалуйлся введите почту и пароль.", "error", 1)

@@ -21,14 +21,20 @@ def unauthorized_callback():
     return redirect('/auth/signin?next=' + request.path)
 
 
-@auth.route('/signup', methods=("GET", "POST"))
+@auth.post('/signup')
 def signup_route():
-    if request.method == "POST":
-        data = json.load(request.get_json())
-        mes = register_user(data)
+    data = json.load(request.get_json())
+    mes = register_user(data)
     
     return jsonify(mes)
-    #return render_template("auth/form.html", form=authforms["signup"], lines=[(i, f"animation: ease-in-out infinite; animation-duration: {randint(200, 400)}s; animation-name: move_{choice([1, 2])}; height: {randint(20, 50)}") for i in range(1, 30)], circles=[(i, f"animation-duration: {randint(200, 400)}s; animation-name: rotate_{choice([1, 2])};") for i in range(1, 15)])
+
+@auth.get("/reg")
+def reg_route():
+    return """
+    <form method="post">
+        
+    </form>
+    """
 
 
 @auth.route('/signin', methods=("GET", "POST"))

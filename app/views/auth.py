@@ -25,6 +25,8 @@ def unauthorized_callback():
 def signup_route():
     data = json.load(request.get_json())
     mes = register_user(data)
+
+    current_user.
     
     return jsonify(mes)
 

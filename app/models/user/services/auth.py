@@ -14,8 +14,8 @@ def check_password(email: str, password: str):
     return user.password_hash == get_password_hash(password)
 
 def login(data) -> Notification:
-    email = data.get("email")
-    password = data.get("password")
+    email = data["email"]
+    password = data["password"]
     user = User.filter(email=email).first()
     remember = True if data.get("rememberme") else False
 
@@ -26,7 +26,7 @@ def login(data) -> Notification:
         login_user(user, remember=remember)
         return Notification("Успешно!", "Вход произведён успешно!", "success", 0)
 
-    return Notification("Ошибка!", "Wrong email or password ", "error", 1)
+    return Notification("Ошибка!", "Неверный логин или пароль.", "error", 1)
         
 
 def create_user(name: str, email: str, password: str):
@@ -52,4 +52,4 @@ def register_user(data:dict):
         return Notification("Ошибка!", "Эта почта уже занята, выберите другую.", "error", 1)
 
     user = create_user(email.split("@")[0], email, password)
-    return Notification("Успешно!", "Успешная регистрация пользователя!", "success", 0, (user,))
+    return Notification("Успешно!", "Успешная регистрация пользователя!", "success", 0)

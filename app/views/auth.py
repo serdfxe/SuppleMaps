@@ -10,7 +10,7 @@ from app.models.user.services.requests import load_user
 
 from app.config import authforms 
 
-import json
+from app.models.notification import Notification
 
 
 auth = Blueprint("auth", __name__)
@@ -18,30 +18,25 @@ auth = Blueprint("auth", __name__)
 
 @login_manager.unauthorized_handler
 def unauthorized_callback():
-    return redirect('/auth/signin?next=' + request.path)
+    return jsonify(Notification("Ошибка!", "Не авторизован.", "error", 1))
 
 
 @auth.post('/signup')
 def signup_route():
-    data = json.load(request.get_json())
-    mes = register_user(data)
+    mes = register_user(request.get_json())
     
     return jsonify(mes)
-
-@auth.get("/reg")
-def reg_route():
-    return """
-    <form method="post">
-        
-    </form>
-    """
 
 
 @auth.route('/signin', methods=("GET", "POST"))
 def signin_route():
     if request.method == "POST":
-        mes = login(request.form)
-        if mes.type == "success":
-            return redirect(url_for("main.main_route") or request.args.get('next'))
-
-    return render_template("auth/form.html", form=authforms["signin"], lines=[(i, f"animation: ease-in-out infinite; animation-duration: {randint(200, 400)}s; animation-name: move_{choice([1, 2])}; height: {randint(20, 50)}") for i in range(1, 30)], circles=[(i, f"animation-duration: {randint(200, 400)}s; animation-name: rotate_{choice([1, 2])};") for i in range(1, 15)])
+        mes = login(request.get_json())
+        return jsonify(mes)
+    
+@auth.post('/is_logged_in')
+def is_logged_in():
+    if current_user.is_authenticated:
+        return jsonify(Notification("Успешно!", "Авторизован.", "success", 0))
+    else:
+        return jsonify(Notification("Ошибка!", "Не авторизован.", "error", 1))

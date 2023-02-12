@@ -77,7 +77,12 @@ def poi_info_route(id):
 
 @api.get("/rand_pois/<n>")
 def get_rand_pois(n):
-    response = jsonify([i.as_dict()  for i in choices(Poi.all(), k=int(n))])
+    n_of_types = len(PoiType.all())
+    types = dict.fromkeys(list(range(1, n_of_types+1)))
+    for i in range(1, n_of_types+1):
+        types[i] = PoiType.filter(id=i).first().name
+
+    response = jsonify([{"name": i.short_name, "type": types[i.type_id], "image": i.image.split(" ")[0], "id": i.id}  for i in choices(Poi.all(), k=int(n))])
     response.headers.set('Access-Control-Allow-Origin', '*')
     response.headers.set('Access-Control-Allow-Methods', 'GET')
     return response
@@ -96,7 +101,7 @@ def get_all_types():
     
 @api.get("/art/<id>")
 def get_art(id):
-    poi = Poi.filter(id=id).first()
+    poi = Poi.filter(id=int(id)).first()
     art = {"name": poi.name, "description": poi.description, "history": poi.history}
     response = jsonify(art)
     response.headers.set('Access-Control-Allow-Origin', '*')

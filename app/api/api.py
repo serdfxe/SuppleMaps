@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
+from urllib import response
+from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, current_app
 
-from random import randint, choice
+from random import randint, choices
 
 from app.models.map import *
 
@@ -71,3 +72,12 @@ def get_way_html(strpoi):
 def poi_info_route(id):
     p = Poi.filter(id=int(id)).first()
     return render_template("main/map/short_info.html", p=p, desc=p.description[17:217] + "...")
+
+# API
+
+@api.get("/rand_pois/<n>")
+def get_rand_pois(n):
+    response = jsonify([i.as_dict()  for i in choices(Poi.all(), k=int(n))])
+    response.headers.set('Access-Control-Allow-Origin', '*')
+    response.headers.set('Access-Control-Allow-Methods', 'GET')
+    return response

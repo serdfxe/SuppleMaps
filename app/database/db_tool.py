@@ -1,3 +1,4 @@
+from math import isnan
 from app.database.session import Session
 from app.database.unit_of_work import AlchemyUnitOfWork
 
@@ -50,3 +51,6 @@ class DBTool():
         with cls.uow:
             cls.uow.session.query(cls).filter_by(**kwargs).delete()
             cls.uow.commit()
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) if not (isinstance(getattr(self, c.name), float) and isnan(getattr(self, c.name))) else None for c in self.__table__.columns}

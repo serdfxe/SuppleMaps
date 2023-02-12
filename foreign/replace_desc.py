@@ -9,7 +9,7 @@ def replace_desc():
         desc = desc.replace('<h2>', '<h1>').replace('</h2>', '</h1>').replace('<p>', '<h2>').replace('</p>', '</h2>')
 
         hist = Poi.filter(id=i).first().history
-        hist = desc.replace('<h2>', '<h1>').replace('</h2>', '</h1>').replace('<p>', '<h2>').replace('</p>', '</h2>')
+        hist = hist.replace('<h2>', '<h1>').replace('</h2>', '</h1>').replace('<p>', '<h2>').replace('</p>', '</h2>')
         with Poi.uow:
             Poi.uow.session.query(Poi).filter_by(id=i).update({"description": desc})
             Poi.uow.commit()

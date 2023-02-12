@@ -21,7 +21,7 @@ def hello_page_route():
 
 @main.get("/")
 def main_route():
-    return redirect("map")
+    return redirect("map/0")
 
 
 @main.get("/map/<id>")

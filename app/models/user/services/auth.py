@@ -34,19 +34,22 @@ def create_user(name: str, email: str, password: str):
 
     return new_user
 
-def register_user(data):
-    email = data.get("email")
-    password = data.get("password")
+def register_user(data:dict):
+    email = data["email"]
+    password = data.get["password"]
 
-    if password is None or password == "" or email is None or email == "": return Notification("Ошибка!", "Пожалуйлся введите почту и пароль.", "error", 1)
+    if password is None or password == "" or email is None or email == "":
+        return Notification("Ошибка!", "Пожалуйлся введите почту и пароль.", "error", 1)
     
-    if email == '' or not is_valid_email(email): return Notification("Ошибка!", "Некорректная почта.", "error", 1)
+    if email == '' or not is_valid_email(email):
+        return Notification("Ошибка!", "Некорректная почта.", "error", 1)
     
     is_valid = is_valid_password(password)
-    if is_valid is not True: return (is_valid, "error")
+    if is_valid is not True:
+        return Notification("Успешно!", is_valid, "error", 1)
     
-    if User.filter(email=email).first(): return Notification("Ошибка!", "Эта почта уже занята, выберите другую.", "error", 1)
+    if User.filter(email=email).first():
+        return Notification("Ошибка!", "Эта почта уже занята, выберите другую.", "error", 1)
 
     user = create_user(email.split("@")[0], email, password)
-    
     return Notification("Успешно!", "Успешная регистрация пользователя!", "success", 0, (user,))

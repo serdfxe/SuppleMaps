@@ -44,7 +44,13 @@ def signin_route():
         
         return response
     
-@auth.get('/is_logged_in')
+@auth.route('/logout', methods=["POST"])
+@login_required
+def logout():
+    logout_user()
+    return jsonify(Notification("Успешно!", "Вы вышли из аккаунта", "success", 0))
+    
+@auth.post('/isloggedin')
 def is_logged_in():
     response = jsonify(Notification("Успешно!", "Авторизован.", "success", 0, (current_user.name))) if current_user.is_authenticated else jsonify(Notification("Ошибка!", "Не авторизован.", "error", 1))
     response.headers.set('Access-Control-Allow-Origin', '*')

@@ -34,7 +34,13 @@ def signin_route():
         mes = login(request.get_json())
         return jsonify(mes)
     
-@auth.post('/is_logged_in')
+@auth.route('/logout', methods=["POST"])
+@login_required
+def logout():
+    logout_user()
+    return jsonify(Notification("Успешно!", "Вы вышли из аккаунта", "success", 0))
+    
+@auth.post('/isloggedin')
 def is_logged_in():
     if current_user.is_authenticated:
         return jsonify(Notification("Успешно!", "Авторизован.", "success", 0))

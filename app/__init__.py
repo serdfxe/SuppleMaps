@@ -1,7 +1,6 @@
 from flask import Flask
 
-from app.views.main import main
-from app.views.auth import auth
+from app.api.auth import auth
 
 from app.api.api import api
 
@@ -16,7 +15,6 @@ def create_app():
     
     login_manager.init_app(app)
 
-    app.register_blueprint(main, url_prefix='/app')
     app.register_blueprint(api, url_prefix='/api')
     app.register_blueprint(auth, url_prefix='/auth')
 

@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 
 from app.api.auth import auth
 
@@ -17,5 +18,7 @@ def create_app():
 
     app.register_blueprint(api, url_prefix='/api')
     app.register_blueprint(auth, url_prefix='/auth')
+
+    CORS(app, supports_credentials=True) 
 
     return app

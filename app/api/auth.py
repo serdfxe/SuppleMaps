@@ -18,25 +18,47 @@ auth = Blueprint("auth", __name__)
 
 @login_manager.unauthorized_handler
 def unauthorized_callback():
-    return jsonify(Notification("Ошибка!", "Не авторизован.", "error", 1))
-
+    response = jsonify(Notification("Ошибка!", "Не авторизован.", "error", 1))
+    return response
 
 @auth.post('/signup')
 def signup_route():
+    print(request.get_json())
+
     mes = register_user(request.get_json())
     
-    return jsonify(mes)
+    response = jsonify(mes)
+    response.headers.set('Access-Control-Allow-Origin', '*')
+    response.headers.set('Access-Control-Allow-Methods', 'POST')
+
+    return response
 
 
-@auth.route('/signin', methods=("GET", "POST"))
+@auth.post('/signin')
 def signin_route():
-    if request.method == "POST":
         mes = login(request.get_json())
-        return jsonify(mes)
+        
+        response = jsonify(mes)
+        response.headers.set('Access-Control-Allow-Origin', '*')
+        response.headers.set('Access-Control-Allow-Methods', 'POST')
+        
+        return response
     
-@auth.post('/is_logged_in')
+@auth.get('/is_logged_in')
 def is_logged_in():
+    response = jsonify(Notification("Успешно!", "Авторизован.", "success", 0, (current_user.name))) if current_user.is_authenticated else jsonify(Notification("Ошибка!", "Не авторизован.", "error", 1))
+    response.headers.set('Access-Control-Allow-Origin', '*')
+    response.headers.set('Access-Control-Allow-Methods', 'GET')
+
+    return response
+
+@auth.get("/user_info")
+def user_info_route():
     if current_user.is_authenticated:
-        return jsonify(Notification("Успешно!", "Авторизован.", "success", 0))
+        response = jsonify(current_user.as_dict())
     else:
-        return jsonify(Notification("Ошибка!", "Не авторизован.", "error", 1))
+        response = jsonify(Notification("Ошибка!", "Не авторизован.", "error", 1))
+    response.headers.set('Access-Control-Allow-Origin', '*')
+    response.headers.set('Access-Control-Allow-Methods', 'GET')
+
+    return response

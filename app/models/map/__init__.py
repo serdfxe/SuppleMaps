@@ -66,7 +66,7 @@ class StaticPaths(Base, DBTool):
     description = Column(String(5000), nullable=False)
     image = Column(String(120), nullable=False)
     path = Column(String(120), nullable=False)
-    lenght = Column(Integer, nullable=False)
+    length = Column(Integer, nullable=False)
     time = Column(Integer, nullable=False)
 
 
@@ -75,12 +75,13 @@ class SavedPaths(Base, DBTool):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     owner_id = Column(Integer, ForeignKey("users.id"))
-    name = Column(String(120), nullable=False, unique=True)
+    name = Column(String(120), nullable=False)
     description = Column(String(5000), nullable=False)
     image = Column(String(120), nullable=False)
     path = Column(String(120), nullable=False)
-    lenght = Column(Integer, nullable=False)
-    time = Column(Integer, nullable=False)
+    length = Column(Integer, nullable=False)
+    full_time = Column(Integer, nullable=False)
+    walk_time = Column(Integer, nullable=False)
 
 
 class Graph():

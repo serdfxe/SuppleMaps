@@ -41,7 +41,7 @@ class Map:
                 popup = p.id,
                 icon=folium.features.DivIcon(icon_size=(27, 27),
                 html=f"""
-                    <div style="display: flex; flex-direction: column; align-items: center;" onclick='() => func()'> 
+                    <div style="display: flex; flex-direction: column; align-items: center;" onclick="window.show_short_poi_info({p.id})"> 
                         <img src="http://localhost:80/static/img/markers/{p.poi_type.name}.svg" onclick="show_info({p.id})"> 
                         <h1 class="marker-text" style="transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;">{p.short_name}</h1>
                     </div>

@@ -8,6 +8,7 @@ from random import choice, randint, choices, sample
 from app.models.map import *
 
 from app.models.map.services import *
+from app.models.map.services.strings import compress_desc
 
 from app.models.map.test import *
 
@@ -32,7 +33,11 @@ def get_way_html(strpoi):
 def poi_info_route(id):
     p = Poi.filter(id=int(id)).first()
 
-    response = jsonify(p.to_dict())
+    d = p.as_dict()
+
+    d["short_description"] = compress_desc(d["short_description"], 29, 3)
+
+    response = jsonify(d)
     response.headers.set('Access-Control-Allow-Origin', '*')
     response.headers.set('Access-Control-Allow-Methods', 'GET')
     return response

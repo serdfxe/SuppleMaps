@@ -26,4 +26,5 @@ def compress_desc(desc: str, max_width:int, max_height:int):
             temp_w = len(desc[i])
         if temp_h > max_height:
             compessed = ' '.join(desc[:i]) + '...'
+            break
     return compessed

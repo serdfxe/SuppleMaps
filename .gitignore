@@ -18,6 +18,7 @@ build/
 docs/_build/
 .vscode
 __pycache__/
+*.ini
 
 # Coverage reports
 htmlcov/

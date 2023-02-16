@@ -24,7 +24,7 @@ def main_route():
     return redirect("map/0")
 
 
-@main.get("/map/<id>")
+@main.get("/map")
 def map_route(id):
     m = Map.empty_map(style=MapStyle.get_all()[int(id)])
 

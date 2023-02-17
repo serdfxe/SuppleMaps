@@ -36,8 +36,10 @@ def init_user():
 @jwt_required()
 def get_router_route():
     response = jsonify(init_user().as_dict())
+
     response.headers.set('Access-Control-Allow-Origin', '*')
     response.headers.set('Access-Control-Allow-Methods', 'GET')
+    
     return response
 
 

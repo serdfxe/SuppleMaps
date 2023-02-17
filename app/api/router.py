@@ -22,6 +22,7 @@ from app.models.notification import Notification
 
 router = Blueprint("router", __name__)
 
+
 def init_user():
     user_id = User.filter(id=get_jwt_identity()).first().id
     ids = [u.owner_id for u in Router.all()]
@@ -29,6 +30,18 @@ def init_user():
         Router.new(owner_id=user_id, state="editing", path="", time_limit=10**5, mandatory_points="", dur_of_visit=False, n_of_ans=1)
     user_router = Router.filter(owner_id=user_id).first()
     return user_router
+
+
+@router.get("/")
+@jwt_required()
+def get_router_route():
+    response = jsonify(init_user().as_dict())
+
+    response.headers.set('Access-Control-Allow-Origin', '*')
+    response.headers.set('Access-Control-Allow-Methods', 'GET')
+    
+    return response
+
 
 @router.get("/add/<poi_id>")
 @jwt_required()
@@ -53,7 +66,6 @@ def add_point(poi_id:str):
         return jsonify(Notification("Успешно!", "Маршрут обновлён", "success", 0))
     else:
         return jsonify(Notification("Ошибка!", "Точка уже есть в маршруте", "error", 1))
-
 
 @router.get("/del/<poi_id>")
 @jwt_required()

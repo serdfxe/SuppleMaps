@@ -1,6 +1,10 @@
 from urllib import response
 from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, current_app
-from flask_login import LoginManager, logout_user, login_required, current_user
+# from flask_login import LoginManager, logout_user, login_required, current_user
+
+from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, \
+                               unset_jwt_cookies, jwt_required, JWTManager
+
 import traceback
 
 from random import choice, randint, choices, sample
@@ -19,7 +23,7 @@ from app.models.notification import Notification
 router = Blueprint("router", __name__)
 
 def init_user():
-    user_id = current_user.id
+    user_id = User.filter(id=get_jwt_identity()).first().id
     ids = [u.owner_id for u in Router.all()]
     if user_id not in ids:
         Router.new(owner_id=user_id, state="editing", path="", time_limit=10**5, mandatory_points="", dur_of_visit=False, n_of_ans=1)
@@ -27,7 +31,7 @@ def init_user():
     return user_router
 
 @router.get("/add/<poi_id>")
-@login_required
+@jwt_required()
 def add_point(poi_id:str):
     if int(poi_id) > len(Poi.all()) or int(poi_id) <= 1:
         return jsonify(Notification("Ошибка!", "Некорретный id точки", "error", 1))
@@ -49,9 +53,10 @@ def add_point(poi_id:str):
         return jsonify(Notification("Успешно!", "Маршрут обновлён", "success", 0))
     else:
         return jsonify(Notification("Ошибка!", "Точка уже есть в маршруте", "error", 1))
-    
+
+
 @router.get("/del/<poi_id>")
-@login_required
+@jwt_required()
 def delete_point(poi_id:str):
     user_router = init_user()
 
@@ -75,8 +80,9 @@ def delete_point(poi_id:str):
     else:
         return jsonify(Notification("Ошибка!", "Точки нет маршруте", "error", 1))
     
+
 @router.get("/clear")
-@login_required
+@jwt_required()
 def clear_path():
     user_router = init_user()
 
@@ -88,8 +94,9 @@ def clear_path():
         Router.uow.commit()
     return jsonify(Notification("Успешно!", "Маршрут удалён", "success", 0))
 
+
 @router.get("/build")
-@login_required
+@jwt_required()
 def build_path():
     user_router = init_user()
 
@@ -119,8 +126,9 @@ def build_path():
         Router.uow.commit()
     return jsonify(Notification("Успешно!", "Маршрут изменён", "success", 0))
 
+
 @router.get("/save")
-@login_required
+@jwt_required()
 def save_path():
     user_router = init_user()
 
@@ -145,8 +153,9 @@ def save_path():
     SavedPaths.new(owner_id=user_router.owner_id, name='',description='',image='',path=' '.join(str(i) for i in path[1:]),length=length,full_time=time[0], walk_time=time[1])
     return jsonify(Notification("Успешно!", "Маршрут сохранён", "success", 0))
 
+
 @router.get("/loadsaved/<id>")
-@login_required
+@jwt_required()
 def load_path(id):
     user_router = init_user()
     path_id = int(id)
@@ -166,8 +175,9 @@ def load_path(id):
         Router.uow.commit()
     return jsonify(Notification("Успешно!", "Маршрут загружен", "success", 0))
 
+
 @router.get("/delsaved/<id>")
-@login_required
+@jwt_required()
 def delete_path(id):
     user_router = init_user()
     path_id = int(id)

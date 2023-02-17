@@ -79,7 +79,16 @@ def reg_route():
 
     return response
 
-    
+
+@auth.get('/isloggedin')
+@jwt_required()
+def is_logged_in():
+    response = jsonify({"msg": "You are authorized!"})
+    response.headers.set('Access-Control-Allow-Origin', '*')
+    response.headers.set('Access-Control-Allow-Methods', 'GET')
+    return response, 200
+
+
 # @auth.route('/logout', methods=["POST"])
 # @login_required
 # def logout():

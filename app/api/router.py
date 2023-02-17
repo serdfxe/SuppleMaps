@@ -1,7 +1,10 @@
 from urllib import response
 from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, current_app
-from flask_jwt_extended import jwt_required
-from flask_login import LoginManager, logout_user, login_required, current_user
+# from flask_login import LoginManager, logout_user, login_required, current_user
+
+from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, \
+                               unset_jwt_cookies, jwt_required, JWTManager
+
 import traceback
 
 from random import choice, randint, choices, sample
@@ -21,7 +24,7 @@ router = Blueprint("router", __name__)
 
 
 def init_user():
-    user_id = current_user.id
+    user_id = User.filter(id=get_jwt_identity()).first().id
     ids = [u.owner_id for u in Router.all()]
     if user_id not in ids:
         Router.new(owner_id=user_id, state="editing", path="", time_limit=10**5, mandatory_points="", dur_of_visit=False, n_of_ans=1)
@@ -39,7 +42,7 @@ def get_router_route():
 
 
 @router.get("/add/<poi_id>")
-@login_required
+@jwt_required()
 def add_point(poi_id:str):
     if int(poi_id) > len(Poi.all()) or int(poi_id) <= 1:
         return jsonify(Notification("Ошибка!", "Некорретный id точки", "error", 1))
@@ -61,10 +64,9 @@ def add_point(poi_id:str):
         return jsonify(Notification("Успешно!", "Маршрут обновлён", "success", 0))
     else:
         return jsonify(Notification("Ошибка!", "Точка уже есть в маршруте", "error", 1))
-    
 
 @router.get("/del/<poi_id>")
-@login_required
+@jwt_required()
 def delete_point(poi_id:str):
     user_router = init_user()
 
@@ -90,7 +92,7 @@ def delete_point(poi_id:str):
     
 
 @router.get("/clear")
-@login_required
+@jwt_required()
 def clear_path():
     user_router = init_user()
 
@@ -104,7 +106,7 @@ def clear_path():
 
 
 @router.get("/build")
-@login_required
+@jwt_required()
 def build_path():
     user_router = init_user()
 
@@ -136,7 +138,7 @@ def build_path():
 
 
 @router.get("/save")
-@login_required
+@jwt_required()
 def save_path():
     user_router = init_user()
 
@@ -163,7 +165,7 @@ def save_path():
 
 
 @router.get("/loadsaved/<id>")
-@login_required
+@jwt_required()
 def load_path(id):
     user_router = init_user()
     path_id = int(id)
@@ -185,7 +187,7 @@ def load_path(id):
 
 
 @router.get("/delsaved/<id>")
-@login_required
+@jwt_required()
 def delete_path(id):
     user_router = init_user()
     path_id = int(id)

@@ -16,7 +16,7 @@ from app.models.router import Router
 
 def path_map(pois:list, style: MapStyle):
     try:
-        pois = [Poi.filter(id=i).first() for i in get_path(Graph.matrix, ps, Graph.time_list, n_of_ans=2)[0][0]]
+        pois = [Poi.filter(id=i).first() for i in pois]
 
         nodes = []
 
@@ -123,10 +123,12 @@ def map_route():
     if user_router.state == 'editing':
         m = Map.empty_map(style=MapStyle.get_all()[user.style_id if user.style_id != None else 0])
         m.add_all_pois()
+        response = jsonify({"map": m.html})
     else:
-        m = path_map(user_router.path, MapStyle.style_list[user.style_id if user.style_id != None else 0])
+        print([int(i) for i in user_router.path.split(' ')])
+        m = path_map([int(i) for i in user_router.path.split(' ')], MapStyle.style_list[user.style_id if user.style_id != None else 0])
+        response = jsonify({"map": m._repr_html_()})
 
-    response = jsonify({"map": m.html})
     response.headers.set('Access-Control-Allow-Origin', '*')
     response.headers.set('Access-Control-Allow-Methods', 'GET')
 

@@ -43,7 +43,7 @@ def path_map(pois:list, style: MapStyle):
                     popup = pois[i].name,
                     icon=folium.features.DivIcon(icon_size=(34, 50) if i in (0, ln - 1) else (30, 30), icon_anchor=(17, 23.5) if i in (0, ln - 1) else (15, 0), html=f""" 
                     <div style="display: flex; flex-direction: column; align-items: center;"> 
-                        <img src="/static/img/markers/{i if i != 0 and i != ln - 1 else "start" if i == 0 else "end"}.svg" style="filter: drop-shadow(0px 0px 3px white);"> 
+                        <img src="http://localhost:80/static/img/markers/{i if i != 0 and i != ln - 1 else "start" if i == 0 else "end"}.svg" style="filter: drop-shadow(0px 0px 3px white);"> 
                         <h1 class="marker-text" style="transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;">{pois[i].short_name}</h1>
                     </div> """, class_name="marker"))
 
@@ -57,7 +57,7 @@ def path_map(pois:list, style: MapStyle):
                     popup = p.name,
                     icon=folium.features.DivIcon(icon_size=(27, 27), html=f""" 
                     <div style="display: flex; flex-direction: column; align-items: center;"> 
-                        <img src="/static/img/markers/{p.poi_type.name}.svg" style="filter: drop-shadow(0px 0px 3px white);"> 
+                        <img src="http://localhost:80/static/img/markers/{p.poi_type.name}.svg" style="filter: drop-shadow(0px 0px 3px white);"> 
                         <h1 class="marker-text" style="transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;">{p.short_name}</h1>
                     </div> """, class_name="marker"))
                 m.add_to(shortest_route_map)
@@ -127,7 +127,7 @@ def map_route():
         response = jsonify({"map": m.html})
     else:
         print([int(i) for i in user_router.path.split(' ')])
-        m = path_map([int(i) for i in user_router.path.split(' ')], MapStyle.style_list[user.style_id if user.style_id != None else 0])
+        m = path_map([1] + [int(i) for i in user_router.path.split(' ')], MapStyle.style_list[user.style_id if user.style_id != None else 0])
         response = jsonify({"map": m._repr_html_()})
 
     response.headers.set('Access-Control-Allow-Origin', '*')

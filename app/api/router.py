@@ -39,11 +39,11 @@ def get_router_route():
 
     response.headers.set('Access-Control-Allow-Origin', '*')
     response.headers.set('Access-Control-Allow-Methods', 'GET')
-    
+
     return response
 
 
-@router.get("/add/<poi_id>")
+@router.post("/add/<poi_id>")
 @jwt_required()
 def add_point(poi_id:str):
     if int(poi_id) > len(Poi.all()) or int(poi_id) <= 1:
@@ -67,7 +67,7 @@ def add_point(poi_id:str):
     else:
         return jsonify(Notification("Ошибка!", "Точка уже есть в маршруте", "error", 1))
 
-@router.get("/del/<poi_id>")
+@router.post("/del/<poi_id>")
 @jwt_required()
 def delete_point(poi_id:str):
     user_router = init_user()
@@ -93,7 +93,7 @@ def delete_point(poi_id:str):
         return jsonify(Notification("Ошибка!", "Точки нет маршруте", "error", 1))
     
 
-@router.get("/clear")
+@router.post("/clear")
 @jwt_required()
 def clear_path():
     user_router = init_user()
@@ -107,7 +107,7 @@ def clear_path():
     return jsonify(Notification("Успешно!", "Маршрут удалён", "success", 0))
 
 
-@router.get("/build")
+@router.post("/build")
 @jwt_required()
 def build_path():
     user_router = init_user()
@@ -139,7 +139,7 @@ def build_path():
     return jsonify(Notification("Успешно!", "Маршрут изменён", "success", 0))
 
 
-@router.get("/save")
+@router.post("/save")
 @jwt_required()
 def save_path():
     user_router = init_user()
@@ -166,7 +166,7 @@ def save_path():
     return jsonify(Notification("Успешно!", "Маршрут сохранён", "success", 0))
 
 
-@router.get("/loadsaved/<id>")
+@router.post("/loadsaved/<id>")
 @jwt_required()
 def load_path(id):
     user_router = init_user()
@@ -188,7 +188,7 @@ def load_path(id):
     return jsonify(Notification("Успешно!", "Маршрут загружен", "success", 0))
 
 
-@router.get("/delsaved/<id>")
+@router.post("/delsaved/<id>")
 @jwt_required()
 def delete_path(id):
     user_router = init_user()

@@ -14,6 +14,7 @@ from app.models.map.services.strings import *
 from app.models.user import User
 from app.models.router import Router
 
+
 def path_map(pois:list, style: MapStyle):
     try:
         pois = [Poi.filter(id=i).first() for i in pois]

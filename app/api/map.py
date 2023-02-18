@@ -13,6 +13,10 @@ from app.models.map.services.map import *
 from app.models.map.services.strings import *
 from app.models.user import User
 from app.models.router import Router
+from app.models.map.services.search import search
+
+import json
+
 
 
 map = Blueprint("map", __name__)
@@ -41,3 +45,9 @@ def map_route():
     response.headers.set('Access-Control-Allow-Methods', 'GET')
 
     return response
+
+@map.get("/search")
+def search_poi():
+    content = request.json
+    ans = search([{"id": p.id, "name": p.name} for p in Poi.all()], content["text"])
+    return json.dumps(ans)

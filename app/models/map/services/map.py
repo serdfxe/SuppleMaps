@@ -38,7 +38,9 @@ class Map:
             if p.id in exc: continue
             self.add_marker(
                 location = (p.marker_lat, p.marker_lon),
-                icon=folium.features.DivIcon(icon_size=(27, 27),
+                icon=folium.features.DivIcon(
+                icon_size=(27, 27),
+                icon_anchor=(13,9),
                 html=f"""
                     <div style="display: flex; flex-direction: column; align-items: center;" onclick="parent.postMessage({{name: 'show_short_poi_info', id: {p.id}}}, '*')"> 
                         <img src="http://localhost:80/static/img/markers/{p.poi_type.name}.svg" onclick="parent.postMessage({{name: 'show_short_poi_info', id: {p.id}}}, '*')"> 
@@ -50,8 +52,6 @@ class Map:
 
     def add_path(self, pois: list):
         pois = [Poi.filter(id=i).first() for i in pois]
-
-        print(pois)
 
         nodes = [ox.nearest_nodes(Graph.oxG, p.entrance_lon if not isnan(p.entrance_lon) else p.marker_lon, p.entrance_lat if not isnan(p.entrance_lat) else p.marker_lat) for p in pois]
 
@@ -66,14 +66,13 @@ class Map:
         for i in range(ln): 
             self.add_marker(
                 location = (pois[i].marker_lat, pois[i].marker_lon),
-                popup = pois[i].id,
                 icon=folium.features.DivIcon(
                     icon_size=(34, 50) if i in (0, ln - 1) else (30, 30),
-                    icon_anchor=(17, 23.5) if i in (0, ln - 1) else (15, 0),
+                    icon_anchor=(16, 27) if i in (0, ln - 1) else (14.5, 10),
                     html=f""" 
-                    <div style="display: flex; flex-direction: column; align-items: center;"> 
-                        <img src="/static/img/markers/{i if i != 0 and i != ln - 1 else "start" if i == 0 else "end"}.svg"> 
-                        <h1 class="marker-text" style="transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;">{pois[i].short_name}</h1>
+                    <div style="display: flex; flex-direction: column; align-items: center;" onclick="parent.postMessage({{name: 'show_short_poi_info', id: {pois[i].id}}}, '*')"> 
+                        <img src="http://localhost:80/static/img/markers/{i if i != 0 and i != ln - 1 else "start" if i == 0 else "end"}.svg" onclick="parent.postMessage({{name: 'show_short_poi_info', id: {pois[i].id}}}, '*')"> 
+                        <h1 class="marker-text" style="transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;" onclick="parent.postMessage({{name: 'show_short_poi_info', id: {pois[i].id}}}, '*')">{pois[i].short_name}</h1>
                     </div> """,
                     class_name="marker"
                 )
@@ -82,13 +81,12 @@ class Map:
             if not isnan(pois[i].entrance_lat) and not isnan(pois[i].entrance_lon) and pois[i].type_id not in (4, 6):
                 self.add_marker(
                     location = (pois[i].entrance_lat, pois[i].entrance_lon),
-                    # popup = pois[i].name,
                     icon=folium.features.DivIcon(
                         icon_size= (15, 15),
                         icon_anchor= (7.5, 7.5),
                         html=f""" 
                         <div style="display: flex; flex-direction: column; align-items: center;"> 
-                            <img src="/static/img/markers/entrance.svg" style="transition: width 0.25s ease-in-out" class="entrance"> 
+                            <img src="http://localhost:80/static/img/markers/entrance.svg" style="transition: width 0.25s ease-in-out" class="entrance"> 
                         </div> """,
                         class_name="marker"
                     )

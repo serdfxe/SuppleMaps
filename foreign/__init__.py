@@ -3,6 +3,7 @@ from foreign.make_matrix import make_matrix
 from foreign.place_markers import place_markers
 from foreign.get_images import get_images
 from foreign.replace_desc import replace_desc
+from foreign.check_search import check_search
 def run():
     # place_markers()
     # return 
@@ -10,7 +11,9 @@ def run():
     # return
     # get_images()
     # return
-    replace_desc()
+    # replace_desc()
+    # return
+    check_search()
     return
     path = input("Введите путь к файлу: ")
 

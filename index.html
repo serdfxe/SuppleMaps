@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_625471585efee269aed3e516e16ec644 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+        <style>
+        .leaflet-marker-icon {
+            transition: font-size 0.25s;
+        }
+        .marker {
+            white-space: nowrap;
+            color:k;
+            font-size:12pt;
+        }
+        
+    .marker-text {
+            white-space: break-spaces;
+            font-size:11pt;
+            transition: font-size 0.25s;
+            transition: width 0.25s;
+            text-align: center;
+            -moz-text-shadow:0 0 10px #c00; -webkit-text-shadow:0 0 10px #c00; text-shadow:0 0 10px white;
+            color: #101727;
+            font-weight: 700;
+        }
+    
+        </style>
+        <script type="text/javascript">
+        window.onload = function(){
+            var fontSizeFromZoom = function(z){
+                return {17: 11, 18: 18, 19: 29}[z]
+            }
+            var widthFromZoom = function (z) {
+                return {17: 95, 18: 155, 19: 250}[z]
+            }
+            var updateTextSizes = function(){
+                var mapZoom = map_625471585efee269aed3e516e16ec644.getZoom();
+                console.log(mapZoom);
+                
+                $(".marker-text").css("font-size", fontSizeFromZoom(mapZoom));
+                $(".marker-text").css("width", widthFromZoom(mapZoom));
+                if (mapZoom <= 16) {
+                    $(".marker-text").css("font-size", "0");
+                    $(".marker-text").css("width", "0");
+                    $(".entrance").css("width", "0");
+                } else {
+                    $(".entrance").css("width", "15px");
+                }
+            }
+            updateTextSizes();
+            map_625471585efee269aed3e516e16ec644.on("zoomend", updateTextSizes);
+        }
+        </script>
+        
+    
+            <div class="folium-map" id="map_625471585efee269aed3e516e16ec644" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_625471585efee269aed3e516e16ec644 = L.map(
+                "map_625471585efee269aed3e516e16ec644",
+                {
+                    center: [55.832164, 37.628002],
+                    crs: L.CRS.EPSG3857,
+                    maxBounds: [[55.8114, 37.5681], [55.8534, 37.6726]],
+                    zoom: 16,
+                    zoomControl: false,
+                    preferCanvas: true,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_264e35b444f99039c4fdacb23d3052fa = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 15, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_111b8e32b1a851a4e448b469d420a5bd = L.polyline(
+                [[55.8301568, 37.6199329], [55.8302832, 37.6199464], [55.8302934, 37.6199475], [55.8303036, 37.6199486]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_4207f98b85cdbcbeb99cc797d2a5a8cc = L.polyline(
+                [[55.8303036, 37.6199486], [55.830314, 37.6197516]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_77e85d82da53e2683326f8aa8c45a9af = L.polyline(
+                [[55.830314, 37.6197516], [55.8303285, 37.619477]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_c7dafe6854a2305b9f208dc66339af85 = L.polyline(
+                [[55.8303285, 37.619477], [55.8303391, 37.6194784], [55.8303482, 37.6194796], [55.8303723, 37.6194827]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_480ac44833843c114549bf79b6e594a4 = L.polyline(
+                [[55.8303723, 37.6194827], [55.8303965, 37.6190238], [55.8304003, 37.6189616], [55.830405, 37.6189008], [55.8304102, 37.6188419]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_7e6cc736d0bc51be47f37c8793efe4fc = L.polyline(
+                [[55.8304102, 37.6188419], [55.8304172, 37.6187736], [55.8305106, 37.6179287]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_57c91e66df1c848d5f81f74bad11d1c3 = L.polyline(
+                [[55.8305106, 37.6179287], [55.8305238, 37.6178059], [55.8306568, 37.6166541]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_d5060031e791d08bc434fc70399f0d2e = L.polyline(
+                [[55.8306568, 37.6166541], [55.8307035, 37.6166642]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_81aea77521a7590c40624a6f71a1e908 = L.polyline(
+                [[55.8307035, 37.6166642], [55.8307079, 37.6166266], [55.8307122, 37.6165914], [55.830717, 37.6165581], [55.8307227, 37.616521], [55.8307255, 37.6165046], [55.8307361, 37.6164476], [55.8307481, 37.6163905], [55.830763, 37.6163284], [55.8307801, 37.6162667], [55.8308003, 37.616209], [55.830821, 37.6161542], [55.8308545, 37.6160788]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_9d7e4c9feccec4b68b1ddc1287ba72bb = L.polyline(
+                [[55.8308545, 37.6160788], [55.8309501, 37.6161515], [55.8310608, 37.6159497], [55.8311218, 37.6158665], [55.8312502, 37.6156506]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_29fdf97b81488489191acf69dd9ef0eb = L.polyline(
+                [[55.8312502, 37.6156506], [55.8314331, 37.6158552], [55.8314502, 37.6158672], [55.831473, 37.6158623], [55.8315297, 37.6158201]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_8fe2673f31af469052a66ca6b70cc4ba = L.polyline(
+                [[55.8315297, 37.6158201], [55.8315971, 37.6157699], [55.8318283, 37.6156453], [55.831947, 37.6156968], [55.8320106, 37.6157033]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_f5d1b2fdc799adf506cf9237aa0eab87 = L.polyline(
+                [[55.8320106, 37.6157033], [55.8321552, 37.6157283], [55.8323247, 37.6157572], [55.8323687, 37.6157663], [55.8325818, 37.6156268], [55.8326784, 37.6155702]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_2b13493fb10a5faf238e88f3341ad29b = L.polyline(
+                [[55.8326784, 37.6155702], [55.8332116, 37.6155817]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_d076dabb24a3c98f6cd47da2f92e7a0c = L.polyline(
+                [[55.8332116, 37.6155817], [55.8334758, 37.6155901]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_7a88d7739b7ffc2c41bf302ad4b157e2 = L.polyline(
+                [[55.8334758, 37.6155901], [55.8337453, 37.6155988]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_117a5d6e82d48cf4c512111a738e0b6a = L.polyline(
+                [[55.8337453, 37.6155988], [55.8338806, 37.6156042]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_0eb0fa5be2638c473697446c291833f7 = L.polyline(
+                [[55.8338806, 37.6156042], [55.8339663, 37.6156076]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_f59a5c26bc81939509f1d94d7f570ffc = L.polyline(
+                [[55.8339663, 37.6156076], [55.833993, 37.6156086]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_86c082eb203d4d70047caa25a852a5cf = L.polyline(
+                [[55.833993, 37.6156086], [55.8340964, 37.6156127]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_6b66119d6fdcbc1f8b1aa29809856b5b = L.polyline(
+                [[55.8340964, 37.6156127], [55.8341082, 37.6156132]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_6d2cbe30391680abe621752a54f225e3 = L.polyline(
+                [[55.8341082, 37.6156132], [55.8342392, 37.6156183]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_47a8da888656600574345acdf8bad0cb = L.polyline(
+                [[55.8342392, 37.6156183], [55.834311, 37.6156211]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_d73b73e048a8b3a4b532c751fca95f32 = L.polyline(
+                [[55.834311, 37.6156211], [55.8343332, 37.615622]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_610f55b8422ac9fa260592b7aed992d3 = L.polyline(
+                [[55.8343332, 37.615622], [55.8344642, 37.6156272]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_0195671457afe0a0ded8f3aae2c15c22 = L.polyline(
+                [[55.8344642, 37.6156272], [55.8344915, 37.6156282]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_fb635a5210cd230fd4c94034271abaca = L.polyline(
+                [[55.8344915, 37.6156282], [55.8345393, 37.6156301]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_5aa534f2fb66e637ce161f3f94fdc664 = L.polyline(
+                [[55.8345393, 37.6156301], [55.8346462, 37.6156343]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_30e408ef600e69b6a4bea8c4f6199fb6 = L.polyline(
+                [[55.8346462, 37.6156343], [55.8347295, 37.6156376]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_f8c6cb563f81191ee3098331eb458878 = L.polyline(
+                [[55.8347295, 37.6156376], [55.8347641, 37.6156389]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_f1e4d9077a1591f7dcbbe2601db09b6d = L.polyline(
+                [[55.8347641, 37.6156389], [55.8349029, 37.615644]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_0d4e65c0a899756893c9d6694436ab4d = L.polyline(
+                [[55.8349029, 37.615644], [55.8349773, 37.6156446], [55.8350244, 37.6156506]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_0341bd35ad757779e97e1123fdca9890 = L.polyline(
+                [[55.8350244, 37.6156506], [55.8350906, 37.615662], [55.8351665, 37.6156858]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_58daadaa10857db60d0d2597e1b3c1cb = L.polyline(
+                [[55.8351665, 37.6156858], [55.8353324, 37.6157419], [55.8353505, 37.6157488], [55.8353681, 37.6157592], [55.835388, 37.6157745], [55.835412, 37.6158035], [55.8354194, 37.6158151]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_86398440062f743813d279635917bc5a = L.polyline(
+                [[55.8354194, 37.6158151], [55.8354278, 37.6158286], [55.8354946, 37.6159735], [55.8355256, 37.616006], [55.8355523, 37.6160335], [55.8356095, 37.6160657], [55.8356862, 37.616116]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_27bcda7d7c85c8ba5bd695c1389c4e5a = L.polyline(
+                [[55.8356862, 37.616116], [55.8360098, 37.6163285]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_dea556731507cdc817ece643f58f9b70 = L.polyline(
+                [[55.8360098, 37.6163285], [55.8361401, 37.616413], [55.8361511, 37.6164197]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_3455b93fcd2a83dea4a0ae0332aba6d7 = L.polyline(
+                [[55.8361511, 37.6164197], [55.8362028, 37.6164509]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            map_625471585efee269aed3e516e16ec644.fitBounds(
+                [[55.8301568, 37.6155702], [55.8362028, 37.6199486]],
+                {}
+            );
+        
+    
+            var poly_line_db1aaf6b53f8fdb2d467dfe742757f9d = L.polyline(
+                [[55.827457, 37.6296038], [55.8274148, 37.6285826]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_0c40556e8cb7fb774cf86cc14b62f180 = L.polyline(
+                [[55.8274148, 37.6285826], [55.8274106, 37.6284908], [55.8274072, 37.6283972], [55.8274051, 37.6282914], [55.8274076, 37.6281753], [55.8274133, 37.6280773], [55.8274233, 37.627987]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_b0751fa41c5318b6371b3c967243711b = L.polyline(
+                [[55.8274233, 37.627987], [55.8274536, 37.6278684], [55.8274858, 37.6277816], [55.827521, 37.6277112], [55.8275587, 37.627643], [55.8275976, 37.6275804]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_84f57670dce6a015baf089a33aee9b22 = L.polyline(
+                [[55.8275976, 37.6275804], [55.8278996, 37.6270948]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_13384c84e99e796a284a2d74e469b2a5 = L.polyline(
+                [[55.8278996, 37.6270948], [55.828114, 37.6267477]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_8f743640366b866427367c587895c04b = L.polyline(
+                [[55.828114, 37.6267477], [55.8281201, 37.6267377]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_ec00c540cde13f23d523600d50996941 = L.polyline(
+                [[55.8281201, 37.6267377], [55.828549, 37.6260463]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_28b978d46d0c397ba07ccb3189b593d9 = L.polyline(
+                [[55.828549, 37.6260463], [55.8288479, 37.6255539]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_03b8eee6c84f2602b7f193f146e90192 = L.polyline(
+                [[55.8288479, 37.6255539], [55.8295778, 37.6243566]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_7ff597fb132db1a4f2eddb8e000f5503 = L.polyline(
+                [[55.8295778, 37.6243566], [55.8297814, 37.6240198]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_a67ec49207b7c31119c667c4649225c8 = L.polyline(
+                [[55.8297814, 37.6240198], [55.8297571, 37.6239742], [55.8297469, 37.623956]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_4e83aa06c20bfc576f65921d28908152 = L.polyline(
+                [[55.8297469, 37.623956], [55.8300872, 37.6233842]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_9b01f9050763f66518617f34121f9554 = L.polyline(
+                [[55.8300872, 37.6233842], [55.8301094, 37.6233176], [55.8301264, 37.6232566], [55.8301389, 37.6232041], [55.8301445, 37.6231608], [55.8301486, 37.6231123], [55.8301739, 37.6225735], [55.8301737, 37.6225519], [55.8301724, 37.6225348], [55.8301698, 37.622516], [55.8301635, 37.6224997]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_1aad3b833a26be83659752de9afac5a0 = L.polyline(
+                [[55.8301635, 37.6224997], [55.8301723, 37.622486], [55.8301771, 37.6223661]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_06d19f1f9630c7486e7746005c96659a = L.polyline(
+                [[55.8301771, 37.6223661], [55.8301811, 37.6222661], [55.8301743, 37.6222344]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_8bb9b1280aa415eac0d0c27fd344c5b1 = L.polyline(
+                [[55.8301743, 37.6222344], [55.8301847, 37.6222247], [55.830192, 37.6222032], [55.8302037, 37.6219108]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_e56f04e1dec179bf278312af2c29d56f = L.polyline(
+                [[55.8302037, 37.6219108], [55.8302367, 37.621209], [55.8303036, 37.6199486]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_9a5bb07e8573a82e8b2b23ebc70846b7 = L.polyline(
+                [[55.8303036, 37.6199486], [55.8302934, 37.6199475], [55.8302832, 37.6199464], [55.8301568, 37.6199329]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            map_625471585efee269aed3e516e16ec644.fitBounds(
+                [[55.8274051, 37.6199329], [55.8303036, 37.6296038]],
+                {}
+            );
+        
+    
+            var poly_line_0989f19a36317115a653f4a829854617 = L.polyline(
+                [[55.8285007, 37.6340149], [55.8284926, 37.6340268], [55.8284787, 37.6340495], [55.8283982, 37.6341802]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_80dfc7ad88a55ed05f42e8df2dc06313 = L.polyline(
+                [[55.8283982, 37.6341802], [55.8282288, 37.633844], [55.8282129, 37.6338125], [55.8281799, 37.633747]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_610a603ba6dea726e550d328e04cd740 = L.polyline(
+                [[55.8281799, 37.633747], [55.8283638, 37.6334486]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_20c5faa97a64f8ef95fa13a0d5201c41 = L.polyline(
+                [[55.8283638, 37.6334486], [55.8282848, 37.6332943], [55.8282432, 37.6332131]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_1db250c87aa535f417001955c421e5a5 = L.polyline(
+                [[55.8282432, 37.6332131], [55.8285294, 37.6327479]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_f0a2b211b8f3d44e9e100070b5d72f6c = L.polyline(
+                [[55.8285294, 37.6327479], [55.8285642, 37.6326912]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_06af6d3ec36b4108510dcd0f3ed0fcb0 = L.polyline(
+                [[55.8285642, 37.6326912], [55.8282918, 37.6321421]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_51464776254afa6cd80b10849f3751f7 = L.polyline(
+                [[55.8282918, 37.6321421], [55.8281907, 37.6319395], [55.8281437, 37.6318454], [55.828132, 37.6318186], [55.8281221, 37.6317951], [55.8281166, 37.631765], [55.8281139, 37.63173], [55.8281049, 37.6315147]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_56c7d8de9c4f24c2f8eee1d6c3adb547 = L.polyline(
+                [[55.8281049, 37.6315147], [55.8280963, 37.6312515]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_07a49195a1c425883fcb8b1b38d98104 = L.polyline(
+                [[55.8280963, 37.6312515], [55.8280803, 37.6308137]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_7629eb8608502ff2faf14c10a01d30c0 = L.polyline(
+                [[55.8280803, 37.6308137], [55.8278042, 37.6307939]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_31cece2551fdf6544ccae019313fd80a = L.polyline(
+                [[55.8278042, 37.6307939], [55.827592, 37.6307796], [55.827552, 37.63078]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_c0d0e8a73bced0d73fd240cdc537e93a = L.polyline(
+                [[55.827552, 37.63078], [55.8275019, 37.6307805]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var poly_line_af8f513802ba27c0dcbb6edf6a36a639 = L.polyline(
+                [[55.8275019, 37.6307805], [55.8274588, 37.6296479], [55.827457, 37.6296038]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            map_625471585efee269aed3e516e16ec644.fitBounds(
+                [[55.827457, 37.6296038], [55.8285642, 37.6341802]],
+                {}
+            );
+        
+    
+            var marker_c0cdc4e9fd5b4bc3612cdf30bff2f409 = L.marker(
+                [55.82870034999999, 37.63367505000001],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_627f284c6e7a5e6e302d5f3d37f2405a = L.divIcon({"className": "marker", "html": " \n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 1}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/start.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 1}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 1}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u21161 \u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u044b\u0439\u003c/h1\u003e\n                    \u003c/div\u003e ", "iconAnchor": [16, 27], "iconSize": [34, 50]});
+            marker_c0cdc4e9fd5b4bc3612cdf30bff2f409.setIcon(div_icon_627f284c6e7a5e6e302d5f3d37f2405a);
+        
+    
+            var marker_94fbbc9bb3369dd31ef84ee784213d37 = L.marker(
+                [55.828477, 37.634043],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_ee81ade9dfb093675622b00cb75f4226 = L.divIcon({"className": "marker", "html": " \n                        \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\"\u003e \n                            \u003cimg src=\"http://localhost:80/static/img/markers/entrance.svg\" style=\"transition: width 0.25s ease-in-out\" class=\"entrance\"\u003e \n                        \u003c/div\u003e ", "iconAnchor": [7.5, 7.5], "iconSize": [15, 15]});
+            marker_94fbbc9bb3369dd31ef84ee784213d37.setIcon(div_icon_ee81ade9dfb093675622b00cb75f4226);
+        
+    
+            var marker_b03bad8682b959f5ba9dbeb3f99a49f8 = L.marker(
+                [55.8271122, 37.629848],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_659ab0da5f9b3817662b0af36ed2dfd2 = L.divIcon({"className": "marker", "html": " \n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 109}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/1.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 109}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 109}, \u0027*\u0027)\"\u003e\u041a\u0440\u0443\u0433\u043e\u0432\u0430\u044f \u043a\u0438\u043d\u043e\u043f\u0430\u043d\u043e\u0440\u0430\u043c\u0430\u003c/h1\u003e\n                    \u003c/div\u003e ", "iconAnchor": [14.5, 10], "iconSize": [30, 30]});
+            marker_b03bad8682b959f5ba9dbeb3f99a49f8.setIcon(div_icon_659ab0da5f9b3817662b0af36ed2dfd2);
+        
+    
+            var marker_8d6c378c93499e9f4061f89aef03de60 = L.marker(
+                [55.8300179, 37.61993155],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_6d886120928fb80af4c02d96fd73dbc4 = L.divIcon({"className": "marker", "html": " \n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 2}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/2.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 2}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 2}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u00ab\u041a\u043d\u0438\u0433\u0438\u00bb\u003c/h1\u003e\n                    \u003c/div\u003e ", "iconAnchor": [14.5, 10], "iconSize": [30, 30]});
+            marker_8d6c378c93499e9f4061f89aef03de60.setIcon(div_icon_6d886120928fb80af4c02d96fd73dbc4);
+        
+    
+            var marker_525e97d1d5df7d38d67a6bb7e290d595 = L.marker(
+                [55.830124, 37.619941],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_af6dfcf7dbcc9ab37a315ec4da15e2f2 = L.divIcon({"className": "marker", "html": " \n                        \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\"\u003e \n                            \u003cimg src=\"http://localhost:80/static/img/markers/entrance.svg\" style=\"transition: width 0.25s ease-in-out\" class=\"entrance\"\u003e \n                        \u003c/div\u003e ", "iconAnchor": [7.5, 7.5], "iconSize": [15, 15]});
+            marker_525e97d1d5df7d38d67a6bb7e290d595.setIcon(div_icon_af6dfcf7dbcc9ab37a315ec4da15e2f2);
+        
+    
+            var marker_2e1cc2e584368b7f3c2a766e6fdcab90 = L.marker(
+                [55.83640585, 37.616392000000005],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_a0bc1e0d4f9d078edf1cadc42ee81a82 = L.divIcon({"className": "marker", "html": " \n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 4}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/end.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 4}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 4}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211628 \u041f\u0447\u0435\u043b\u043e\u0432\u043e\u0434\u0441\u0442\u0432\u043e\u003c/h1\u003e\n                    \u003c/div\u003e ", "iconAnchor": [16, 27], "iconSize": [34, 50]});
+            marker_2e1cc2e584368b7f3c2a766e6fdcab90.setIcon(div_icon_a0bc1e0d4f9d078edf1cadc42ee81a82);
+        
+    
+            var marker_e76424962eb2a675815fbe2aa4ae04b4 = L.marker(
+                [55.836291, 37.616425],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_f7fd20ae97b9792f893eff3539312a8a = L.divIcon({"className": "marker", "html": " \n                        \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\"\u003e \n                            \u003cimg src=\"http://localhost:80/static/img/markers/entrance.svg\" style=\"transition: width 0.25s ease-in-out\" class=\"entrance\"\u003e \n                        \u003c/div\u003e ", "iconAnchor": [7.5, 7.5], "iconSize": [15, 15]});
+            marker_e76424962eb2a675815fbe2aa4ae04b4.setIcon(div_icon_f7fd20ae97b9792f893eff3539312a8a);
+        
+    
+            var marker_a3cb6c29dc310ff4adf7013cd011ea75 = L.marker(
+                [55.830938, 37.620327],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_be64cab17af1a74931477b9bca61bb6b = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 100}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 100}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 100}, \u0027*\u0027)\"\u003e\u0414\u0435\u0442\u0441\u043a\u043e\u0435 \u043f\u043e\u0441\u043e\u043b\u044c\u0441\u0442\u0432\u043e\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_a3cb6c29dc310ff4adf7013cd011ea75.setIcon(div_icon_be64cab17af1a74931477b9bca61bb6b);
+        
+    
+            var marker_32bd2aaa708cec6b5164d5b85399bce3 = L.marker(
+                [55.8442253, 37.58990365],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_9444ea98a6c46c9429db6b53a560e68b = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 99}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 99}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 99}, \u0027*\u0027)\"\u003e\u041a\u043e\u043d\u0446\u0435\u0440\u0442\u043d\u044b\u0439 \u0437\u0430\u043b \u0413\u043b\u0430\u0432\u043d\u043e\u0433\u043e \u0431\u043e\u0442\u0430\u043d\u0438\u0447\u0435\u0441\u043a\u043e\u0433\u043e \u0441\u0430\u0434 \u0420\u0410\u041d\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_32bd2aaa708cec6b5164d5b85399bce3.setIcon(div_icon_9444ea98a6c46c9429db6b53a560e68b);
+        
+    
+            var marker_14d64de8ac5a8bdb99e3921412e1f9af = L.marker(
+                [55.83997475, 37.62032860000001],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_38a4ca78a28a4ead5a1200f4b36ddcf2 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 6}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 6}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 6}, \u0027*\u0027)\"\u003eLa Atmosfera\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_14d64de8ac5a8bdb99e3921412e1f9af.setIcon(div_icon_38a4ca78a28a4ead5a1200f4b36ddcf2);
+        
+    
+            var marker_1f7e277a74669f58ccb5bc7aa96ad249 = L.marker(
+                [55.837256, 37.624094],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_b26f0ed32f3b488655a5f57bdfa3192e = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 87}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 87}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 87}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211647 \u0414\u043e\u043c \u0440\u0435\u043c\u0435\u0441\u0435\u043b\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_1f7e277a74669f58ccb5bc7aa96ad249.setIcon(div_icon_b26f0ed32f3b488655a5f57bdfa3192e);
+        
+    
+            var marker_7e9666f55a6aa0bd4ce0a797db650859 = L.marker(
+                [55.83513744999999, 37.627655700000005],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_2c05ddc984b7cd2b819cdc3ff1559bd8 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 7}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 7}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 7}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211662 \u041c\u0435\u0436\u0434\u0443\u043d\u0430\u0440\u043e\u0434\u043d\u044b\u0439 \u0446\u0435\u043d\u0442\u0440 \u0431\u0430\u043b\u0435\u0442\u0430\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_7e9666f55a6aa0bd4ce0a797db650859.setIcon(div_icon_2c05ddc984b7cd2b819cdc3ff1559bd8);
+        
+    
+            var marker_d77d0384e3283345983bd12129d7e704 = L.marker(
+                [55.83300375, 37.63492035],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_d3bb7157134a9964c44f9ebf1a35dbf4 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 37}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 37}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 37}, \u0027*\u0027)\"\u003e\u0411\u0435\u043b\u044b\u0439 \u041f\u0430\u0440\u043e\u0445\u043e\u0434\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_d77d0384e3283345983bd12129d7e704.setIcon(div_icon_d3bb7157134a9964c44f9ebf1a35dbf4);
+        
+    
+            var marker_9b4e310384c72d5ed0e322fa673a5f13 = L.marker(
+                [55.83100035, 37.6270876],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_38e611b322f661687b3e7525344eb7f0 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 10}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 10}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 10}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211614 \u0410\u0437\u0435\u0440\u0431\u0430\u0439\u0434\u0436\u0430\u043d\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_9b4e310384c72d5ed0e322fa673a5f13.setIcon(div_icon_38e611b322f661687b3e7525344eb7f0);
+        
+    
+            var marker_37d35218758bcf30f2c6a966490b58d7 = L.marker(
+                [55.839791, 37.618954],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_7b45c2fe9c57098f97d8cf2c609c4f5a = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 32}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 32}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 32}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211637 \u041f\u0442\u0438\u0446\u0435\u0432\u043e\u0434\u0441\u0442\u0432\u043e\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_37d35218758bcf30f2c6a966490b58d7.setIcon(div_icon_7b45c2fe9c57098f97d8cf2c609c4f5a);
+        
+    
+            var marker_ac0e73b8518f1e3b0a4f732271674ba1 = L.marker(
+                [55.83573885, 37.618302],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_2764343a2b27966dad5338f7b8beb2e2 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 15}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 15}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 15}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211629 \u0426\u0432\u0435\u0442\u043e\u0432\u043e\u0434\u0441\u0442\u0432\u043e\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_ac0e73b8518f1e3b0a4f732271674ba1.setIcon(div_icon_2764343a2b27966dad5338f7b8beb2e2);
+        
+    
+            var marker_ce4627052635db180d9cf7edabac5148 = L.marker(
+                [55.8319289, 37.6255568],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_8a1de49f3d33ecf85d74246cdc24ce95 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 11}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 11}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 11}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211618 \u0411\u0435\u043b\u0430\u0440\u0443\u0441\u044c\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_ce4627052635db180d9cf7edabac5148.setIcon(div_icon_8a1de49f3d33ecf85d74246cdc24ce95);
+        
+    
+            var marker_44f1992ecea758b7d064c1889e0ba21b = L.marker(
+                [55.8331115, 37.629652400000005],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_b8b1b63306f8b88ad5c50407b4df1a9a = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 77}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0444\u043e\u043d\u0442\u0430\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 77}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 77}, \u0027*\u0027)\"\u003e\u041c\u0430\u043b\u044c\u0447\u0438\u043a \u0441 \u0440\u044b\u0431\u043e\u0439\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_44f1992ecea758b7d064c1889e0ba21b.setIcon(div_icon_b8b1b63306f8b88ad5c50407b4df1a9a);
+        
+    
+            var marker_115b277f35135c46ef9bd893f5d99b64 = L.marker(
+                [55.8356905, 37.62665165000001],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_862d8ac292ee09a42a2b7f39ce84c55f = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 29}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 29}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 29}, \u0027*\u0027)\"\u003e\u0414\u0432\u043e\u0440\u0435\u0446 \u0431\u0440\u0430\u043a\u043e\u0441\u043e\u0447\u0435\u0442\u0430\u043d\u0438\u044f\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_115b277f35135c46ef9bd893f5d99b64.setIcon(div_icon_862d8ac292ee09a42a2b7f39ce84c55f);
+        
+    
+            var marker_ad0634d490c24d3fbde9102607f95758 = L.marker(
+                [55.83087415, 37.6337138],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_bfb680e263535b4f1a81e103c442fe2f = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 12}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 12}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 12}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211668 \u0410\u0440\u043c\u0435\u043d\u0438\u044f\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_ad0634d490c24d3fbde9102607f95758.setIcon(div_icon_bfb680e263535b4f1a81e103c442fe2f);
+        
+    
+            var marker_b8269965040c89a13610f1a8f36fbda5 = L.marker(
+                [55.83276144999999, 37.62707495000001],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_e3c13a83abfe7728902eb7e230e764b1 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 51}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 51}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 51}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211658 \u041c\u0443\u0437\u0435\u0439 \u0441\u043b\u0430\u0432\u044f\u043d\u0441\u043a\u043e\u0439 \u043f\u0438\u0441\u044c\u043c\u0435\u043d\u043d\u043e\u0441\u0442\u0438\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_b8269965040c89a13610f1a8f36fbda5.setIcon(div_icon_e3c13a83abfe7728902eb7e230e764b1);
+        
+    
+            var marker_d238366ffa1fecc802373f05a407545d = L.marker(
+                [55.83844305, 37.623381050000006],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_17aee592776424760f64555159fb9ffb = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 35}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 35}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 35}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211642 \u041c\u0443\u0437\u0435\u0439 \u043b\u043e\u0448\u0430\u0434\u0438, \u041a\u043e\u043d\u043d\u044b\u0439 \u0442\u0435\u0430\u0442\u0440\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_d238366ffa1fecc802373f05a407545d.setIcon(div_icon_17aee592776424760f64555159fb9ffb);
+        
+    
+            var marker_1ec08ef7e6cac35cdf5ab417aac64e8c = L.marker(
+                [55.83680065, 37.6209205],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_6751a4a96cbd0c16cd90fb70c4bec9e8 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 57}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 57}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 57}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211653-54 \u0413\u0430\u0440\u0430\u0436 \u043e\u0441\u043e\u0431\u043e\u0433\u043e \u043d\u0430\u0437\u043d\u0430\u0447\u0435\u043d\u0438\u044f\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_1ec08ef7e6cac35cdf5ab417aac64e8c.setIcon(div_icon_6751a4a96cbd0c16cd90fb70c4bec9e8);
+        
+    
+            var marker_437ebb1a5ba81dabbb208458ac09eec5 = L.marker(
+                [55.837735698999474, 37.619397776468055],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_1e3c1b968739680e0a324054a19a32aa = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 48}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 48}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 48}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211650 \u041c\u043e\u043b\u043e\u0447\u043d\u0430\u044f \u043f\u0440\u043e\u043c\u044b\u0448\u043b\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_437ebb1a5ba81dabbb208458ac09eec5.setIcon(div_icon_1e3c1b968739680e0a324054a19a32aa);
+        
+    
+            var marker_6d94ad83f90598526a0dab20118d3dc5 = L.marker(
+                [55.8285954, 37.6303872],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_4cac3635a5f300109056705aa357d62a = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 3}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 3}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 3}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u21164. \u041a\u0438\u0440\u0433\u0438\u0437\u0438\u044f\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_6d94ad83f90598526a0dab20118d3dc5.setIcon(div_icon_4cac3635a5f300109056705aa357d62a);
+        
+    
+            var marker_d51032caac9ef2c4a457edd8d324c930 = L.marker(
+                [55.8265969991013, 37.63804859007783],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_9e72cedd3f03a5b03da990c3f155ec85 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 53}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 53}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 53}, \u0027*\u0027)\"\u003e\u041c\u0443\u0437\u0435\u0439 \u0412\u0414\u041d\u0425\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_d51032caac9ef2c4a457edd8d324c930.setIcon(div_icon_9e72cedd3f03a5b03da990c3f155ec85);
+        
+    
+            var marker_d3319eda456b40c89ac9f9589d31d4f4 = L.marker(
+                [55.830561, 37.622799],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_5096c36b26e021839735347dc5434291 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 16}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 16}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 16}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211616\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_d3319eda456b40c89ac9f9589d31d4f4.setIcon(div_icon_5096c36b26e021839735347dc5434291);
+        
+    
+            var marker_2eba012d927b23c79e6eb0113811755b = L.marker(
+                [55.8270781, 37.63627735],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_02ef6ca882b8b4717becbceebf8f66b5 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 78}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0444\u043e\u043d\u0442\u0430\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 78}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 78}, \u0027*\u0027)\"\u003e14 \u0444\u043e\u043d\u0442\u0430\u043d\u043e\u0432 \u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u043e\u0439 \u0430\u043b\u043b\u0435\u0438\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_2eba012d927b23c79e6eb0113811755b.setIcon(div_icon_02ef6ca882b8b4717becbceebf8f66b5);
+        
+    
+            var marker_0d10761dbe15750e21fb718a80a01ffb = L.marker(
+                [55.837689, 37.622552],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_e3b367abd5dce358ee49908c8eeb8655 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 23}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 23}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 23}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211648 \u0413\u043b\u0430\u0432\u043f\u0438\u0432\u043e\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_0d10761dbe15750e21fb718a80a01ffb.setIcon(div_icon_e3b367abd5dce358ee49908c8eeb8655);
+        
+    
+            var marker_f20d32c8242b5c69501c0439028f7867 = L.marker(
+                [55.83673335, 37.628098],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_afe7b3661e90fec19f64b128ca52f436 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 104}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 104}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 104}, \u0027*\u0027)\"\u003e\u0427\u0443\u0434\u0435\u0441\u0430\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_f20d32c8242b5c69501c0439028f7867.setIcon(div_icon_afe7b3661e90fec19f64b128ca52f436);
+        
+    
+            var marker_2603c54113134df7aa8ace16a1642284 = L.marker(
+                [55.83055280961527, 37.63070897125629],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_65f95d4f8fe72087cda1866b79d98c28 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 80}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 80}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 80}, \u0027*\u0027)\"\u003e\u0422\u043e\u0442 \u0441\u0430\u043c\u044b\u0439 \u043a\u0430\u0442\u043e\u043a\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_2603c54113134df7aa8ace16a1642284.setIcon(div_icon_65f95d4f8fe72087cda1866b79d98c28);
+        
+    
+            var marker_bef7bbc24e497e2eaa50a3e604f23479 = L.marker(
+                [55.8287806, 37.6182929],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_e3c007186359bea3203518fa7812c7c0 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 91}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 91}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 91}, \u0027*\u0027)\"\u003e\u0422\u0430\u043d\u0446\u043f\u043b\u043e\u0449\u0430\u0434\u043a\u0430\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_bef7bbc24e497e2eaa50a3e604f23479.setIcon(div_icon_e3c007186359bea3203518fa7812c7c0);
+        
+    
+            var marker_448e89f60eb278f25303444b7c6f4f0b = L.marker(
+                [55.83404759999999, 37.630989150000005],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_547123baf238442484eb8a4e6396306e = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 17}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 17}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 17}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u0423\u043c\u043d\u044b\u0439 \u0433\u043e\u0440\u043e\u0434\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_448e89f60eb278f25303444b7c6f4f0b.setIcon(div_icon_547123baf238442484eb8a4e6396306e);
+        
+    
+            var marker_2fd889a75f1bad64981fe713a05641d7 = L.marker(
+                [55.82262985730318, 37.612870404036215],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_3b496956cff84d8abb296fb8cd2979d7 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 73}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0440\u0443\u0434.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 73}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 73}, \u0027*\u0027)\"\u003e\u0414\u0432\u043e\u0440\u0446\u043e\u0432\u044b\u0439 (\u041e\u0441\u0442\u0430\u043d\u043a\u0438\u043d\u0441\u043a\u0438\u0439) \u043f\u0440\u0443\u0434\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_2fd889a75f1bad64981fe713a05641d7.setIcon(div_icon_3b496956cff84d8abb296fb8cd2979d7);
+        
+    
+            var marker_0cca488fa181730c31729a5438ed6425 = L.marker(
+                [55.83146675, 37.617485900000005],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_4edf3fbfcbb5f53cad454bf337c78826 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 105}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 105}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 105}, \u0027*\u0027)\"\u003e\u0417\u0435\u043b\u0435\u043d\u044b\u0439 \u0442\u0435\u0430\u0442\u0440\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_0cca488fa181730c31729a5438ed6425.setIcon(div_icon_4edf3fbfcbb5f53cad454bf337c78826);
+        
+    
+            var marker_4921b1c949eca3f35a5e6abe7baf09be = L.marker(
+                [55.82993515, 37.63429705],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_04dc0df4735e1aa1bdcde878da900651 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 18}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 18}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 18}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211671 \u0414\u0432\u043e\u0440\u0435\u0446 \u0433\u043e\u0441\u0443\u0441\u043b\u0443\u0433 (\u041c\u0424\u0426)\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_4921b1c949eca3f35a5e6abe7baf09be.setIcon(div_icon_04dc0df4735e1aa1bdcde878da900651);
+        
+    
+            var marker_01abe48bcd3ff7af8d466086cf33d972 = L.marker(
+                [55.83811455, 37.6208345],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_51d012c28f36436a72ff447f798eb66c = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 25}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 25}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 25}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211640 \u0428\u043a\u043e\u043b\u0430 \u043f\u0435\u043a\u0430\u0440\u0435\u0439\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_01abe48bcd3ff7af8d466086cf33d972.setIcon(div_icon_51d012c28f36436a72ff447f798eb66c);
+        
+    
+            var marker_ef6e4725408a3b64689ced641ab8c1cf = L.marker(
+                [55.8352307, 37.61628395],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_a6384695993a40e7a962917ec6590ddb = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 79}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0445\u0440\u0430\u043c.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 79}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 79}, \u0027*\u0027)\"\u003e\u0425\u0440\u0430\u043c-\u0447\u0430\u0441\u043e\u0432\u043d\u044f \u0441\u0432\u044f\u0442\u043e\u0433\u043e \u0412\u0430\u0441\u0438\u043b\u0438\u044f \u0412\u0435\u043b\u0438\u043a\u043e\u0433\u043e\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_ef6e4725408a3b64689ced641ab8c1cf.setIcon(div_icon_a6384695993a40e7a962917ec6590ddb);
+        
+    
+            var marker_1e44709b5d73e54379e89a45f657bff9 = L.marker(
+                [55.8288886, 37.62730415],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_c84cb3758ba6e651126a50548f7856ed = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 19}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 19}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 19}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u21168 \u042e\u043d\u044b\u0435 \u043d\u0430\u0442\u0443\u0440\u0430\u043b\u0438\u0441\u0442\u044b\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_1e44709b5d73e54379e89a45f657bff9.setIcon(div_icon_c84cb3758ba6e651126a50548f7856ed);
+        
+    
+            var marker_3e235c5805007151aa03539aee620b62 = L.marker(
+                [55.834186, 37.62621],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_b3ee899aa0ae5d702cf51b426201ee84 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 59}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 59}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 59}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211657 \u0420\u043e\u0441\u0441\u0438\u044f \u2014 \u043c\u043e\u044f \u0438\u0441\u0442\u043e\u0440\u0438\u044f\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_3e235c5805007151aa03539aee620b62.setIcon(div_icon_b3ee899aa0ae5d702cf51b426201ee84);
+        
+    
+            var marker_aab440965700bb70d00d325ce8c80cd6 = L.marker(
+                [55.8347048, 37.6286619],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_2ae73f36d8faa72add6ddeec29db9139 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 21}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 21}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 21}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211661 \u0426\u0435\u043d\u0442\u0440\u043e\u0441\u043e\u044e\u0437\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_aab440965700bb70d00d325ce8c80cd6.setIcon(div_icon_2ae73f36d8faa72add6ddeec29db9139);
+        
+    
+            var marker_9594d87220ac6def4e85bdd4e7d21438 = L.marker(
+                [55.83823675, 37.62806565],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_c39ec8694e8ef6f379fa4f37b7d2486b = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 45}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 45}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 45}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211646\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_9594d87220ac6def4e85bdd4e7d21438.setIcon(div_icon_c39ec8694e8ef6f379fa4f37b7d2486b);
+        
+    
+            var marker_c1a39fa1c36cfa008172c36ff7d8cd45 = L.marker(
+                [55.833024, 37.622041],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_cc738c2a55383923045698cc8245b433 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 26}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 26}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 26}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211620 \u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u044b\u0439 \u0434\u043e\u043c \u0430\u0432\u0442\u043e\u0441\u043f\u043e\u0440\u0442\u0430\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_c1a39fa1c36cfa008172c36ff7d8cd45.setIcon(div_icon_cc738c2a55383923045698cc8245b433);
+        
+    
+            var marker_ac1197b64aec2d415347d5e4d98becda = L.marker(
+                [55.83249965619776, 37.62468808274269],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_4cbf37fcbb4923dba9ddd913b133a158 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 33}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 33}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 33}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211619 \u0410\u0442\u043e\u043c\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_ac1197b64aec2d415347d5e4d98becda.setIcon(div_icon_4cbf37fcbb4923dba9ddd913b133a158);
+        
+    
+            var marker_f245bee7d3f13857aff31bbc6629ead6 = L.marker(
+                [55.83720595, 37.6193287],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_c9f3f568decdb4369aaee82d42e32abb = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 27}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 27}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 27}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211651 \u041c\u044f\u0441\u043d\u0430\u044f \u043f\u0440\u043e\u043c\u044b\u0448\u043b\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_f245bee7d3f13857aff31bbc6629ead6.setIcon(div_icon_c9f3f568decdb4369aaee82d42e32abb);
+        
+    
+            var marker_19070b89a7dc19046433fa8f37e481e1 = L.marker(
+                [55.83075695, 37.6276468],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_0a74b04ca8deb4e3859de7e6bdcfb32f = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 64}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 64}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 64}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211613. \u041c\u0443\u0437\u0435\u0439 \u0412\u043e\u0441\u0442\u043e\u043a\u0430\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_19070b89a7dc19046433fa8f37e481e1.setIcon(div_icon_0a74b04ca8deb4e3859de7e6bdcfb32f);
+        
+    
+            var marker_0d7b3efb9c81f6f707aa66dd840431b4 = L.marker(
+                [55.837735, 37.620802],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_48a71a63f5d5d542716bcdaec940e744 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 28}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 28}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 28}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211649\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_0d7b3efb9c81f6f707aa66dd840431b4.setIcon(div_icon_48a71a63f5d5d542716bcdaec940e744);
+        
+    
+            var marker_3c6b54a7692adfec379fd5cd184f219b = L.marker(
+                [55.835629, 37.620907],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_2b1d09c4f28456ff444fede41a5685a1 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 50}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 50}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 50}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211634 \u041a\u043e\u0441\u043c\u043e\u043d\u0430\u0432\u0442\u0438\u043a\u0430 \u0438 \u0430\u0432\u0438\u0430\u0446\u0438\u044f\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_3c6b54a7692adfec379fd5cd184f219b.setIcon(div_icon_2b1d09c4f28456ff444fede41a5685a1);
+        
+    
+            var marker_f663e09e7b39cdc50d4ff386b36db265 = L.marker(
+                [55.838057, 37.622785],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_6bd3370605c4591091ee5cb5885c633b = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 34}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 34}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 34}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211641 \u0426\u0435\u043d\u0442\u0440 \u043d\u0430\u0446\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0445 \u043a\u043e\u043d\u043d\u044b\u0445 \u0442\u0440\u0430\u0434\u0438\u0446\u0438\u0439\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_f663e09e7b39cdc50d4ff386b36db265.setIcon(div_icon_6bd3370605c4591091ee5cb5885c633b);
+        
+    
+            var marker_c509367b612b1d841d24d0ca87edf5b6 = L.marker(
+                [55.8291497, 37.628206850000005],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_8df5fb39c7fd50258d8509bc7e72ffd3 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 81}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 81}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 81}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u21169 \u0422\u0435\u0430\u0442\u0440 \u0441\u043a\u0430\u0437\u043e\u043a\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_c509367b612b1d841d24d0ca87edf5b6.setIcon(div_icon_8df5fb39c7fd50258d8509bc7e72ffd3);
+        
+    
+            var marker_b8a6d2edeb152e644416c3193811401b = L.marker(
+                [55.8343387, 37.6211866],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_f4de77fce5f25938e5ab17e4a0c66136 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 58}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 58}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 58}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211626 \u041c\u0443\u0437\u0435\u0439 \u0422\u0440\u0430\u043d\u0441\u043f\u043e\u0440\u0442\u0430 \u041c\u043e\u0441\u043a\u0432\u044b\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_b8a6d2edeb152e644416c3193811401b.setIcon(div_icon_f4de77fce5f25938e5ab17e4a0c66136);
+        
+    
+            var marker_0ef9d375624927a4a76959ececed0500 = L.marker(
+                [55.834375913069785, 37.62478673885021],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_4bb3ae7d7f89520cbd1b1dcbf3b3ddf9 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 94}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 94}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 94}, \u0027*\u0027)\"\u003e\u0422\u044e\u0431\u0438\u043d\u0433\u043e\u0432\u0430\u044f \u0433\u043e\u0440\u043a\u0430\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_0ef9d375624927a4a76959ececed0500.setIcon(div_icon_4bb3ae7d7f89520cbd1b1dcbf3b3ddf9);
+        
+    
+            var marker_804dff30738dc7e1007f4ecd35f8e366 = L.marker(
+                [55.83839875, 37.6164205],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_fb640f1977ccb205a7b56a778e6c826b = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 75}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0444\u043e\u043d\u0442\u0430\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 75}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 75}, \u0027*\u0027)\"\u003e\u0417\u043e\u043b\u043e\u0442\u043e\u0439 \u043a\u043e\u043b\u043e\u0441\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_804dff30738dc7e1007f4ecd35f8e366.setIcon(div_icon_fb640f1977ccb205a7b56a778e6c826b);
+        
+    
+            var marker_c44fbf77b047c7237851d3a4ca51383a = L.marker(
+                [55.835455, 37.623190750000006],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_ac7c091450e56562e50e6200b9886e5e = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 89}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 89}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 89}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211655 \u041c\u0443\u0437\u0435\u0439 \u043e\u043f\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0445 \u0438\u043b\u043b\u044e\u0437\u0438\u0439\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_c44fbf77b047c7237851d3a4ca51383a.setIcon(div_icon_ac7c091450e56562e50e6200b9886e5e);
+        
+    
+            var marker_d941ada58cb43242a1149b2e821ff94e = L.marker(
+                [55.8331983, 37.63291455],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_1f58e5211f9044d585006e46a17ef454 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 96}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 96}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 96}, \u0027*\u0027)\"\u003eDodoland\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_d941ada58cb43242a1149b2e821ff94e.setIcon(div_icon_1f58e5211f9044d585006e46a17ef454);
+        
+    
+            var marker_f60ff9d021463888769ac3b770effa7d = L.marker(
+                [55.83393235, 37.6326528],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_1e31f763c8112580c3333901a10d41a4 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 38}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 38}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 38}, \u0027*\u0027)\"\u003e\u041c\u0435\u0434\u0438\u0430 \u0428\u043a\u043e\u043b\u0430 \u041e\u043b\u044c\u0433\u0438 \u0421\u043f\u0438\u0440\u043a\u0438\u043d\u043e\u0439\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_f60ff9d021463888769ac3b770effa7d.setIcon(div_icon_1e31f763c8112580c3333901a10d41a4);
+        
+    
+            var marker_046fbc38b18959f87b9944f1fbb9e930 = L.marker(
+                [55.835616, 37.621883],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_62cc17d65c4bc6a87634ba76d6c8c4f5 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 40}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 40}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 40}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211633\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_046fbc38b18959f87b9944f1fbb9e930.setIcon(div_icon_62cc17d65c4bc6a87634ba76d6c8c4f5);
+        
+    
+            var marker_1c1db0996bafe90e962ea6c0f3bd75a6 = L.marker(
+                [55.82815035, 37.6465425],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_90a2739af4347a894731db599fbea911 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 52}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 52}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 52}, \u0027*\u0027)\"\u003e\u0420\u0430\u0431\u043e\u0447\u0438\u0439 \u0438 \u043a\u043e\u043b\u0445\u043e\u0437\u043d\u0438\u0446\u0430\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_1c1db0996bafe90e962ea6c0f3bd75a6.setIcon(div_icon_90a2739af4347a894731db599fbea911);
+        
+    
+            var marker_500e431fd2de5cd091e753c520c3a1fa = L.marker(
+                [55.832153, 37.622914],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_8a22edb95f2ef1de1e370b0a257b5c95 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 56}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 56}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 56}, \u0027*\u0027)\"\u003e\u0411\u0443\u0440\u0430\u043d\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_500e431fd2de5cd091e753c520c3a1fa.setIcon(div_icon_8a22edb95f2ef1de1e370b0a257b5c95);
+        
+    
+            var marker_786d8a5022f5b381d34df33313b4c010 = L.marker(
+                [55.8315571, 37.62658695],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_629051c7d5c90af28770e0d2fcea0392 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 42}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 42}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 42}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211615. \u041c\u0443\u0437\u0435\u0439 \u041e\u043b\u0438\u043c\u043f\u0438\u0439\u0441\u043a\u043e\u0433\u043e \u0434\u0432\u0438\u0436\u0435\u043d\u0438\u044f \u0420\u043e\u0441\u0441\u0438\u0438\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_786d8a5022f5b381d34df33313b4c010.setIcon(div_icon_629051c7d5c90af28770e0d2fcea0392);
+        
+    
+            var marker_b549035df74db0042ff1d8d6881742e2 = L.marker(
+                [55.83113862450034, 37.62507662683829],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_bdaef62e03803b14d13538479ea0b5e2 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 39}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 39}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 39}, \u0027*\u0027)\"\u003eFitness Place\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_b549035df74db0042ff1d8d6881742e2.setIcon(div_icon_bdaef62e03803b14d13538479ea0b5e2);
+        
+    
+            var marker_b670c4bc7dceb0d60305e2465de3986e = L.marker(
+                [55.83168, 37.632013],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_5356a40511850ba681c0a11f0192f9ad = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 31}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 31}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 31}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211666 \u0423\u0437\u0431\u0435\u043a\u0438\u0441\u0442\u0430\u043d\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_b670c4bc7dceb0d60305e2465de3986e.setIcon(div_icon_5356a40511850ba681c0a11f0192f9ad);
+        
+    
+            var marker_c7202390a355146fd3e78b1ad3601166 = L.marker(
+                [55.82954365, 37.617169200000006],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_28ebd121ba1a272fc0bba8918993c7d3 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 95}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 95}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 95}, \u0027*\u0027)\"\u003eSUP-\u0441\u0442\u0430\u043d\u0446\u0438\u044f \u00ab\u041f\u041e\u0420\u0422\u00bb\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_c7202390a355146fd3e78b1ad3601166.setIcon(div_icon_28ebd121ba1a272fc0bba8918993c7d3);
+        
+    
+            var marker_dc78ca78c72cc1d9bb61c90cdde31f37 = L.marker(
+                [55.8334136, 37.63384005],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_2d86cb75aed2d2d5330ed1d5fede9d28 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 41}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 41}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 41}, \u0027*\u0027)\"\u003e\u0421\u0442\u0440\u043e\u0435\u043d\u0438\u0435 313\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_dc78ca78c72cc1d9bb61c90cdde31f37.setIcon(div_icon_2d86cb75aed2d2d5330ed1d5fede9d28);
+        
+    
+            var marker_e635d403f0a6c656b4faadf9621770a3 = L.marker(
+                [55.83318055, 37.62804440000001],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_71c5022f39fb1c167d659a06f5697d98 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 44}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 44}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 44}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211659 \u041f\u043e\u043b\u0438\u0442\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u043c\u0443\u0437\u0435\u0439\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_e635d403f0a6c656b4faadf9621770a3.setIcon(div_icon_71c5022f39fb1c167d659a06f5697d98);
+        
+    
+            var marker_f1bbfc26c229db4e7537ff09ba0e025c = L.marker(
+                [55.8300353, 37.628829800000005],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_dd1df60900c40c77de9833ebd3630959 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 9}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 9}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 9}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211611 \u041a\u0430\u0437\u0430\u0445\u0441\u0442\u0430\u043d\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_f1bbfc26c229db4e7537ff09ba0e025c.setIcon(div_icon_dd1df60900c40c77de9833ebd3630959);
+        
+    
+            var marker_4aa53dd8d4e4d6b8aa43bff4a09ad697 = L.marker(
+                [55.83502305, 37.63221275],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_dbfdc09bb99606927b148e32f24d4502 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 13}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 13}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 13}, \u0027*\u0027)\"\u003e\u0422\u0435\u0445\u043d\u043e\u0433\u0440\u0430\u0434\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_4aa53dd8d4e4d6b8aa43bff4a09ad697.setIcon(div_icon_dbfdc09bb99606927b148e32f24d4502);
+        
+    
+            var marker_f62b7a82fe609e7b957c462f1f5d8c61 = L.marker(
+                [55.83917395, 37.61515845],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_742a38f7186fd2f9632a6fb1475cc4df = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 43}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 43}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 43}, \u0027*\u0027)\"\u003e\u0417\u043e\u043b\u043e\u0442\u043e\u0439 \u043a\u043e\u043b\u043e\u0441\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_f62b7a82fe609e7b957c462f1f5d8c61.setIcon(div_icon_742a38f7186fd2f9632a6fb1475cc4df);
+        
+    
+            var marker_b2c65bb5e70a296e2ac5540ad0c1e948 = L.marker(
+                [55.83135743512552, 37.624074744736006],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_d544286ae59920f634f85223e1fa238b = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 84}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 84}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 84}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211617 \u041b\u0435\u0441\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_b2c65bb5e70a296e2ac5540ad0c1e948.setIcon(div_icon_d544286ae59920f634f85223e1fa238b);
+        
+    
+            var marker_073eff077ebb727ededd01c9eece3e29 = L.marker(
+                [55.8351431, 37.61439905],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_7b9667c9029f519c8ec9e9964bb5dd28 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 90}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 90}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 90}, \u0027*\u0027)\"\u003eSky Town\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_073eff077ebb727ededd01c9eece3e29.setIcon(div_icon_7b9667c9029f519c8ec9e9964bb5dd28);
+        
+    
+            var marker_cb72a3f1ccba0d9f6e676209187da770 = L.marker(
+                [55.8298465, 37.6318081],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_dd046e27005935ed048883419010e5b5 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 74}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0444\u043e\u043d\u0442\u0430\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 74}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 74}, \u0027*\u0027)\"\u003e\u0414\u0440\u0443\u0436\u0431\u0430 \u043d\u0430\u0440\u043e\u0434\u043e\u0432\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_cb72a3f1ccba0d9f6e676209187da770.setIcon(div_icon_dd046e27005935ed048883419010e5b5);
+        
+    
+            var marker_12055960856266e733e159fd681ff626 = L.marker(
+                [55.83451715, 37.6126501],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_3c582d7cd4e827baec5ac8c064f9bb63 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 24}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 24}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 24}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211627 \u0424\u0438\u0437\u043a\u0443\u043b\u044c\u0442\u0443\u0440\u0430 \u0438 \u0441\u043f\u043e\u0440\u0442\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_12055960856266e733e159fd681ff626.setIcon(div_icon_3c582d7cd4e827baec5ac8c064f9bb63);
+        
+    
+            var marker_5c84feaa534d697b816d39a5aa4014a3 = L.marker(
+                [55.8396454, 37.61647715],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_8fab30020041b81e6e3b9d7bc581c610 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 55}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 55}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 55}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211636 \u041c\u0443\u0437\u0435\u0439 \u043a\u0438\u043d\u043e\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_5c84feaa534d697b816d39a5aa4014a3.setIcon(div_icon_8fab30020041b81e6e3b9d7bc581c610);
+        
+    
+            var marker_ef9eda7fef4179d7c359fbc7d64a20b6 = L.marker(
+                [55.83885005, 37.62613425000001],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_9416b0fdab8aa815d7bd8276b8b5c4ee = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 85}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 85}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 85}, \u0027*\u0027)\"\u003e\u0413\u043e\u0440\u043e\u0434\u0441\u043a\u0430\u044f \u0444\u0435\u0440\u043c\u0430\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_ef9eda7fef4179d7c359fbc7d64a20b6.setIcon(div_icon_9416b0fdab8aa815d7bd8276b8b5c4ee);
+        
+    
+            var marker_73b40e729a17df1a42e6552f9f4588b7 = L.marker(
+                [55.83237604999999, 37.620290450000006],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_b06ef679393353b364097f7b983d43a5 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 46}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 46}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 46}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211621\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_73b40e729a17df1a42e6552f9f4588b7.setIcon(div_icon_b06ef679393353b364097f7b983d43a5);
+        
+    
+            var marker_fdedeea1205dbf237c08104ab66513f3 = L.marker(
+                [55.838037, 37.623916],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_484aee23b45f79fdadfc38d8391a9dd8 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 36}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 36}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 36}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211643 \u041f\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u0430\u044f \u043a\u043e\u043d\u044e\u0448\u043d\u044f\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_fdedeea1205dbf237c08104ab66513f3.setIcon(div_icon_484aee23b45f79fdadfc38d8391a9dd8);
+        
+    
+            var marker_acb88e4d0921c64b0c916d7d6146058c = L.marker(
+                [55.82918169999999, 37.62947125000001],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_69aa23ffc0a8a64c1d1bae28ae2f3148 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 49}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 49}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 49}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u21166 \u0410\u0431\u0445\u0430\u0437\u0438\u044f\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_acb88e4d0921c64b0c916d7d6146058c.setIcon(div_icon_69aa23ffc0a8a64c1d1bae28ae2f3148);
+        
+    
+            var marker_f806ffdfac49632d771f7b0a1ade5641 = L.marker(
+                [55.8296544, 37.62951525],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_7aab704c6513e8207c37f66da0caf000 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 8}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 8}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 8}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211610 \u041c\u043e\u043b\u0434\u043e\u0432\u0430\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_f806ffdfac49632d771f7b0a1ade5641.setIcon(div_icon_7aab704c6513e8207c37f66da0caf000);
+        
+    
+            var marker_14e0a8858047d6b6c968592df41710c6 = L.marker(
+                [55.833037, 37.631278],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_d27623c70e5f0647a6ea2d58760864e8 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 106}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 106}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 106}, \u0027*\u0027)\"\u003e\u0414\u043e\u043c \u0431\u0430\u0431\u043e\u0447\u0435\u043a\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_14e0a8858047d6b6c968592df41710c6.setIcon(div_icon_d27623c70e5f0647a6ea2d58760864e8);
+        
+    
+            var marker_746c56b27bfa75c7976bc4ec51a9a4de = L.marker(
+                [55.82846915, 37.63138685],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_d1f13b2c886fcfd6b79c4ba8e237b9b9 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 86}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 86}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 86}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u21162 \u0420\u043e\u0431\u043e\u0441\u0442\u0430\u043d\u0446\u0438\u044f\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_746c56b27bfa75c7976bc4ec51a9a4de.setIcon(div_icon_d1f13b2c886fcfd6b79c4ba8e237b9b9);
+        
+    
+            var marker_4c940523694eff967f6fd2df9b06777c = L.marker(
+                [55.8286437, 37.629463],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_a3b120c852a9e3df8648fb5b9f4d29ac = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 54}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 54}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 54}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u21165 \u041c\u0443\u0437\u0435\u0439 \u0433\u043e\u0440\u043e\u0434\u0441\u043a\u043e\u0433\u043e \u0445\u043e\u0437\u044f\u0439\u0441\u0442\u0432\u0430 \u041c\u043e\u0441\u043a\u0432\u044b\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_4c940523694eff967f6fd2df9b06777c.setIcon(div_icon_a3b120c852a9e3df8648fb5b9f4d29ac);
+        
+    
+            var marker_2d8865d5fa59e9acf2b737d456221967 = L.marker(
+                [55.83280345, 37.6356849],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_68a3ee112a3dbcc8d7f4cc5dde4f33fe = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 5}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 5}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 5}, \u0027*\u0027)\"\u003e\u0428\u0430\u0445\u043c\u0430\u0442\u043d\u044b\u0439 \u043a\u043b\u0443\u0431\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_2d8865d5fa59e9acf2b737d456221967.setIcon(div_icon_68a3ee112a3dbcc8d7f4cc5dde4f33fe);
+        
+    
+            var marker_ffb8b6e8f234e142698241c94665ec9b = L.marker(
+                [55.83508934237774, 37.611263784939176],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_50b33f13cda28a23c197ffff4431d829 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 72}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0440\u0443\u0434.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 72}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 72}, \u0027*\u0027)\"\u003e\u041a\u0430\u0441\u043a\u0430\u0434 \u041a\u0430\u043c\u0435\u043d\u0441\u043a\u0438\u0445 \u043f\u0440\u0443\u0434\u043e\u0432 (2-\u0439 \u043f\u0440\u0443\u0434)\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_ffb8b6e8f234e142698241c94665ec9b.setIcon(div_icon_50b33f13cda28a23c197ffff4431d829);
+        
+    
+            var marker_e74e8247096cca8853cc30889cf7077d = L.marker(
+                [55.83506455, 37.62993895],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_685367c58efe1a52c98febb4b66e93ea = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 93}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 93}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 93}, \u0027*\u0027)\"\u003e\u0421\u043e\u0432\u0438\u043d\u044b\u0439 \u0434\u043e\u043c\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_e74e8247096cca8853cc30889cf7077d.setIcon(div_icon_685367c58efe1a52c98febb4b66e93ea);
+        
+    
+            var marker_a96aa819c741576ac23c10f2c74dc879 = L.marker(
+                [55.8406349, 37.62547430000001],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_403bf8153fcb7d13fb8d71ffeb3f4705 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 14}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 14}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 14}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211644 \u041a\u0440\u043e\u043b\u0438\u043a\u043e\u0432\u043e\u0434\u0441\u0442\u0432\u043e\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_a96aa819c741576ac23c10f2c74dc879.setIcon(div_icon_403bf8153fcb7d13fb8d71ffeb3f4705);
+        
+    
+            var marker_76c3770771a4ff37450939baec7d3a08 = L.marker(
+                [55.83439704999999, 37.630110300000005],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_751627d7d8ad60bb280c23c42cb9ea56 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 60}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 60}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 60}, \u0027*\u0027)\"\u003e\u041c\u0430\u043a\u0435\u0442 \u041c\u043e\u0441\u043a\u0432\u044b\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_76c3770771a4ff37450939baec7d3a08.setIcon(div_icon_751627d7d8ad60bb280c23c42cb9ea56);
+        
+    
+            var marker_cc40da931a6bd82717cf76307a9586e3 = L.marker(
+                [55.83102065, 37.63258415],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_8364ab131cc320d555da6427cbc72a7e = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 61}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 61}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 61}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211667 \u041a\u0430\u0440\u0435\u043b\u0438\u044f\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_cc40da931a6bd82717cf76307a9586e3.setIcon(div_icon_8364ab131cc320d555da6427cbc72a7e);
+        
+    
+            var marker_3099d3e23c5fb4c77fc789a907019b1f = L.marker(
+                [55.82577975422039, 37.62722969613881],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_8cb742780d6aedb8f2044b15b15cbe36 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 92}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 92}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 92}, \u0027*\u0027)\"\u003e\u041c\u043e\u0441\u043a\u043e\u0432\u0441\u043a\u0438\u0439 \u041b\u0438\u0441\u0430\u041f\u0430\u0440\u043a\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_3099d3e23c5fb4c77fc789a907019b1f.setIcon(div_icon_8cb742780d6aedb8f2044b15b15cbe36);
+        
+    
+            var marker_5a6c8723d8ce966d8676af5bd6cf6650 = L.marker(
+                [55.83282584999999, 37.6291464],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_17acfa50900c830ee4033fbdf639a156 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 20}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 20}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 20}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211664 \u041e\u043f\u0442\u0438\u043a\u0430\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_5a6c8723d8ce966d8676af5bd6cf6650.setIcon(div_icon_17acfa50900c830ee4033fbdf639a156);
+        
+    
+            var marker_586efa3c13cadf9d7b0160d774f4470d = L.marker(
+                [55.83392725, 37.628089],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_e57b056f78d4e33f21bdad065fc7e812 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 22}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 22}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 22}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211660 \u041f\u043e\u0442\u0440\u0435\u0431\u0438\u0442\u0435\u043b\u044c\u0441\u043a\u0430\u044f \u043a\u043e\u043e\u043f\u0435\u0440\u0430\u0446\u0438\u044f\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_586efa3c13cadf9d7b0160d774f4470d.setIcon(div_icon_e57b056f78d4e33f21bdad065fc7e812);
+        
+    
+            var marker_6e5ef7e60fa85d25527d7728bea367a1 = L.marker(
+                [55.83730274999999, 37.62330560000001],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_212c3456354e0252b50c634abaeba47e = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 101}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 101}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 101}, \u0027*\u0027)\"\u003e\u0412\u044b\u0432\u043e\u0434\u043d\u043e\u0439 \u043a\u0440\u0443\u0433\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_6e5ef7e60fa85d25527d7728bea367a1.setIcon(div_icon_212c3456354e0252b50c634abaeba47e);
+        
+    
+            var marker_2bcf357705c376ca6a753bc99ee58da9 = L.marker(
+                [55.8383834, 37.61436930000001],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_5cdb9d4d6cbbffe45054a81ebe2368dd = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 30}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 30}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 30}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211635 \u0413\u043b\u0430\u0432\u0442\u0430\u0431\u0430\u043a\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_2bcf357705c376ca6a753bc99ee58da9.setIcon(div_icon_5cdb9d4d6cbbffe45054a81ebe2368dd);
+        
+    
+            var marker_a9c800c6a11a163511892329b506a426 = L.marker(
+                [55.8349881, 37.6197538],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_e85b645a25e2bbf6e8e6bc0e201a2e7f = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 62}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 62}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 62}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211631 \u0411\u0438\u043e\u043b\u043e\u0433\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u043c\u0443\u0437\u0435\u0439 \u0438\u043c. \u0422\u0438\u043c\u0438\u0440\u044f\u0437\u0435\u0432\u0430\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_a9c800c6a11a163511892329b506a426.setIcon(div_icon_e85b645a25e2bbf6e8e6bc0e201a2e7f);
+        
+    
+            var marker_9bc4d9ba9646675e13f703e40ecfcf32 = L.marker(
+                [55.83498972278349, 37.61864325772995],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_8c1c573f3bfd4e40d17422fe18a8f6bd = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 63}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 63}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 63}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211630 \u0426\u0435\u043d\u0442\u0440 \u0441\u043e\u0432\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0445 \u0431\u0438\u043e\u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0439\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_9bc4d9ba9646675e13f703e40ecfcf32.setIcon(div_icon_8c1c573f3bfd4e40d17422fe18a8f6bd);
+        
+    
+            var marker_903ea53d8db04905fe0d07f9f405ca2e = L.marker(
+                [55.83369569999999, 37.619646900000006],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_20e94b14abfd29c75041efa934680deb = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 65}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 65}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 65}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211625 \u041d\u0435\u0444\u0442\u044c\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_903ea53d8db04905fe0d07f9f405ca2e.setIcon(div_icon_20e94b14abfd29c75041efa934680deb);
+        
+    
+            var marker_9d56a5bc75c61d49a63d9d081580fc3f = L.marker(
+                [55.8347716, 37.6233507],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_5285dae7d2332de5dfb358c720ef2802 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 66}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 66}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 66}, \u0027*\u0027)\"\u003e\u0418\u0441\u0442\u0440\u0435\u0431\u0438\u0442\u0435\u043b\u044c \u0421\u0443-27\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_9d56a5bc75c61d49a63d9d081580fc3f.setIcon(div_icon_5285dae7d2332de5dfb358c720ef2802);
+        
+    
+            var marker_5dba2f7fe5350906918b66eb1842d981 = L.marker(
+                [55.833406, 37.63464365],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_74eb0c89367f50c41b04f068c090a2f7 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 82}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 82}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 82}, \u0027*\u0027)\"\u003e\u0414\u043e\u043c \u043a\u0443\u043b\u044c\u0442\u0443\u0440\u044b\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_5dba2f7fe5350906918b66eb1842d981.setIcon(div_icon_74eb0c89367f50c41b04f068c090a2f7);
+        
+    
+            var marker_6b78b6e0d6b169ac7b8de527908acac9 = L.marker(
+                [55.8304727, 37.62828505],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_34c132c071c9485b67061189118d304c = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 47}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0430\u0432\u0438\u043b\u044c\u043e\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 47}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 47}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211612\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_6b78b6e0d6b169ac7b8de527908acac9.setIcon(div_icon_34c132c071c9485b67061189118d304c);
+        
+    
+            var marker_318f14e8ac38472bc5504754bb8558a4 = L.marker(
+                [55.8340369821692, 37.6222269109744],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_fbf6a009d72d0a28bf988d16c41e1ebe = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 67}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 67}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 67}, \u0027*\u0027)\"\u003e\u0412\u0435\u0440\u0442\u043e\u043b\u0435\u0442 \u041c\u0438-8\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_318f14e8ac38472bc5504754bb8558a4.setIcon(div_icon_fbf6a009d72d0a28bf988d16c41e1ebe);
+        
+    
+            var marker_591addba5ff3331f4a9dfda6341bb594 = L.marker(
+                [55.8337943, 37.6230235],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_c21bcc633b6a82adfdcde899acd10122 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 68}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043c\u0443\u0437\u0435\u0439.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 68}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 68}, \u0027*\u0027)\"\u003e\u0421\u0430\u043c\u043e\u043b\u0435\u0442 \u042f\u043a-42\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_591addba5ff3331f4a9dfda6341bb594.setIcon(div_icon_c21bcc633b6a82adfdcde899acd10122);
+        
+    
+            var marker_d196ac009e9bb44e55d25a51b3deaec9 = L.marker(
+                [55.83294415, 37.61850425],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_ee622cdfdbf02ed9691d5c2e78c63caf = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 88}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 88}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 88}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u211623 \u041c\u043e\u0441\u043a\u0432\u0430\u0440\u0438\u0443\u043c\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_d196ac009e9bb44e55d25a51b3deaec9.setIcon(div_icon_ee622cdfdbf02ed9691d5c2e78c63caf);
+        
+    
+            var marker_54b20c72cdde4042523c7df33787e220 = L.marker(
+                [55.8292100615838, 37.61588875638981],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_cb703fe38286087782b1cb24cf4fe5e2 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 69}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0440\u0443\u0434.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 69}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 69}, \u0027*\u0027)\"\u003e\u0421\u0430\u0434\u043e\u0432\u044b\u0439 \u043f\u0440\u0443\u0434\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_54b20c72cdde4042523c7df33787e220.setIcon(div_icon_cb703fe38286087782b1cb24cf4fe5e2);
+        
+    
+            var marker_3fb38a30e13a6b202cd9b9d5c011688a = L.marker(
+                [55.83917378802178, 37.622009624951225],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_29828237490da0f3b43672ae7aa910a6 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 70}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0440\u0443\u0434.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 70}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 70}, \u0027*\u0027)\"\u003e\u041a\u0430\u0441\u043a\u0430\u0434 \u041a\u0430\u043c\u0435\u043d\u0441\u043a\u0438\u0445 \u043f\u0440\u0443\u0434\u043e\u0432 (4-\u0439 \u043f\u0440\u0443\u0434)\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_3fb38a30e13a6b202cd9b9d5c011688a.setIcon(div_icon_29828237490da0f3b43672ae7aa910a6);
+        
+    
+            var marker_09a56714601a2309d60daa78f3d16285 = L.marker(
+                [55.8335537, 37.63480245],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_f04189a3745523be7b7efbfec5ca4439 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 107}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 107}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 107}, \u0027*\u0027)\"\u003e\u0413\u043e\u043b\u043e\u0441\u0430\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_09a56714601a2309d60daa78f3d16285.setIcon(div_icon_f04189a3745523be7b7efbfec5ca4439);
+        
+    
+            var marker_4ffa40a813323494b9f9dbd637a39a77 = L.marker(
+                [55.83560215, 37.627977900000005],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_4210ab7e2712b80ee16757d4a33d2dd7 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 108}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 108}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 108}, \u0027*\u0027)\"\u003e\u041b\u0435\u0442\u043d\u0438\u0439 \u043a\u0438\u043d\u043e\u0442\u0435\u0430\u0442\u0440-\u043b\u0435\u043a\u0442\u043e\u0440\u0438\u0439\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_4ffa40a813323494b9f9dbd637a39a77.setIcon(div_icon_4210ab7e2712b80ee16757d4a33d2dd7);
+        
+    
+            var marker_812c9e303638b1b79a310e480d191637 = L.marker(
+                [55.83751755232907, 37.615656860825815],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_b2efdc176067a20187beaf9bc4a4a78f = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 71}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u043f\u0440\u0443\u0434.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 71}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 71}, \u0027*\u0027)\"\u003e\u041a\u0430\u0441\u043a\u0430\u0434 \u041a\u0430\u043c\u0435\u043d\u0441\u043a\u0438\u0445 \u043f\u0440\u0443\u0434\u043e\u0432 (3-\u0439 \u043f\u0440\u0443\u0434)\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_812c9e303638b1b79a310e480d191637.setIcon(div_icon_b2efdc176067a20187beaf9bc4a4a78f);
+        
+    
+            var marker_ffff8f8cd74c067785d840a709f8f2c2 = L.marker(
+                [55.8321876, 37.62802685],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_0bb8e16f3acdf8fb6f2033d7b15ca219 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 76}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0444\u043e\u043d\u0442\u0430\u043d.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 76}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 76}, \u0027*\u0027)\"\u003e\u041a\u0430\u043c\u0435\u043d\u043d\u044b\u0439 \u0446\u0432\u0435\u0442\u043e\u043a\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_ffff8f8cd74c067785d840a709f8f2c2.setIcon(div_icon_0bb8e16f3acdf8fb6f2033d7b15ca219);
+        
+    
+            var marker_81bb9decdc307b69f0729d21bfe872ec = L.marker(
+                [55.8276503, 37.62676665000001],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_89b0744bd2272f97f8ce94565b9f55fe = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 83}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 83}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 83}, \u0027*\u0027)\"\u003e\u041f\u0430\u0432\u0438\u043b\u044c\u043e\u043d \u21167 \u0421\u043e\u044e\u0437\u043c\u0443\u043b\u044c\u0442\u043f\u0430\u0440\u043a\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_81bb9decdc307b69f0729d21bfe872ec.setIcon(div_icon_89b0744bd2272f97f8ce94565b9f55fe);
+        
+    
+            var marker_b0f109e57df494e463110c0207e91db2 = L.marker(
+                [55.82653516901807, 37.639713111416434],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_5bb47fc693e30a3f27c860cce6788474 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 97}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 97}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 97}, \u0027*\u0027)\"\u003eEngage VR\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_b0f109e57df494e463110c0207e91db2.setIcon(div_icon_5bb47fc693e30a3f27c860cce6788474);
+        
+    
+            var marker_ee0e31d93bf304be17608186391f33b4 = L.marker(
+                [55.83665345, 37.6248544],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_8dee188ba8c38f438f0af8b77751269a = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 98}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 98}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 98}, \u0027*\u0027)\"\u003eTAKAPULTA\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_ee0e31d93bf304be17608186391f33b4.setIcon(div_icon_8dee188ba8c38f438f0af8b77751269a);
+        
+    
+            var marker_1e39fe672dbeb013224af303639082b7 = L.marker(
+                [55.83430104999999, 37.62310955],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_29f06011ed1df824fa46b4fe999b8bee = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 102}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 102}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 102}, \u0027*\u0027)\"\u003e\u0420\u0430\u043a\u0435\u0442\u0430-\u043d\u043e\u0441\u0438\u0442\u0435\u043b\u044f \u0412\u043e\u0441\u0442\u043e\u043a\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_1e39fe672dbeb013224af303639082b7.setIcon(div_icon_29f06011ed1df824fa46b4fe999b8bee);
+        
+    
+            var marker_03d5fb00d184553bb69fb779f9ec3e6d = L.marker(
+                [55.828614, 37.617436],
+                {}
+            ).addTo(map_625471585efee269aed3e516e16ec644);
+        
+    
+            var div_icon_10086ebe2852dc40171ed62fc2cba615 = L.divIcon({"className": "marker", "html": "\n                    \u003cdiv style=\"display: flex; flex-direction: column; align-items: center;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 103}, \u0027*\u0027)\"\u003e \n                        \u003cimg src=\"http://localhost:80/static/img/markers/\u0440\u0430\u0437\u0432\u043b\u0435\u0447\u0435\u043d\u0438\u044f.svg\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 103}, \u0027*\u0027)\"\u003e \n                        \u003ch1 class=\"marker-text\" style=\"transition: font-size 0.25s ease-in-out 0s, width 0.25s ease-in-out 0s;\" onclick=\"parent.postMessage({name: \u0027show_short_poi_info\u0027, id: 103}, \u0027*\u0027)\"\u003e\u041b\u0435\u0442\u043d\u044f\u044f \u044d\u0441\u0442\u0440\u0430\u0434\u0430\u003c/h1\u003e\n                    \u003c/div\u003e\n                ", "iconAnchor": [13, 9], "iconSize": [27, 27]});
+            marker_03d5fb00d184553bb69fb779f9ec3e6d.setIcon(div_icon_10086ebe2852dc40171ed62fc2cba615);
+        
+</script>
+</html>

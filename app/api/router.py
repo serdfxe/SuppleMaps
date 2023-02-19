@@ -224,14 +224,14 @@ def get_saved():
 
     saved = [p.as_dict() for p in SavedPaths.filter(owner_id=user_id).all()]
 
-    for i in range(len(hist)):
+    for i in range(len(saved)):
         saved[i]["path"] = [int(i) for i in saved[i]["path"].split(" ")[::-1]] if saved[i]["path"] != "" else []
 
         saved[i]["full_time"] = strings.get_time_str(saved[i]["full_time"])
         saved[i]["walk_time"] = strings.get_time_str(saved[i]["walk_time"])
         saved[i]["length"] = strings.get_dist_str(saved[i]["length"])
     
-    response = jsonify(hist)
+    response = jsonify(saved)
 
     response.headers.set('Access-Control-Allow-Origin', '*')
     response.headers.set('Access-Control-Allow-Methods', 'GET')

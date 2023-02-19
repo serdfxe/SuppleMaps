@@ -45,7 +45,7 @@ def get_history():
     hist = [p.as_dict() for p in History.filter(owner_id=user_id).all()]
 
     for i in range(len(hist)):
-        hist[i]["path"] = [int(i) for i in hist[i]["path"].split(" ")] if hist[i]["path"] != "" else []
+        hist[i]["path"] = [int(i) for i in hist[i]["path"].split(" ")[::-1]] if hist[i]["path"] != "" else []
 
         hist[i]["full_time"] = strings.get_time_str(hist[i]["full_time"])
         hist[i]["walk_time"] = strings.get_time_str(hist[i]["walk_time"])

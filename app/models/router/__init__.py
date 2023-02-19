@@ -30,7 +30,7 @@ class History(Base, DBTool):
     __tablename__ = "history"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    owner_id = Column(Integer, ForeignKey("poi.id"), primary_key=True, nullable=False)
+    owner_id = Column(Integer, ForeignKey("poi.id"), nullable=False)
     path = Column(String(100))
     length = Column(Integer)
     full_time = Column(Integer)

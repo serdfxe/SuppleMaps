@@ -8,6 +8,7 @@ from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, \
 import traceback
 
 from random import choice, randint, choices, sample
+from app.models.map.services import strings
 
 from app.models.router import *
 from app.models.user import *
@@ -27,10 +28,11 @@ router = Blueprint("router", __name__)
 
 
 def init_user():
-    user_id = User.filter(id=get_jwt_identity()).first().id
+    user = User.filter(id=get_jwt_identity()).first()
+    user_id = user.id
     ids = [u.owner_id for u in Router.all()]
     if user_id not in ids:
-        Router.new(owner_id=user_id, state="editing", path="", time_limit=10**5, mandatory_points="", dur_of_visit=False, n_of_ans=1, lenght=0, full_time=0, walk_time=0) 
+        Router.new(owner_id=user_id, state="editing", path="", time_limit=10**5, mandatory_points="", dur_of_visit=False, n_of_ans=1, length=0, full_time=0, walk_time=0) 
     user_router = Router.filter(owner_id=user_id).first()
     return user_router
 
@@ -41,6 +43,10 @@ def get_router_route():
     r = init_user().as_dict()
 
     r["path"] = [int(i) for i in r["path"].split(" ")] if r["path"] != "" else []
+
+    r["full_time"] = strings.get_time_str(r["full_time"])
+    r["walk_time"] = strings.get_time_str(r["walk_time"])
+    r["length"] = strings.get_dist_str(r["length"])
     
     response = jsonify(r)
 
@@ -141,15 +147,14 @@ def build_path():
         mand_points = []
 
     with Router.uow:
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"dur_of_visit": bool(data.get('dur_of_visit', False)), "time_limit": data.get('time_limit', 10**5)})
+        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"dur_of_visit": bool(data.get('dur_of_visit')), "time_limit": data.get('time_limit') if data.get('time_limit') else 10**5})
         Router.uow.commit()
 
-    new_path = get_path(mtrx, curr_path, time_s, user_router.time_limit, mand_points, user_router.dur_of_visit, user_router.n_of_ans)[0][0]
+    user_router = init_user()
 
-    with Router.uow:
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing", "path": ' '.join([str(i) for i in new_path[1:]])})
-    
-    new_path, t, length = get_path(mtrx,curr_path,time_s,user_router.time_limit,mand_points,user_router.dur_of_visit,user_router.n_of_ans)[0]
+    # print(curr_path, time_s, user_router.time_limit, mand_points, user_router.dur_of_visit, user_router.n_of_ans)
+
+    new_path, t, length = get_path(mtrx, curr_path, time_s, user_router.time_limit, mand_points, user_router.dur_of_visit, user_router.n_of_ans)[0]
     full_time, walk_time = t
 
     with Router.uow:

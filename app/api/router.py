@@ -184,8 +184,8 @@ def save_path():
         mand_points = []
 
     path, time, length = get_path(mtrx,curr_path,time_s,user_router.time_limit,mand_points,user_router.dur_of_visit,user_router.n_of_ans)[0]
-
-    SavedPaths.new(owner_id=user_router.owner_id, name='',description='',image='',path=' '.join(str(i) for i in path[1:]),length=length,full_time=time[0], walk_time=time[1])
+    images = [Poi.filter(id=i).first().image.split(' ') for i in path[1:]]
+    SavedPaths.new(owner_id=user_router.owner_id, name='',description='',image=choice(choice(images)),path=' '.join(str(i) for i in path[1:]),length=length,full_time=time[0], walk_time=time[1])
     return jsonify(Notification("Успешно!", "Маршрут сохранён", "success", 0))
 
 

@@ -25,3 +25,12 @@ class Router(Base, DBTool):
     length = Column(Integer)
     full_time = Column(Integer)
     walk_time = Column(Integer)
+
+class History(Base, DBTool):
+    __tablename__ = "history"
+
+    owner_id = Column(Integer, ForeignKey("poi.id"), primary_key=True, nullable=False)
+    path = Column(String(100))
+    length = Column(Integer)
+    full_time = Column(Integer)
+    walk_time = Column(Integer)

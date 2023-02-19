@@ -218,18 +218,18 @@ def load_path(id):
 
 @router.get("/saved/")
 @jwt_required()
-def get_history():
+def get_saved():
     user = User.filter(id=get_jwt_identity()).first()
     user_id = user.id
 
-    hist = [p.as_dict() for p in SavedPaths.filter(owner_id=user_id).all()]
+    saved = [p.as_dict() for p in SavedPaths.filter(owner_id=user_id).all()]
 
     for i in range(len(hist)):
-        hist[i]["path"] = [int(i) for i in hist[i]["path"].split(" ")[::-1]] if hist[i]["path"] != "" else []
+        saved[i]["path"] = [int(i) for i in saved[i]["path"].split(" ")[::-1]] if saved[i]["path"] != "" else []
 
-        hist[i]["full_time"] = strings.get_time_str(hist[i]["full_time"])
-        hist[i]["walk_time"] = strings.get_time_str(hist[i]["walk_time"])
-        hist[i]["length"] = strings.get_dist_str(hist[i]["length"])
+        saved[i]["full_time"] = strings.get_time_str(saved[i]["full_time"])
+        saved[i]["walk_time"] = strings.get_time_str(saved[i]["walk_time"])
+        saved[i]["length"] = strings.get_dist_str(saved[i]["length"])
     
     response = jsonify(hist)
 

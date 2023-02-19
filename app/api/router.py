@@ -36,8 +36,8 @@ def init_user():
     user_router = Router.filter(owner_id=user_id).first()
     return user_router
 
-def add_to_histoty(owner_id, path, length,full_time,walk_time):
-    History.new(owner_id=owner_id, path=path, length=length, full_time=full_time, walk_time=walk_time)
+def add_to_histoty(owner_id, path, length,full_time,walk_time, image):
+    History.new(owner_id=owner_id, path=path, length=length, full_time=full_time, walk_time=walk_time, image = image)
 
 @router.get("/")
 @jwt_required()
@@ -161,7 +161,8 @@ def build_path():
         Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
         Router.uow.commit()
 
-    add_to_histoty(user_router.owner_id, ' '.join([str(i) for i in new_path[1:]]),length,full_time, walk_time)
+    images = [Poi.filter(id=i).first().image.split(' ') for i in new_path[1:] if Poi.filter(id=i).first().image != '']
+    add_to_histoty(user_router.owner_id, ' '.join([str(i) for i in new_path[1:]]),length,full_time, walk_time, choice(choice(images)))
 
     return jsonify(Notification("Успешно!", "Маршрут изменён", "success", 0))
 
@@ -188,7 +189,7 @@ def save_path():
         mand_points = []
 
     path, time, length = get_path(mtrx,curr_path,time_s,user_router.time_limit,mand_points,user_router.dur_of_visit,user_router.n_of_ans)[0]
-    images = [Poi.filter(id=i).first().image.split(' ') for i in path[1:]]
+    images = [Poi.filter(id=i).first().image.split(' ') for i in path[1:] if Poi.filter(id=i).first().image != '']
     SavedPaths.new(owner_id=user_router.owner_id, name='',description='',image=choice(choice(images)),path=' '.join(str(i) for i in path[1:]),length=length,full_time=time[0], walk_time=time[1])
     return jsonify(Notification("Успешно!", "Маршрут сохранён", "success", 0))
 

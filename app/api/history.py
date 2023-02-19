@@ -41,7 +41,8 @@ def get_history():
     user = User.filter(id=get_jwt_identity()).first()
     user_id = user.id
 
-    hist = [p for p in History.filter(owner_id=user_id)]
+    hist = [p.as_dict() for p in History.filter(owner_id=user_id).all()]
+
     for i in range(len(hist)):
         hist[i]["path"] = [int(i) for i in hist[i]["path"].split(" ")] if hist[i]["path"] != "" else []
 
@@ -54,5 +55,5 @@ def get_history():
     response.headers.set('Access-Control-Allow-Origin', '*')
     response.headers.set('Access-Control-Allow-Methods', 'GET')
 
-    return response
+    return response, 200
 

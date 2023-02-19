@@ -6,6 +6,7 @@ from app.api.auth import auth
 from app.api.api import api
 from app.api.router import router
 from app.api.map import map
+from app.api.history import history
 
 # from app.models.user.login_manager import login_manager
 from app.models.user.jwt_manager import jwt
@@ -26,6 +27,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/auth')
     app.register_blueprint(router, url_prefix='/router')
     app.register_blueprint(map, url_prefix='/map')
+    app.register_blueprint(history, url_prefix='/history')
 
     CORS(app, supports_credentials=True) 
 

@@ -30,7 +30,7 @@ def init_user():
     user_id = User.filter(id=get_jwt_identity()).first().id
     ids = [u.owner_id for u in Router.all()]
     if user_id not in ids:
-        Router.new(owner_id=user_id, state="editing", path="", time_limit=10**5, mandatory_points="", dur_of_visit=False, n_of_ans=1)
+        Router.new(owner_id=user_id, state="editing", path="", time_limit=10**5, mandatory_points="", dur_of_visit=False, n_of_ans=1, lenght=0, full_time=0, walk_time=0) 
     user_router = Router.filter(owner_id=user_id).first()
     return user_router
 
@@ -138,12 +138,14 @@ def build_path():
     else: 
         mand_points = []
     
-    new_path = get_path(mtrx,curr_path,time_s,user_router.time_limit,mand_points,user_router.dur_of_visit,user_router.n_of_ans)[0][0]
+    new_path, t, length = get_path(mtrx,curr_path,time_s,user_router.time_limit,mand_points,user_router.dur_of_visit,user_router.n_of_ans)[0]
+    full_time, walk_time = t
 
     with Router.uow:
         Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": ' '.join([str(i) for i in new_path[1:]])})
-        Router.uow.commit()
-
+        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"full_time": full_time})
+        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"walk_time": walk_time})
+        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"length": length})
         Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
         Router.uow.commit()
     return jsonify(Notification("Успешно!", "Маршрут изменён", "success", 0))

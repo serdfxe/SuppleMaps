@@ -22,3 +22,6 @@ class Router(Base, DBTool):
     mandatory_points = Column(String(100))
     dur_of_visit = Column(Boolean)
     n_of_ans = Column(Integer)
+    length = Column(Integer)
+    full_time = Column(Integer)
+    walk_time = Column(Integer)

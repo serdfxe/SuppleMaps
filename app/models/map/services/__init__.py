@@ -15,12 +15,12 @@ def filter_ans(ans, n_of_ans):
             ans1.append(ans[i])
     return ans1
 
-def get_path(mtrx, poi, time_s, time_limit = 10**10, mandatory_points = [1], dur_of_visit = False, n_of_ans = 1, temp_path = [1],temp_time=0, ans = [], depth = 0, best_time=10**10, best_path = []):
+def get_path(mtrx, poi, time_s, time_limit = 10**5, mandatory_points = [1], dur_of_visit = False, n_of_ans = 1, temp_path = [1],temp_time=0, ans = [], depth = 0, best_time=10**5, best_path = []):
     #breaks
-    if time_limit != 10**10 and (len(temp_path) < len(best_path) and temp_time > best_time):
+    if time_limit != 10**5 and (len(temp_path) < len(best_path) and temp_time > best_time):
         return ans, best_time, best_path
     
-    if time_limit == 10**10 and temp_time > best_time:
+    if time_limit == 10**5 and temp_time > best_time:
         return ans, best_time, best_path
 
     #wins
@@ -34,7 +34,7 @@ def get_path(mtrx, poi, time_s, time_limit = 10**10, mandatory_points = [1], dur
         # ans.append((tuple(temp_path),dist_to_time(get_len(temp_path, mtrx)), get_len(temp_path, mtrx)))
         return ans, best_time, best_path
 
-    if time_limit != 10**10 and temp_time > time_limit and all(point in temp_path[:-1] for point in mandatory_points):
+    if time_limit != 10**5 and temp_time > time_limit and all(point in temp_path[:-1] for point in mandatory_points):
         path = temp_path[:-1]
         time = temp_time - dist_to_time(mtrx[temp_path[-2]-1][temp_path[-1]-1])
         if dur_of_visit: time -= time_s[temp_path[-1]-1]
@@ -58,7 +58,7 @@ def get_path(mtrx, poi, time_s, time_limit = 10**10, mandatory_points = [1], dur
         ans, best_time, best_path = get_path(mtrx,poi,time_s,time_limit,mandatory_points,dur_of_visit,n_of_ans,nxt_path,nxt_time,ans,depth+1,best_time,best_path)
     if depth == 0:
         #print(*mtrx, sep='\n')
-        if time_limit == 10**10: return ans[-1:(-1)*(n_of_ans+1):-1]
+        if time_limit == 10**5: return ans[-1:(-1)*(n_of_ans+1):-1]
         else: return filter_ans(ans, n_of_ans)
     else:
         return ans, best_time, best_path

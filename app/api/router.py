@@ -36,6 +36,11 @@ def init_user():
     user_router = Router.filter(owner_id=user_id).first()
     return user_router
 
+def add_to_histoty():
+    user = User.filter(id=get_jwt_identity()).first()
+    user_id = user.id
+    user_router = init_user()
+    History.new(owner_id=user_id, path=user_router.path, length=user_router.length, full_time=user_router.full_time, walk_time=user_router.walk_time)
 
 @router.get("/")
 @jwt_required()
@@ -158,6 +163,8 @@ def build_path():
         Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"length": length})
         Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
         Router.uow.commit()
+
+    add_to_histoty()
 
     return jsonify(Notification("Успешно!", "Маршрут изменён", "success", 0))
 

@@ -56,12 +56,3 @@ def get_history():
 
     return response
 
-@history.post("/add")
-@jwt_required()
-def add_to_histoty():
-    user = User.filter(id=get_jwt_identity()).first()
-    user_id = user.id
-    user_router = init_user()
-    History.new(owner_id=user_id, path=user_router.path, length=user_router.length, full_time=user_router.full_time, walk_time=user_router.walk_time)
-    return jsonify(Notification("Успешно!", "История обновлена", "success", 0)), 200 
-

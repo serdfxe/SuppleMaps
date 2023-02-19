@@ -34,3 +34,4 @@ class History(Base, DBTool):
     length = Column(Integer)
     full_time = Column(Integer)
     walk_time = Column(Integer)
+    image = Column(String(120))

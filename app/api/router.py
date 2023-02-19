@@ -11,7 +11,7 @@ from random import choice, randint, choices, sample
 
 from app.models.router import *
 from app.models.user import *
-from app.models.map.services.search import search
+import app.models.map.services.search as search
 
 import json
 
@@ -38,24 +38,28 @@ def init_user():
 @router.get("/")
 @jwt_required()
 def get_router_route():
-    response = jsonify(init_user().as_dict())
+    r = init_user().as_dict()
+
+    r["path"] = [int(i) for i in r["path"].split(" ")] if r["path"] != "" else []
+    
+    response = jsonify(r)
 
     response.headers.set('Access-Control-Allow-Origin', '*')
     response.headers.set('Access-Control-Allow-Methods', 'GET')
 
     return response
 
-@router.get("/search")
+@router.post("/search")
 def search_poi():
     content = request.json
-    ans = search([{"id": p.id, "name": p.name} for p in Poi.all()], content["text"])
+    ans = search.search([{"id": p.id, "name": p.name} for p in Poi.all()], content["text"])
     return json.dumps(ans)
 
 @router.post("/add/<poi_id>")
 @jwt_required()
 def add_point(poi_id:str):
     if int(poi_id) > len(Poi.all()) or int(poi_id) <= 1:
-        return jsonify(Notification("Ошибка!", "Некорретный id точки", "error", 1))
+        return jsonify(Notification("Ошибка!", "Некорретный id точки", "error", 1)), 401
     
     user_router = init_user()
 
@@ -71,27 +75,25 @@ def add_point(poi_id:str):
 
             Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "editing"})
             Router.uow.commit()
-        return jsonify(Notification("Успешно!", "Маршрут обновлён", "success", 0))
+        return jsonify(Notification("Успешно!", "Маршрут обновлён", "success", 0)), 200
     else:
-        return jsonify(Notification("Ошибка!", "Точка уже есть в маршруте", "error", 1))
+        return jsonify(Notification("Ошибка!", "Точка уже есть в маршруте", "error", 1)), 401
 
 @router.post("/del/<poi_id>")
 @jwt_required()
 def delete_point(poi_id:str):
     user_router = init_user()
 
-    if poi_id in user_router.path.split(' '):
-        #Router.update(Router.filter(owner_id=user_router.owner_id).first(), path=' '.join(curr_path + [poi_id]))
-        if user_router.path.startswith(poi_id+" "):
-            new_path = user_router.path.replace(poi_id+" ", "")
-        elif user_router.path.endswith(" "+poi_id):
-            new_path = user_router.path.replace(" "+poi_id, "")
-        elif user_router.path == poi_id:
-            new_path = ""
-        else:
-            new_path = user_router.path.replace(" "+poi_id+" ", " ")
+    p =  user_router.path.split(' ')
+
+    if poi_id in p:
+        
+        p.remove(poi_id)
+
+        p = " ".join(p)
+
         with Router.uow:
-            Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": new_path})
+            Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": p})
             Router.uow.commit()
 
             Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "editing"})

@@ -85,7 +85,7 @@ class Map:
                         icon_size= (15, 15),
                         icon_anchor= (7.5, 7.5),
                         html=f""" 
-                        <div style="display: flex; flex-direction: column; align-items: center;"> 
+                        <div style="display: flex; flex-direction: column; align-items: center; pointer-events: none;"> 
                             <img src="http://localhost:80/static/img/markers/entrance.svg" style="transition: width 0.25s ease-in-out" class="entrance"> 
                         </div> """,
                         class_name="marker"

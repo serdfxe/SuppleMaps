@@ -199,22 +199,20 @@ def save_path():
 def load_path(id):
     user_router = init_user()
     path_id = int(id)
-    if len(SavedPaths.filter(id=path_id).all()) != 0:
-        if SavedPaths.filter(id=path_id).first().owner_id == user_router.owner_id:
-            path = SavedPaths.filter(id=path_id).first().path
+    saved_paths = SavedPaths.filter(id=path_id).first()
+    if saved_paths:
+        if saved_paths.owner_id == user_router.owner_id:
+            path = saved_paths.path
         else:
-            return jsonify(Notification("Ошибка!", "Некорректный id пользователя", "error", 1))
+            return 400
     else:
-        return jsonify(Notification("Ошибка!", "Некорректный id маршрута", "error", 1))
+        return 400
     
     with Router.uow:
         Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": path})
-        Router.uow.commit()
-
         Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
         Router.uow.commit()
-    return jsonify(Notification("Успешно!", "Маршрут загружен", "success", 0))
-
+    return 200
 
 @router.get("/saved/")
 @jwt_required()
@@ -256,20 +254,23 @@ def delete_path(id):
 @router.post("/loadhist/<id>")
 @jwt_required()
 def load_from_hist(id):
+    print(id)
     user_router = init_user()
     path_id = int(id)
-    if len(History.filter(id=path_id).all()) != 0:
-        if History.filter(id=path_id).first().owner_id == user_router.owner_id:
-            path = History.filter(id=path_id).first().path
+    print(f"{path_id=}")
+    hist = History.filter(id=path_id).first()
+    print(f"{hist}")
+    if hist:
+        if hist.owner_id == user_router.owner_id:
+            path = hist.path
         else:
-            return jsonify(Notification("Ошибка!", "Некорректный id пользователя", "error", 1))
+            return 400 #jsonify(Notification("Ошибка!", "Некорректный id пользователя", "error", 1)), 400
     else:
-        return jsonify(Notification("Ошибка!", "Некорректный id маршрута", "error", 1))
+        return 400 # jsonify(Notification("Ошибка!", "Некорректный id маршрута", "error", 1)), 400
     
     with Router.uow:
         Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": path})
-        Router.uow.commit()
-
         Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
         Router.uow.commit()
-    return jsonify(Notification("Успешно!", "Маршрут загружен", "success", 0))
+    
+    return 200#jsonify(Notification("Успешно!", "Маршрут загружен", "success", 0)), 200

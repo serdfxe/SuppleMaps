@@ -1,3 +1,4 @@
+from functools import lru_cache
 from urllib import response
 from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, current_app
 
@@ -19,17 +20,9 @@ import app.config as conf
 api = Blueprint("api", __name__)
 
 
-@api.get("/wayhtml/<strpoi>")
-def get_way_html(strpoi):
-    try:
-        poi = [int(i) for i in strpoi.split(',')]
-        return way_in_html(poi, MapStyle.style_list[0])
-    except Exception:
-        traceback.print_exc()
-        return 'Error'
-
 
 @api.get("/poi_info/<id>")
+@lru_cache(None)
 def poi_info_route(id):
     p = Poi.filter(id=int(id)).first()
 
@@ -57,6 +50,7 @@ def get_rand_pois(n):
 
 
 @api.get("/all_types")
+@lru_cache(1)
 def get_all_types():
     n_of_types = len(PoiType.all())
     types = dict.fromkeys(list(range(1, n_of_types+1)))
@@ -69,6 +63,7 @@ def get_all_types():
 
 
 @api.get("/art/<id>")
+@lru_cache(None)
 def get_art(id):
     poi = Poi.filter(id=int(id)).first()
     art = {"name": poi.name, "description": poi.description, "history": poi.history}
@@ -79,6 +74,7 @@ def get_art(id):
 
 
 @api.get("/art_images/<id>")
+@lru_cache(None)
 def get_art_images(id):
     poi = Poi.filter(id=id).first()
     images = poi.image.split()

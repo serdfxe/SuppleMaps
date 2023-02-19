@@ -222,10 +222,10 @@ def get_saved():
     user = User.filter(id=get_jwt_identity()).first()
     user_id = user.id
 
-    saved = [p.as_dict() for p in SavedPaths.filter(owner_id=user_id).all()]
+    saved = [p.as_dict() for p in SavedPaths.filter(owner_id=user_id).all()[::-1]]
 
     for i in range(len(saved)):
-        saved[i]["path"] = [int(i) for i in saved[i]["path"].split(" ")[::-1]] if saved[i]["path"] != "" else []
+        saved[i]["path"] = [int(i) for i in saved[i]["path"].split(" ")] if saved[i]["path"] != "" else []
 
         saved[i]["full_time"] = strings.get_time_str(saved[i]["full_time"])
         saved[i]["walk_time"] = strings.get_time_str(saved[i]["walk_time"])

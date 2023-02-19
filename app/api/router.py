@@ -228,3 +228,25 @@ def delete_path(id):
     
     SavedPaths.delete_first(id=path_id)
     return jsonify(Notification("Успешно!", "Маршрут удалён", "success", 0))
+
+
+@router.post("/loadhist/<id>")
+@jwt_required()
+def load_from_hist(id):
+    user_router = init_user()
+    path_id = int(id)
+    if len(History.filter(id=path_id).all()) != 0:
+        if History.filter(id=path_id).first().owner_id == user_router.owner_id:
+            path = History.filter(id=path_id).first().path
+        else:
+            return jsonify(Notification("Ошибка!", "Некорректный id пользователя", "error", 1))
+    else:
+        return jsonify(Notification("Ошибка!", "Некорректный id маршрута", "error", 1))
+    
+    with Router.uow:
+        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": path})
+        Router.uow.commit()
+
+        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
+        Router.uow.commit()
+    return jsonify(Notification("Успешно!", "Маршрут загружен", "success", 0))

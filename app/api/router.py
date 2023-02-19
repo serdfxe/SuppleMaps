@@ -122,6 +122,8 @@ def clear_path():
 def build_path():
     user_router = init_user()
 
+    data = request.json
+
     if len(user_router.path) != 0:
         curr_path = [int(p) for p in user_router.path.split(' ')]
     else: 
@@ -137,15 +139,17 @@ def build_path():
         mand_points = [int(p) for p in user_router.mandatory_points.split(' ')]
     else: 
         mand_points = []
-    
-    new_path = get_path(mtrx,curr_path,time_s,user_router.time_limit,mand_points,user_router.dur_of_visit,user_router.n_of_ans)[0][0]
 
     with Router.uow:
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": ' '.join([str(i) for i in new_path[1:]])})
+        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"dur_of_visit": bool(data.get('dur_of_visit', False)), "time_limit": data.get('time_limit', 10**5)})
         Router.uow.commit()
 
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
+    new_path = get_path(mtrx, curr_path, time_s, user_router.time_limit, mand_points, user_router.dur_of_visit, user_router.n_of_ans)[0][0]
+
+    with Router.uow:
+        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing", "path": ' '.join([str(i) for i in new_path[1:]])})
         Router.uow.commit()
+
     return jsonify(Notification("Успешно!", "Маршрут изменён", "success", 0))
 
 

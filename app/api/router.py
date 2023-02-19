@@ -216,6 +216,29 @@ def load_path(id):
     return jsonify(Notification("Успешно!", "Маршрут загружен", "success", 0))
 
 
+@router.get("/saved/")
+@jwt_required()
+def get_history():
+    user = User.filter(id=get_jwt_identity()).first()
+    user_id = user.id
+
+    hist = [p.as_dict() for p in SavedPaths.filter(owner_id=user_id).all()]
+
+    for i in range(len(hist)):
+        hist[i]["path"] = [int(i) for i in hist[i]["path"].split(" ")[::-1]] if hist[i]["path"] != "" else []
+
+        hist[i]["full_time"] = strings.get_time_str(hist[i]["full_time"])
+        hist[i]["walk_time"] = strings.get_time_str(hist[i]["walk_time"])
+        hist[i]["length"] = strings.get_dist_str(hist[i]["length"])
+    
+    response = jsonify(hist)
+
+    response.headers.set('Access-Control-Allow-Origin', '*')
+    response.headers.set('Access-Control-Allow-Methods', 'GET')
+
+    return response, 200
+
+
 @router.post("/delsaved/<id>")
 @jwt_required()
 def delete_path(id):

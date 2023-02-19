@@ -11,6 +11,9 @@ from random import choice, randint, choices, sample
 
 from app.models.router import *
 from app.models.user import *
+from app.models.map.services.search import search
+
+import json
 
 from app.models.map.services import *
 
@@ -42,6 +45,11 @@ def get_router_route():
 
     return response
 
+@router.get("/search")
+def search_poi():
+    content = request.json
+    ans = search([{"id": p.id, "name": p.name} for p in Poi.all()], content["text"])
+    return json.dumps(ans)
 
 @router.post("/add/<poi_id>")
 @jwt_required()

@@ -35,6 +35,7 @@ def init_user():
     user_router = Router.filter(owner_id=user_id).first()
     return user_router
 
+
 @history.get("/")
 @jwt_required()
 def get_history():

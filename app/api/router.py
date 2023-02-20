@@ -275,7 +275,7 @@ def load_from_hist(id):
     
 @router.post("/switchmand/<id>")
 @jwt_required()
-def swith_mand(id):
+def switch_mand(id):
     user_router = init_user()
     mand_points = [int(i) for i in user_router.mandatory_points.split(" ")] if user_router.mandatory_points != "" else []
     if id in mand_points: mand_points.remove(id)

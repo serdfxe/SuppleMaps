@@ -95,15 +95,16 @@ def delete_point(poi_id:str):
     p =  user_router.path.split(' ')
 
     if poi_id in p:
-        
         p.remove(poi_id)
-
         p = " ".join(p)
+
+        mand = user_router.mandatory_points.split(' ')
+        if poi_id in mand:
+            mand.remove(poi_id)
 
         with Router.uow:
             Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": p})
-            Router.uow.commit()
-
+            Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"mandatory_points": ' '. join(mand)})
             Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "editing"})
             Router.uow.commit()
         return jsonify(Notification("Успешно!", "Маршрут обновлён", "success", 0))

@@ -38,6 +38,7 @@ def get_path(mtrx, poi, time_s, time_limit = 10**5, mandatory_points = [1], dur_
         path = temp_path[:-1]
         time = temp_time - dist_to_time(mtrx[temp_path[-2]-1][temp_path[-1]-1])
         if dur_of_visit: time -= time_s[temp_path[-1]-1]
+        if time > time_limit: return ans, best_time, best_path
         if len(path) > len(best_path) or (len(path) == len(best_path) and time < best_time):
             best_path = path
             best_time = time

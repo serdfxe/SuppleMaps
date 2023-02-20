@@ -25,11 +25,8 @@ def run():
 
     mtrx = Graph.matrix
     time_s = Graph.time_list
-    path = get_path(mtrx,[41,47,88], time_s, 20,[],False,1)[0][0]
+    path = get_path(mtrx,[82, 51, 94, 105, 26], time_s, 16,[1, 94, 26],False,1)[0]
     print(path)
-    images = [Poi.filter(id=i).first().image.split(' ') for i in path[1:]]
-
-    print(choice(choice(images)))
     return
     path = input("Введите путь к файлу: ")
 

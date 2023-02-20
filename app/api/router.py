@@ -149,16 +149,6 @@ def build_path():
 
     new_path, t, length = get_path(mtrx, curr_path, time_s, int(data['time_limit']), mand_points, data['dur_of_visit'], user_router.n_of_ans)[0]
     full_time, walk_time = t
-<<<<<<< HEAD
-    with Router.uow:
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": ' '.join([str(i) for i in new_path[1:]])})
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"full_time": full_time})
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"walk_time": walk_time})
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"length": length})
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
-        Router.uow.commit()
-=======
-
     with Router.uow as u:
         u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": ' '.join([str(i) for i in new_path[1:]])})
         u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"full_time": full_time})
@@ -166,8 +156,6 @@ def build_path():
         u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"length": length})
         u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
         u.commit()
->>>>>>> 218f35e579e553862def1239e66d97d59b965f4b
-
     images = [Poi.filter(id=i).first().image.split(' ') for i in new_path[1:] if Poi.filter(id=i).first().image != '']
     add_to_histoty(user_router.owner_id, ' '.join([str(i) for i in new_path[1:]]),length,full_time, walk_time, choice(choice(images)))
 

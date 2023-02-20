@@ -45,7 +45,7 @@ def get_router_route():
     r = init_user().as_dict()
 
     r["path"] = [int(i) for i in r["path"].split(" ")] if r["path"] != "" else []
-
+    r["mandatory_points"] = [int(i) for i in r["mandatory_points"].split(" ")] if r["mandatory_points"] != "" else []
     r["full_time"] = strings.get_time_str(r["full_time"])
     r["walk_time"] = strings.get_time_str(r["walk_time"])
     r["length"] = strings.get_dist_str(r["length"])
@@ -196,23 +196,24 @@ def save_path():
 
 @router.post("/loadsaved/<id>")
 @jwt_required()
-def load_path(id):
+def load_saved(id):
     user_router = init_user()
     path_id = int(id)
     saved_paths = SavedPaths.filter(id=path_id).first()
     if saved_paths:
         if saved_paths.owner_id == user_router.owner_id:
-            path = saved_paths.path
+            with Router.uow:
+                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": saved_paths.path})
+                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"length": saved_paths.length})
+                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"full_time": saved_paths.full_time})
+                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"walk_time": saved_paths.walk_time})
+                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
+                Router.uow.commit()
+            return 200
         else:
             return 400
     else:
         return 400
-    
-    with Router.uow:
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": path})
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
-        Router.uow.commit()
-    return 200
 
 @router.get("/saved/")
 @jwt_required()
@@ -254,23 +255,32 @@ def delete_path(id):
 @router.post("/loadhist/<id>")
 @jwt_required()
 def load_from_hist(id):
-    print(id)
     user_router = init_user()
     path_id = int(id)
-    print(f"{path_id=}")
     hist = History.filter(id=path_id).first()
-    print(f"{hist}")
     if hist:
         if hist.owner_id == user_router.owner_id:
-            path = hist.path
+            with Router.uow:
+                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": hist.path})
+                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"length": hist.length})
+                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"full_time": hist.full_time})
+                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"walk_time": hist.walk_time})
+                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
+                Router.uow.commit()
+            return 200
         else:
-            return 400 #jsonify(Notification("Ошибка!", "Некорректный id пользователя", "error", 1)), 400
+            return 400
     else:
-        return 400 # jsonify(Notification("Ошибка!", "Некорректный id маршрута", "error", 1)), 400
+        return 400
     
+@router.post("/switchmand/<id>")
+@jwt_required()
+def swith_mand(id):
+    user_router = init_user()
+    mand_points = [int(i) for i in user_router.mandatory_points.split(" ")] if user_router.mandatory_points != "" else []
+    if id in mand_points: mand_points.remove(id)
+    else: mand_points.append(id)
     with Router.uow:
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": path})
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
+        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"mandatory_points": ' '.join(mand_points)})
         Router.uow.commit()
-    
-    return 200#jsonify(Notification("Успешно!", "Маршрут загружен", "success", 0)), 200
+    return 200

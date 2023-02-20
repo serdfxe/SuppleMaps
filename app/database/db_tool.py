@@ -35,22 +35,22 @@ class DBTool():
 
     @classmethod
     def update(cls, obj, **kwargs):
-        with cls.uow:
-            cls.uow.session.query(cls).filter_by(id=obj.id).update(kwargs)
-            cls.uow.commit()
+        with cls.uow as u:
+            u.session.query(cls).filter_by(id=obj.id).update(kwargs)
+            u.commit()
 
     @classmethod
     def delete_first(cls, **kwargs):
-        with cls.uow:
+        with cls.uow as u:
             obj = cls.session.query(cls).filter_by(**kwargs).first()
             cls.session.delete(obj)
             cls.session.commit()
 
     @classmethod
     def delete_all(cls, **kwargs):
-        with cls.uow:
-            cls.uow.session.query(cls).filter_by(**kwargs).delete()
-            cls.uow.commit()
+        with cls.uow as u:
+            u.session.query(cls).filter_by(**kwargs).delete()
+            u.commit()
 
     def as_dict(self):
         return {c.name: getattr(self, c.name) if not (isinstance(getattr(self, c.name), float) and isnan(getattr(self, c.name))) else None for c in self.__table__.columns}

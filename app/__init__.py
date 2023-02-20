@@ -16,7 +16,7 @@ from app.app import app
 
 def create_app():
     app.config["JWT_SECRET_KEY"] = "please-remember-to-change-me"
-    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
+    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=30)
 
     app.debug = 0
     app.secret_key = b"iogq3408t7h43807thirugebo8436fgy"

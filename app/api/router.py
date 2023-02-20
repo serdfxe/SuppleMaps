@@ -77,12 +77,12 @@ def add_point(poi_id:str):
             new_path = f"{user_router.path} {poi_id}"
         else:
             new_path = poi_id
-        with Router.uow:
-            Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": new_path})
-            Router.uow.commit()
+        with Router.uow as u:
+            u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": new_path})
+            u.commit()
 
-            Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "editing"})
-            Router.uow.commit()
+            u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "editing"})
+            u.commit()
         return jsonify(Notification("Успешно!", "Маршрут обновлён", "success", 0)), 200
     else:
         return jsonify(Notification("Ошибка!", "Точка уже есть в маршруте", "error", 1)), 401
@@ -102,11 +102,11 @@ def delete_point(poi_id:str):
         if poi_id in mand:
             mand.remove(poi_id)
 
-        with Router.uow:
-            Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": p})
-            Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"mandatory_points": ' '. join(mand)})
-            Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "editing"})
-            Router.uow.commit()
+        with Router.uow as u:
+            u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": p})
+            u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"mandatory_points": ' '. join(mand)})
+            u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "editing"})
+            u.commit()
         return jsonify(Notification("Успешно!", "Маршрут обновлён", "success", 0))
     else:
         return jsonify(Notification("Ошибка!", "Точки нет маршруте", "error", 1))
@@ -117,9 +117,9 @@ def delete_point(poi_id:str):
 def clear_path():
     user_router = init_user()
 
-    with Router.uow:
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update(dict(state="editing", path="", time_limit=10**5, mandatory_points="", dur_of_visit=False, n_of_ans=1, length=0, full_time=0, walk_time=0))
-        Router.uow.commit()
+    with Router.uow as u:
+        u.session.query(Router).filter_by(owner_id = user_router.owner_id).update(dict(state="editing", path="", time_limit=10**5, mandatory_points="", dur_of_visit=False, n_of_ans=1, length=0, full_time=0, walk_time=0))
+        u.commit()
     return jsonify(Notification("Успешно!", "Маршрут удалён", "success", 0))
 
 
@@ -154,13 +154,13 @@ def build_path():
     new_path, t, length = get_path(mtrx, curr_path, time_s, int(data['time_limit']), mand_points, data['dur_of_visit'], user_router.n_of_ans)[0]
     full_time, walk_time = t
 
-    with Router.uow:
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": ' '.join([str(i) for i in new_path[1:]])})
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"full_time": full_time})
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"walk_time": walk_time})
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"length": length})
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
-        Router.uow.commit()
+    with Router.uow as u:
+        u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": ' '.join([str(i) for i in new_path[1:]])})
+        u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"full_time": full_time})
+        u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"walk_time": walk_time})
+        u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"length": length})
+        u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
+        u.commit()
 
     images = [Poi.filter(id=i).first().image.split(' ') for i in new_path[1:] if Poi.filter(id=i).first().image != '']
     add_to_histoty(user_router.owner_id, ' '.join([str(i) for i in new_path[1:]]),length,full_time, walk_time, choice(choice(images)))
@@ -203,13 +203,13 @@ def load_saved(id):
     saved_paths = SavedPaths.filter(id=path_id).first()
     if saved_paths:
         if saved_paths.owner_id == user_router.owner_id:
-            with Router.uow:
-                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": saved_paths.path})
-                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"length": saved_paths.length})
-                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"full_time": saved_paths.full_time})
-                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"walk_time": saved_paths.walk_time})
-                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
-                Router.uow.commit()
+            with Router.uow as u:
+                u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": saved_paths.path})
+                u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"length": saved_paths.length})
+                u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"full_time": saved_paths.full_time})
+                u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"walk_time": saved_paths.walk_time})
+                u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
+                u.commit()
             return 200
         else:
             return 400
@@ -261,13 +261,13 @@ def load_from_hist(id):
     hist = History.filter(id=path_id).first()
     if hist:
         if hist.owner_id == user_router.owner_id:
-            with Router.uow:
-                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": hist.path})
-                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"length": hist.length})
-                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"full_time": hist.full_time})
-                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"walk_time": hist.walk_time})
-                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
-                Router.uow.commit()
+            with Router.uow as u:
+                u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": hist.path})
+                u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"length": hist.length})
+                u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"full_time": hist.full_time})
+                u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"walk_time": hist.walk_time})
+                u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
+                u.session.commit()
             return 200
         else:
             return 400
@@ -281,7 +281,7 @@ def switch_mand(id):
     mand_points = [i for i in user_router.mandatory_points.split(" ")] if user_router.mandatory_points != "" else []
     if id in mand_points: mand_points.remove(id)
     else: mand_points.append(id)
-    with Router.uow:
-        Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"mandatory_points": ' '.join(mand_points)})
-        Router.uow.commit()
+    with Router.uow as u:
+        u.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"mandatory_points": ' '.join(mand_points)})
+        u.session.commit()
     return jsonify(Notification("Успешно!", "Маршрут обновлён", "success", 0))

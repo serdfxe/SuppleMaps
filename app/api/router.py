@@ -278,6 +278,9 @@ def load_from_hist(id):
 @jwt_required()
 def switch_mand(id):
     user_router = init_user()
+    path = [i for i in user_router.path.split(" ")] if user_router.path != "" else []
+    if id not in path:
+        return jsonify(Notification("Ошибка!", "Точки нет в маршруте", "error", 1))
     mand_points = [i for i in user_router.mandatory_points.split(" ")] if user_router.mandatory_points != "" else []
     if id in mand_points: mand_points.remove(id)
     else: mand_points.append(id)

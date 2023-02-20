@@ -147,13 +147,8 @@ def build_path():
     else: 
         mand_points = []
 
-    print(user_router.as_dict())
-
-    print(f"{mand_points=}")
-
     new_path, t, length = get_path(mtrx, curr_path, time_s, int(data['time_limit']), mand_points, data['dur_of_visit'], user_router.n_of_ans)[0]
     full_time, walk_time = t
-
     with Router.uow:
         Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": ' '.join([str(i) for i in new_path[1:]])})
         Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"full_time": full_time})
@@ -288,3 +283,47 @@ def switch_mand(id):
         Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"mandatory_points": ' '.join(mand_points)})
         Router.uow.commit()
     return jsonify(Notification("Успешно!", "Маршрут обновлён", "success", 0))
+
+
+@router.get("/static/")
+@jwt_required()
+def get_static():
+    user = User.filter(id=get_jwt_identity()).first()
+    user_id = user.id
+
+    stat = [p.as_dict() for p in StaticPaths.filter(owner_id=user_id).all()[::-1]]
+
+    for i in range(len(stat)):
+        stat[i]["path"] = [int(i) for i in stat[i]["path"].split(" ")] if stat[i]["path"] != "" else []
+
+        stat[i]["full_time"] = strings.get_time_str(stat[i]["full_time"])
+        stat[i]["walk_time"] = strings.get_time_str(stat[i]["walk_time"])
+        stat[i]["length"] = strings.get_dist_str(stat[i]["length"])
+    
+    response = jsonify(stat)
+
+    response.headers.set('Access-Control-Allow-Origin', '*')
+    response.headers.set('Access-Control-Allow-Methods', 'GET')
+
+    return response, 200
+
+@router.post("/loadstatic/<id>")
+@jwt_required()
+def load_static(id):
+    user_router = init_user()
+    path_id = int(id)
+    stat_paths = StaticPaths.filter(id=path_id).first()
+    if stat_paths:
+        if stat_paths.owner_id == user_router.owner_id:
+            with Router.uow:
+                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"path": stat_paths.path})
+                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"length": stat_paths.length})
+                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"full_time": stat_paths.full_time})
+                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"walk_time": stat_paths.walk_time})
+                Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"state": "viewing"})
+                Router.uow.commit()
+            return 200
+        else:
+            return 400
+    else:
+        return 400

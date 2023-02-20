@@ -148,7 +148,7 @@ def build_path():
 
     print(user_router.as_dict())
 
-    # print(curr_path, time_s, user_router.time_limit, mand_points, user_router.dur_of_visit, user_router.n_of_ans)
+    print(f"{mand_points=}")
 
     new_path, t, length = get_path(mtrx, curr_path, time_s, int(data['time_limit']), mand_points, data['dur_of_visit'], user_router.n_of_ans)[0]
     full_time, walk_time = t
@@ -277,10 +277,10 @@ def load_from_hist(id):
 @jwt_required()
 def switch_mand(id):
     user_router = init_user()
-    mand_points = [int(i) for i in user_router.mandatory_points.split(" ")] if user_router.mandatory_points != "" else []
+    mand_points = [i for i in user_router.mandatory_points.split(" ")] if user_router.mandatory_points != "" else []
     if id in mand_points: mand_points.remove(id)
     else: mand_points.append(id)
     with Router.uow:
         Router.uow.session.query(Router).filter_by(owner_id = user_router.owner_id).update({"mandatory_points": ' '.join(mand_points)})
         Router.uow.commit()
-    return 200
+    return jsonify(Notification("Успешно!", "Маршрут обновлён", "success", 0))

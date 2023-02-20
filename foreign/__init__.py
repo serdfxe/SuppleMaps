@@ -25,7 +25,7 @@ def run():
 
     mtrx = Graph.matrix
     time_s = Graph.time_list
-    path = get_path(mtrx,[57], time_s, 100000,[],False,1)[0]
+    path = get_path(mtrx,[80, 51, 88, 90, 104, 14], time_s, 20,[],False,1)[0]
     print(path)
     return
     path = input("Введите путь к файлу: ")

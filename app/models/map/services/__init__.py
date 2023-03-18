@@ -35,6 +35,7 @@ def get_path(mtrx, poi, time_s, time_limit = 10**5, mandatory_points = [1], dur_
         return ans, best_time, best_path
 
     if time_limit != 10**5 and temp_time > time_limit and all(point in temp_path[:-1] for point in mandatory_points):
+        print(temp_path)
         path = temp_path[:-1]
         time = temp_time - dist_to_time(mtrx[temp_path[-2]-1][temp_path[-1]-1])
         if dur_of_visit: time -= time_s[temp_path[-1]-1]
@@ -44,7 +45,8 @@ def get_path(mtrx, poi, time_s, time_limit = 10**5, mandatory_points = [1], dur_
             best_time = time
         full_time = int(time) + (1-dur_of_visit)*sum(time_s[point-1] for point in path)
         walk_time = int(time) - dur_of_visit*sum(time_s[point-1] for point in path)
-        ans.append((tuple(path), (full_time, walk_time), int(time_to_dist(time - dur_of_visit*sum(time_s[point-1] for point in path)))))
+        if all(point in path for point in mandatory_points):
+            ans.append((tuple(path), (full_time, walk_time), int(time_to_dist(time - dur_of_visit*sum(time_s[point-1] for point in path)))))
         return ans, best_time, best_path
 
     

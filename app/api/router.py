@@ -146,11 +146,9 @@ def build_path():
         mand_points = [int(p) for p in user_router.mandatory_points.split(' ')]
     else: 
         mand_points = []
-
-    new_path, t, length = get_path(mtrx, curr_path, time_s, int(data['time_limit']), mand_points, data['dur_of_visit'], user_router.n_of_ans)[0]
-    
     print(curr_path, int(data['time_limit']), mand_points, data['dur_of_visit'], user_router.n_of_ans)
-
+    new_path, t, length = get_path(mtrx, curr_path, time_s, int(data['time_limit']), mand_points, data['dur_of_visit'], user_router.n_of_ans)[0]
+    print(new_path, t, length)
     full_time, walk_time = t
     
     with Router.uow as u:
